@@ -1,1 +1,134 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import "bootstrap/scss/bootstrap";
+
+/* Custom variables */
+:root {
+  --app-color-black: #000;
+  --app-color-white: #fff;
+  --app-color-red: #ff0000;
+  --app-color-primary: var(--app-color-black);
+  --app-color-primary-hover: #444;
+  --app-color-secondary: #e0e0e0;
+  --app-color-secondary-hover: #c0c0c0;
+  --app-color-success: #517812;
+  --app-color-success-hover: #3e5e0f;
+  --app-color-danger: #a71b1b;
+  --app-color-danger-hover: #bb2525;
+  --app-color-text: #444;
+  --app-color-link: #154f6b;
+  --app-color-link-hover: #0d6791;
+
+  --app-border-radius: 0.5rem;
+
+  --app-transition-time: 0.3s;
+}
+
+/* Custom CSS */
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+  margin-top: 5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+  color: var(--app-color-text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--app-color-primary);
+}
+
+a {
+  color: var(--app-color-link);
+  font-weight: bold;
+  transition: color var(--app-transition-time);
+}
+
+a:hover {
+  color: var(--app-color-link-hover);
+  transition: color var(--app-transition-time);
+}
+
+/* Bootstrap */
+
+.card {
+  border-radius: var(--app-border-radius);
+}
+
+.btn {
+  border-radius: var(--app-border-radius);
+  transition: var(--app-transition-time) !important;
+}
+
+.btn-hover {
+  transition: var(--app-transition-time) !important;
+}
+
+.btn-primary {
+  background-color: var(--app-color-primary) !important;
+  border-color: var(--app-color-primary) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--app-color-primary-hover) !important;
+  border-color: var(--app-color-primary-hover) !important;
+}
+
+.btn-secondary {
+  color: var(--app-color-text) !important;
+  background-color: var(--app-color-secondary) !important;
+  border-color: var(--app-color-secondary) !important;
+}
+
+.btn-secondary:hover {
+  background-color: var(--app-color-secondary-hover) !important;
+  border-color: var(--app-color-secondary-hover) !important;
+}
+
+.btn-success {
+  background-color: var(--app-color-success) !important;
+  border-color: var(--app-color-success) !important;
+}
+
+.btn-success:hover {
+  background-color: var(--app-color-success-hover) !important;
+  border-color: var(--app-color-success-hover) !important;
+}
+
+.btn-danger {
+  background-color: var(--app-color-danger) !important;
+  border-color: var(--app-color-danger) !important;
+}
+
+.btn-danger:hover {
+  background-color: var(--app-color-danger-hover) !important;
+  border-color: var(--app-color-danger-hover) !important;
+}
+
+.btn-link {
+  font-weight: bold;
+  color: var(--app-color-link) !important;
+}
+
+.btn-link:hover {
+  color: var(--app-color-link-hover) !important;
+}
+
+.rounded {
+  border-radius: var(--app-border-radius) !important;
+}
