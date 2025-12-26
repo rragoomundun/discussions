@@ -14,5 +14,8 @@
   "FOOTER": {
     "COPYRIGHT": "Copyright ©",
     "ALL_RIGHTS_RESERVED": "All rights reserved."
+  },
+  "SETUP_PAGE": {
+    "TITLE": "Setup a new forum"
   }
 }
