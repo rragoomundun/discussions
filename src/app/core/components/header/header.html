@@ -1,0 +1,33 @@
+<header>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a id="this-logo" routerLink="/">Title</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="fa-solid fa-bars"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul id="this-menu" class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/auth/login">
+              {{ "GENERAL.LOGIN" | translate }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/auth/register">
+              {{ "GENERAL.REGISTER" | translate }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

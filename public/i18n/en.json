@@ -1,0 +1,18 @@
+{
+  "APP": {
+    "TITLE": "Discussions"
+  },
+  "GENERAL": {
+    "LOGIN": "Login",
+    "REGISTER": "Register",
+    "LOGOUT": "Logout",
+    "NAME": "Name",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "PASSWORD_CONFIRMATION": "Password Confirmation"
+  },
+  "FOOTER": {
+    "COPYRIGHT": "Copyright ©",
+    "ALL_RIGHTS_RESERVED": "All rights reserved."
+  }
+}
