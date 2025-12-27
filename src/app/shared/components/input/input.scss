@@ -5,7 +5,7 @@
 }
 
 .input-group:focus-within .input-group-text {
-  border-color: var(--bs-body-color);
+  border-color: var(--app-color-primary);
   transition: var(--app-transition-time);
 }
 
