@@ -1,0 +1,17 @@
+@if (label()) {
+  <label [for]="id()" class="form-label">
+    @if (labelIcon()) {
+      <span [class]="labelIcon()"></span>
+    }
+
+    {{ label() }}
+  </label>
+}
+
+<select [id]="id()" class="form-select">
+  @for (item of data(); track item) {
+    <option [selected]="selected() === item.value" [value]="item.value">
+      {{ item.label }}
+    </option>
+  }
+</select>
