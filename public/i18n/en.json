@@ -9,13 +9,21 @@
     "NAME": "Name",
     "EMAIL": "Email",
     "PASSWORD": "Password",
-    "PASSWORD_CONFIRMATION": "Password Confirmation"
+    "PASSWORD_CONFIRMATION": "Password Confirmation",
+    "FORUM_TITLE": "Forum Title",
+    "LANGUAGE": "Language",
+    "SUBMIT": "Submit",
+    "SUBMITTING": "Submitting..."
+  },
+  "LANGUAGES": {
+    "ENGLISH": "English"
   },
   "FOOTER": {
     "COPYRIGHT": "Copyright ©",
     "ALL_RIGHTS_RESERVED": "All rights reserved."
   },
   "SETUP_PAGE": {
-    "TITLE": "Setup a new forum"
+    "TITLE": "Setup a new forum",
+    "INTRO": " Welcome to Discussions! Let's get started by setting up some basic information."
   }
 }

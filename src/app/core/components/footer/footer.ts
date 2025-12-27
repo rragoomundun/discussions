@@ -1,10 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, inject, DestroyRef } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+
 import { TranslateModule } from '@ngx-translate/core';
+
+import { Observable } from 'rxjs';
+
+import { Store } from '@ngrx/store';
+
+import { AppState } from '../../../shared/store/app.state';
+import { selectConfigModel } from '../../../shared/store/config/config.selectors';
+
+import { Config } from '../../../shared/models/Config';
 
 @Component({
   selector: 'app-footer',
-  imports: [TranslateModule],
+  imports: [TranslateModule, AsyncPipe],
   templateUrl: './footer.html',
   styleUrl: './footer.scss',
 })
-export class Footer {}
+export class Footer {
+  private store = inject(Store<AppState>);
+  private destroyRef = inject(DestroyRef);
+
+  config$: Observable<Config | null>;
+
+  createdYear: number | null;
+  currentYear: number;
+
+  constructor() {
+    this.config$ = this.store.select(selectConfigModel);
+    this.createdYear = null;
+    this.currentYear = new Date().getFullYear();
+
+    const configSubscription = this.config$.subscribe(
+      (value: Config | null) => {
+        this.createdYear = new Date(<Date>value?.created_at).getFullYear();
+      },
+    );
+
+    this.destroyRef.onDestroy(() => configSubscription.unsubscribe());
+  }
+}

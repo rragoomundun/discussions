@@ -1,0 +1,39 @@
+@if (label()) {
+  <label [for]="id()" class="form-label">
+    @if (labelIcon()) {
+      <span [class]="labelIcon()"></span>
+    }
+
+    {{ label() }}
+  </label>
+}
+
+<div
+  [class.has-validation]="error()"
+  [class.this-have-border-error]="haveErrorBorder()"
+  class="input-group"
+>
+  @if (prependIcon()) {
+    <span class="input-group-text">
+      <span [class]="prependIcon()"></span>
+    </span>
+  }
+
+  <input
+    [class.is-invalid]="error()"
+    [id]="id()"
+    [type]="type()"
+    [placeholder]="placeholder() ?? ''"
+    [formControlName]="control() ?? ''"
+    [min]="min()"
+    [max]="max()"
+    [class.this-have-prepend-icon]="prependIcon() ? true : false"
+    class="form-control"
+  />
+
+  @if (error()) {
+    <div class="invalid-feedback">
+      {{ error() ? ("GENERAL.ERRORS." + error() | translate) : "" }}
+    </div>
+  }
+</div>

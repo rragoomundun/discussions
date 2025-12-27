@@ -6,7 +6,14 @@
 
   <small>
     {{ "FOOTER.COPYRIGHT" | translate }}
-    2013-2025 Website,
+
+    @if (createdYear === null || createdYear === currentYear) {
+      {{ currentYear }}
+    } @else {
+      {{ createdYear }} - {{ currentYear }}
+    }
+
+    {{ (config$ | async)?.title }},
     {{ "FOOTER.ALL_RIGHTS_RESERVED" | translate }}
   </small>
 </footer>

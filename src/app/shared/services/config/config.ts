@@ -13,4 +13,8 @@ export class Config {
   getExists(): Observable<{ exists: boolean }> {
     return this.http.get<{ exists: boolean }>(`${this.API_PREFIX}/exists`);
   }
+
+  init(data: { title: string; lang: string }): Observable<null> {
+    return this.http.post<null>(`${this.API_PREFIX}/init`, data);
+  }
 }

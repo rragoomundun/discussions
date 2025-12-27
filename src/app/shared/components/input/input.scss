@@ -1,0 +1,24 @@
+.input-group-text {
+  background-color: var(--app-color-white);
+  border-right: none;
+  transition: var(--app-transition-time);
+}
+
+.input-group:focus-within .input-group-text {
+  border-color: var(--bs-body-color);
+  transition: var(--app-transition-time);
+}
+
+.input-group.this-have-border-error {
+  .input-group-text,
+  input {
+    border-color: var(--app-color-red);
+  }
+}
+
+input.this-have-prepend-icon {
+  border-left: none;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  padding-left: 0;
+}
