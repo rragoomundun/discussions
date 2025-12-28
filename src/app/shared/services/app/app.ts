@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, DestroyRef } from '@angular/core';
 
 import { Router } from '@angular/router';
 
@@ -10,13 +10,14 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
 
 import * as ConfigActions from '../../store/config/config.actions';
-import { selectConfigExists } from '../../store/config/config.selectors';
+import { selectConfigConfigExists } from '../../store/config/config.selectors';
 
 @Injectable({
   providedIn: 'root',
 })
 export class App {
   private store = inject(Store<AppState>);
+  private destroyRef = inject(DestroyRef);
   private platformId = inject(PLATFORM_ID);
   private router = inject(Router);
 
@@ -24,18 +25,21 @@ export class App {
     return new Promise((resolve) => {
       this.store.dispatch(ConfigActions.getExists());
 
-      this.store.select(selectConfigExists).subscribe((value) => {
-        if (value === false) {
-          this.router.navigate(['/setup']).then(() => resolve());
-        } else {
-          // Get config
-          // Get user
-          // If can get user, redirects to /
-          // If cannot get user, redirects to /login
+      const existsSubscription = this.store
+        .select(selectConfigConfigExists)
+        .subscribe((value) => {
+          this.store.dispatch(ConfigActions.getConfig());
+
+          if (!value?.config) {
+            this.router.navigate(['/setup']);
+          } else if (!value?.admin) {
+            this.router.navigate(['/auth/register']);
+          }
 
           resolve();
-        }
-      });
+        });
+
+      this.destroyRef.onDestroy(() => existsSubscription);
     });
   }
 

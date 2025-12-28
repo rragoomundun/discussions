@@ -1,4 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, DestroyRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import {
   FormControl,
@@ -13,7 +14,10 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { AppState } from '../../../../shared/store/app.state';
-import { selectOnInit } from '../../../../shared/store/config/config.selectors';
+import {
+  selectConfigConfigExists,
+  selectOnInit,
+} from '../../../../shared/store/config/config.selectors';
 import * as ConfigActions from '../../../../shared/store/config/config.actions';
 
 import { Input as InputComponent } from '../../../../shared/components/input/input';
@@ -36,6 +40,8 @@ export class Setup {
 
   onInit$: Observable<string>;
 
+  config$: Observable<{ config: boolean; admin: boolean } | null>;
+
   formGroup = signal(
     new FormGroup({
       title: new FormControl('', [Validators.required]),
@@ -45,6 +51,7 @@ export class Setup {
 
   constructor() {
     this.onInit$ = this.store.select(selectOnInit);
+    this.config$ = this.store.select(selectConfigConfigExists);
   }
 
   onSubmit(): void {

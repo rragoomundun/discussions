@@ -2,6 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { Config as ConfigModel } from '../../models/Config';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -10,11 +12,17 @@ export class Config {
 
   private http = inject(HttpClient);
 
-  getExists(): Observable<{ exists: boolean }> {
-    return this.http.get<{ exists: boolean }>(`${this.API_PREFIX}/exists`);
+  getExists(): Observable<{ config: boolean; admin: boolean }> {
+    return this.http.get<{ config: boolean; admin: boolean }>(
+      `${this.API_PREFIX}/exists`,
+    );
   }
 
   init(data: { title: string; lang: string }): Observable<null> {
     return this.http.post<null>(`${this.API_PREFIX}/init`, data);
+  }
+
+  get(): Observable<ConfigModel> {
+    return this.http.get<ConfigModel>(this.API_PREFIX);
   }
 }

@@ -8,6 +8,8 @@ import * as ConfigActions from './config.actions';
 
 import { Config as ConfigService } from '../../services/config/config';
 
+import { Config } from '../../models/Config';
+
 @Injectable()
 export class ConfigEffects {
   private actions$ = inject(Actions);
@@ -20,7 +22,10 @@ export class ConfigEffects {
       exhaustMap(() =>
         this.configService.getExists().pipe(
           map((response) =>
-            ConfigActions.getExistsSuccess({ exists: response.exists }),
+            ConfigActions.getExistsSuccess({
+              config: response.config,
+              admin: response.admin,
+            }),
           ),
           catchError(() => of(ConfigActions.getExistsFailure())),
         ),
@@ -38,6 +43,18 @@ export class ConfigEffects {
           }),
           map(() => ConfigActions.initSuccess(data)),
           catchError(() => of(ConfigActions.initFailure())),
+        ),
+      ),
+    ),
+  );
+
+  getConfig$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ConfigActions.getConfig),
+      exhaustMap(() =>
+        this.configService.get().pipe(
+          map((config: Config) => ConfigActions.getConfigSuccess({ config })),
+          catchError(() => of(ConfigActions.getConfigFailure())),
         ),
       ),
     ),

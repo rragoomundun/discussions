@@ -2,6 +2,7 @@ export interface Config {
   title: string;
   lang: string;
   logo: string;
+  favicon: string;
   description: string;
   meta: string;
   show_title: boolean;
