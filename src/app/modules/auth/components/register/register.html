@@ -7,14 +7,14 @@
 
       @if ((exists$ | async)?.admin) {
         <p class="text-center">
+          {{ "REGISTER_PAGE.MESSAGE_ADMIN" | translate }}
+        </p>
+      } @else {
+        <p class="text-center">
           {{
             "REGISTER_PAGE.MESSAGE"
               | translate: { title: (config$ | async)?.title }
           }}
-        </p>
-      } @else {
-        <p class="text-center">
-          {{ "REGISTER_PAGE.MESSAGE_ADMIN" | translate }}
         </p>
       }
 
