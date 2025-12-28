@@ -1,1 +1,88 @@
-<p>register works!</p>
+<div class="app-auth-card card">
+  <div class="card-body">
+    <form [formGroup]="formGroup()" (submit)="onSubmit()">
+      <h1 class="card-title text-center">
+        {{ "GENERAL.REGISTER" | translate }}
+      </h1>
+
+      @if ((exists$ | async)?.admin) {
+        <p class="text-center">
+          {{
+            "REGISTER_PAGE.MESSAGE"
+              | translate: { title: (config$ | async)?.title }
+          }}
+        </p>
+      } @else {
+        <p class="text-center">
+          {{ "REGISTER_PAGE.MESSAGE_ADMIN" | translate }}
+        </p>
+      }
+
+      <div class="mb-3">
+        <app-input
+          [id]="'this-name'"
+          [label]="'GENERAL.NAME' | translate"
+          [type]="'text'"
+          [control]="'name'"
+          [error]="formErrors().name"
+        >
+        </app-input>
+      </div>
+
+      <div class="mb-3">
+        <app-input
+          [id]="'this-email'"
+          [label]="'GENERAL.EMAIL' | translate"
+          [type]="'email'"
+          [control]="'email'"
+          [error]="formErrors().email"
+        >
+        </app-input>
+      </div>
+
+      <div class="mb-3">
+        <app-input
+          [id]="'this-password'"
+          [label]="'GENERAL.PASSWORD' | translate"
+          [type]="'password'"
+          [control]="'password'"
+          [error]="formErrors().password"
+        >
+        </app-input>
+      </div>
+
+      <div class="mb-3">
+        <app-input
+          [id]="'this-password-confirmation'"
+          [label]="'GENERAL.PASSWORD_CONFIRMATION' | translate"
+          [type]="'password'"
+          [control]="'passwordConfirmation'"
+          [error]="formErrors().passwordConfirmation"
+        >
+        </app-input>
+      </div>
+
+      <div class="text-center">
+        @if (onRegister() === "error") {
+          <small class="text-danger">{{ registerError() | translate }}</small>
+        }
+
+        @if (["false", "error"].includes(onRegister())) {
+          <button [disabled]="formGroup().invalid" class="btn btn-primary">
+            {{ "GENERAL.REGISTER" | translate }}
+          </button>
+        } @else if (onRegister() === "true") {
+          <button [disabled]="true" class="btn btn-primary">
+            <span class="fa-solid fa-spinner fa-spin"></span>
+            {{ "REGISTER_PAGE.REGISTERING" | translate }}
+          </button>
+        } @else {
+          <small class="text-success">
+            <span class="fa-regular fa-circle-check"></span>
+            {{ "REGISTER_PAGE.REGISTRATION_SUCCESSFUL" | translate }}
+          </small>
+        }
+      </div>
+    </form>
+  </div>
+</div>
