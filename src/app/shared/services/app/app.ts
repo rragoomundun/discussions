@@ -30,10 +30,14 @@ export class App {
         .subscribe((value) => {
           this.store.dispatch(ConfigActions.getConfig());
 
-          if (!value?.config) {
-            this.router.navigate(['/setup']);
-          } else if (!value?.admin) {
-            this.router.navigate(['/auth/register']);
+          if (value !== null) {
+            if (!value?.config) {
+              this.router.navigate(['/setup']);
+            } else if (!value?.admin) {
+              this.router.navigate(['/auth/register']);
+            } else if (this.router.url === '/setup') {
+              this.router.navigate(['/']);
+            }
           }
 
           resolve();

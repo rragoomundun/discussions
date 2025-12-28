@@ -15,6 +15,13 @@
     "SUBMIT": "Submit",
     "SUBMITTING": "Submitting..."
   },
+  "ERRORS": {
+    "NAME_IN_USE": "This name is already used.",
+    "EMAIL_IN_USE": "This e-mail is already in use.",
+    "PASSWORD_MIN_LENGTH": "The password must have at least 8 characters.",
+    "PASSWORD_NOT_STRONG": "The password is not strong enough. A strong password must contains at least eight characters, one uppercase letter, one lowercase letter, one number, and one special character.",
+    "PASSWORD_CONFIRMATION_NO_MATCH": "The confirmed password does not match the password."
+  },
   "LANGUAGES": {
     "ENGLISH": "English"
   },
@@ -25,5 +32,16 @@
   "SETUP_PAGE": {
     "TITLE": "Setup a new forum",
     "INTRO": " Welcome to Discussions! Let's get started by setting up some basic information."
+  },
+  "REGISTER_PAGE": {
+    "MESSAGE": "Register on {{title}}.",
+    "MESSAGE_ADMIN": "Create a new admin account.",
+    "REGISTERING": "Registering...",
+    "REGISTRATION_SUCCESSFUL": "Registration successful. An email has been sent to your address. Consult it to confirm your account.",
+    "ERRORS": {
+      "CONFIG_NOT_SET": "This forum is not yet configured.",
+      "ADMIN_NOT_CONFIRMED": "The admin account needs to be confirmed in order to create new accounts.",
+      "ACCOUNT_CREATION": "Cannot create account."
+    }
   }
 }

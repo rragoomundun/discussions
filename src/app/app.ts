@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, DestroyRef } from '@angular/core';
 import {
   Router,
   ActivatedRoute,
@@ -15,7 +15,7 @@ import { Store } from '@ngrx/store';
 
 import {
   selectConfigConfigExists,
-  selectConfigOnGetExists,
+  selectConfigModel,
   selectOnGetConfig,
 } from './shared/store/config/config.selectors';
 
@@ -23,6 +23,9 @@ import { Header as HeaderComponent } from './core/components/header/header';
 import { Footer as FooterComponent } from './core/components/footer/footer';
 
 import { Translation as TranslationService } from './shared/services/translation/translation';
+
+import { Config } from './shared/models/Config';
+
 import { App as AppService } from './shared/services/app/app';
 
 @Component({
@@ -33,6 +36,7 @@ import { App as AppService } from './shared/services/app/app';
 })
 export class App {
   private router = inject(Router);
+  private destroyRef = inject(DestroyRef);
   private titleService = inject(Title);
   private translationService = inject(TranslationService);
   private store = inject(Store);
@@ -40,11 +44,44 @@ export class App {
   appService = inject(AppService);
 
   configExists$: Observable<{ config: boolean; admin: boolean } | null>;
+  config$: Observable<Config | null>;
   onGetConfig$: Observable<string>;
+
+  title: string | null = null;
+  forumTitle: string | null = null;
 
   constructor() {
     this.configExists$ = this.store.select(selectConfigConfigExists);
+    this.config$ = this.store.select(selectConfigModel);
     this.onGetConfig$ = this.store.select(selectOnGetConfig);
+
+    const configSubscription = this.config$.subscribe(
+      (value: Config | null) => {
+        this.forumTitle = <string>value?.title;
+
+        if (this.title) {
+          if (this.title === 'APP.TITLE') {
+            this.titleService.setTitle(
+              this.translationService.instant('APP.TITLE'),
+            );
+          } else {
+            if (this.router.url === '/setup') {
+              this.titleService.setTitle(
+                `${this.translationService.instant(
+                  this.title,
+                )} - ${this.translationService.instant('APP.TITLE')}`,
+              );
+            } else {
+              this.titleService.setTitle(
+                `${this.translationService.instant(this.title)} - ${this.forumTitle}`,
+              );
+            }
+          }
+        }
+      },
+    );
+
+    this.destroyRef.onDestroy(() => configSubscription.unsubscribe());
 
     this.router.events
       .pipe(
@@ -65,19 +102,7 @@ export class App {
         }),
       )
       .subscribe((title: string) => {
-        if (title) {
-          if (title === 'APP.TITLE') {
-            this.titleService.setTitle(
-              this.translationService.instant('APP.TITLE'),
-            );
-          } else {
-            this.titleService.setTitle(
-              `${this.translationService.instant(
-                title,
-              )} - ${this.translationService.instant('APP.TITLE')}`,
-            );
-          }
-        }
+        this.title = title;
       });
   }
 }
