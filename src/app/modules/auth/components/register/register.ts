@@ -96,6 +96,7 @@ export class Register {
         if (type) {
           if (type === 'INVALID_PARAMETERS') {
             this.formErrors.set(error.error.error);
+            this.registerError.set('');
           } else {
             this.resetFormErrors();
             this.registerError.set(`REGISTER_PAGE.ERRORS.${type}`);

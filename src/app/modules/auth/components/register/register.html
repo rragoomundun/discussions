@@ -63,8 +63,10 @@
       </div>
 
       <div class="text-center">
-        @if (onRegister() === "error") {
+        @if (registerError()) {
           <small class="text-danger">{{ registerError() | translate }}</small>
+
+          <br /><br />
         }
 
         @if (["false", "error"].includes(onRegister())) {
