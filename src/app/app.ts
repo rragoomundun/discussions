@@ -14,8 +14,9 @@ import { filter, map, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import {
-  selectConfigExists,
+  selectConfigConfigExists,
   selectConfigOnGetExists,
+  selectOnGetConfig,
 } from './shared/store/config/config.selectors';
 
 import { Header as HeaderComponent } from './core/components/header/header';
@@ -38,12 +39,12 @@ export class App {
 
   appService = inject(AppService);
 
-  configExists$: Observable<boolean>;
-  onGetConfigExists$: Observable<string>;
+  configExists$: Observable<{ config: boolean; admin: boolean } | null>;
+  onGetConfig$: Observable<string>;
 
   constructor() {
-    this.configExists$ = this.store.select(selectConfigExists);
-    this.onGetConfigExists$ = this.store.select(selectConfigOnGetExists);
+    this.configExists$ = this.store.select(selectConfigConfigExists);
+    this.onGetConfig$ = this.store.select(selectOnGetConfig);
 
     this.router.events
       .pipe(
@@ -61,19 +62,19 @@ export class App {
           }
 
           return routeTitle;
-        })
+        }),
       )
       .subscribe((title: string) => {
         if (title) {
           if (title === 'APP.TITLE') {
             this.titleService.setTitle(
-              this.translationService.instant('APP.TITLE')
+              this.translationService.instant('APP.TITLE'),
             );
           } else {
             this.titleService.setTitle(
               `${this.translationService.instant(
-                title
-              )} - ${this.translationService.instant('APP.TITLE')}`
+                title,
+              )} - ${this.translationService.instant('APP.TITLE')}`,
             );
           }
         }

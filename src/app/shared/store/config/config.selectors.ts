@@ -6,7 +6,7 @@ import { ConfigState } from './config.state';
 
 export const selectConfig = (state: AppState) => state.config;
 
-export const selectConfigExists = createSelector(
+export const selectConfigConfigExists = createSelector(
   selectConfig,
   (state: ConfigState) => state.exists,
 );
@@ -24,4 +24,9 @@ export const selectConfigOnGetExists = createSelector(
 export const selectOnInit = createSelector(
   selectConfig,
   (state: ConfigState) => state.onInit,
+);
+
+export const selectOnGetConfig = createSelector(
+  selectConfig,
+  (state: ConfigState) => state.onGetConfig,
 );

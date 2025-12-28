@@ -1,8 +1,8 @@
-@if (
-  appService.platform() === "browser" && (onGetConfigExists$ | async) === "true"
-) {
+@let config = configExists$ | async;
+
+@if (appService.platform() === "browser" && (onGetConfig$ | async) === "true") {
 } @else {
-  @if (configExists$ | async) {
+  @if (config?.config) {
     <app-header></app-header>
 
     <main>
