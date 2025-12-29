@@ -30,7 +30,7 @@
     "ALL_RIGHTS_RESERVED": "All rights reserved."
   },
   "SETUP_PAGE": {
-    "TITLE": "Setup a new forum",
+    "TITLE": "Setup a New Forum",
     "INTRO": " Welcome to Discussions! Let's get started by setting up some basic information."
   },
   "REGISTER_PAGE": {
@@ -43,5 +43,11 @@
       "ADMIN_NOT_CONFIRMED": "The admin account needs to be confirmed in order to create new accounts.",
       "ACCOUNT_CREATION": "Cannot create account."
     }
+  },
+  "REGISTER_CONFIRM_PAGE": {
+    "TITLE": "Account Confirmation",
+    "CONFIRMING": "Account confirmation in progress...",
+    "SUCCESS": "Your account has been confirmed. You are going to be redirected...",
+    "ERROR": "Impossible to confirm this account."
   }
 }

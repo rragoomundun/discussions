@@ -1,6 +1,7 @@
 @let config = configExists$ | async;
 
 @if (appService.platform() === "browser" && (onGetConfig$ | async) === "true") {
+  <div class="this-loader"></div>
 } @else {
   @if (config?.config) {
     <app-header></app-header>
