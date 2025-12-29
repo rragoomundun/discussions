@@ -16,6 +16,7 @@ import { Store } from '@ngrx/store';
 import {
   selectConfigConfigExists,
   selectConfigModel,
+  selectConfigOnGetExists,
   selectOnGetConfig,
 } from './shared/store/config/config.selectors';
 
@@ -45,6 +46,7 @@ export class App {
 
   configExists$: Observable<{ config: boolean; admin: boolean } | null>;
   config$: Observable<Config | null>;
+  onGetExists$: Observable<string>;
   onGetConfig$: Observable<string>;
 
   title: string | null = null;
@@ -53,6 +55,7 @@ export class App {
   constructor() {
     this.configExists$ = this.store.select(selectConfigConfigExists);
     this.config$ = this.store.select(selectConfigModel);
+    this.onGetExists$ = this.store.select(selectConfigOnGetExists);
     this.onGetConfig$ = this.store.select(selectOnGetConfig);
 
     const configSubscription = this.config$.subscribe(
