@@ -24,7 +24,6 @@ export class App {
   init(): Promise<void> {
     return new Promise((resolve) => {
       this.store.dispatch(ConfigActions.getExists());
-
       const existsSubscription = this.store
         .select(selectConfigConfigExists)
         .subscribe((value) => {
@@ -33,7 +32,10 @@ export class App {
           if (value !== null) {
             if (!value?.config) {
               this.router.navigate(['/setup']);
-            } else if (!value?.admin) {
+            } else if (
+              !value?.admin &&
+              this.router.url.includes('/register/confirm') === false
+            ) {
               this.router.navigate(['/auth/register']);
             } else if (this.router.url === '/setup') {
               this.router.navigate(['/']);
