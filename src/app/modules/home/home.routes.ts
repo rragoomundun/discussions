@@ -6,6 +6,6 @@ export const homeRoutes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    data: { title: 'Home_PAGE.TITLE' },
+    data: { title: 'HOME_PAGE.TITLE' },
   },
 ];
