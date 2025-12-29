@@ -23,6 +23,7 @@ export class Auth {
     return this.http.post<null>(
       `${this.API_PREFIX}/register/confirm/${token}`,
       {},
+      { withCredentials: true },
     );
   }
 }
