@@ -1,0 +1,59 @@
+<div class="app-auth-card card">
+  <div class="card-body">
+    <form [formGroup]="formGroup()" (submit)="onSubmit()">
+      <h1 class="card-title text-center">
+        {{ "GENERAL.LOGIN" | translate }}
+      </h1>
+
+      <p class="text-center">
+        {{
+          "LOGIN_PAGE.MESSAGE" | translate: { title: (config$ | async)?.title }
+        }}
+      </p>
+
+      <div class="mb-3">
+        <app-input
+          [id]="'this-name'"
+          [label]="'GENERAL.NAME' | translate"
+          [type]="'text'"
+          [control]="'name'"
+        >
+        </app-input>
+      </div>
+
+      <div class="mb-3">
+        <app-input
+          [id]="'this-password'"
+          [label]="'GENERAL.PASSWORD' | translate"
+          [type]="'password'"
+          [control]="'password'"
+        >
+        </app-input>
+      </div>
+
+      <div class="text-end mb-3">
+        <a routerLink="/auth/password/forgotten">
+          {{ "GENERAL.PASSWORD_FORGOTTEN" | translate }}
+        </a>
+      </div>
+
+      <div class="text-center">
+        @if (onLogin() === "error") {
+          <small class="text-danger">{{ loginError() | translate }}</small>
+
+          <br /><br />
+        }
+        @if (["false", "error"].includes(onLogin())) {
+          <button [disabled]="formGroup().invalid" class="btn btn-primary">
+            {{ "GENERAL.LOGIN" | translate }}
+          </button>
+        } @else if (onLogin() === "true") {
+          <button [disabled]="true" class="btn btn-primary">
+            <span class="fa-solid fa-spinner fa-spin"></span>
+            {{ "LOGIN_PAGE.LOGIN_IN" | translate }}
+          </button>
+        }
+      </div>
+    </form>
+  </div>
+</div>

@@ -61,26 +61,7 @@ export class App {
     const configSubscription = this.config$.subscribe(
       (value: Config | null) => {
         this.forumTitle = <string>value?.title;
-
-        if (this.title) {
-          if (this.title === 'APP.TITLE') {
-            this.titleService.setTitle(
-              this.translationService.instant('APP.TITLE'),
-            );
-          } else {
-            if (this.router.url === '/setup') {
-              this.titleService.setTitle(
-                `${this.translationService.instant(
-                  this.title,
-                )} - ${this.translationService.instant('APP.TITLE')}`,
-              );
-            } else {
-              this.titleService.setTitle(
-                `${this.translationService.instant(this.title)} - ${this.forumTitle}`,
-              );
-            }
-          }
-        }
+        this.setTitle();
       },
     );
 
@@ -106,6 +87,29 @@ export class App {
       )
       .subscribe((title: string) => {
         this.title = title;
+        this.setTitle();
       });
+  }
+
+  setTitle(): void {
+    if (this.title) {
+      if (this.title === 'APP.TITLE') {
+        this.titleService.setTitle(
+          this.translationService.instant('APP.TITLE'),
+        );
+      } else {
+        if (this.router.url === '/setup') {
+          this.titleService.setTitle(
+            `${this.translationService.instant(
+              this.title,
+            )} - ${this.translationService.instant('APP.TITLE')}`,
+          );
+        } else {
+          this.titleService.setTitle(
+            `${this.translationService.instant(this.title)} - ${this.forumTitle}`,
+          );
+        }
+      }
+    }
   }
 }
