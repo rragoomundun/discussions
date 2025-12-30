@@ -1,8 +1,11 @@
+@let user = user$ | async;
+
 <header>
   <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
+    <div class="app-container container">
       <a id="this-logo" routerLink="/">{{ (config$ | async)?.title }}</a>
       <button
+        id="this-hamburger-icon"
         class="navbar-toggler"
         type="button"
         data-bs-toggle="collapse"
@@ -16,16 +19,49 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul id="this-menu" class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/auth/login">
-              {{ "GENERAL.LOGIN" | translate }}
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/auth/register">
-              {{ "GENERAL.REGISTER" | translate }}
-            </a>
-          </li>
+          @if (user) {
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="javascript:void()"
+                data-bs-toggle="dropdown"
+              >
+                {{ user.name }}
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a
+                    (click)="onLogoutClick()"
+                    class="dropdown-item"
+                    href="javascript:void(0)"
+                  >
+                    <span class="fa-solid fa-arrow-right-from-bracket"></span>
+                    &nbsp;
+                    {{ "GENERAL.LOGOUT" | translate }}
+                  </a>
+                </li>
+              </ul>
+            </li>
+          } @else {
+            <li class="nav-item">
+              <a
+                (click)="hideHamburgerMenu()"
+                class="nav-link"
+                routerLink="/auth/login"
+              >
+                {{ "GENERAL.LOGIN" | translate }}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                (click)="hideHamburgerMenu()"
+                class="nav-link"
+                routerLink="/auth/register"
+              >
+                {{ "GENERAL.REGISTER" | translate }}
+              </a>
+            </li>
+          }
         </ul>
       </div>
     </div>

@@ -24,7 +24,11 @@ import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 
 import { configReducer } from './shared/store/config/config.reducer';
+import { userReducer } from './shared/store/user/user.reducer';
+import { authReducer } from './shared/store/auth/auth.reducer';
 import { ConfigEffects } from './shared/store/config/config.effects';
+import { UserEffects } from './shared/store/user/user.effects';
+import { AuthEffects } from './shared/store/auth/auth.effects';
 
 import { apiInterceptor } from './core/interceptors/api/api-interceptor';
 
@@ -51,7 +55,11 @@ export const appConfig: ApplicationConfig = {
       appService.init();
     }),
     provideClientHydration(withEventReplay()),
-    provideStore({ config: configReducer }),
-    provideEffects([ConfigEffects]),
+    provideStore({
+      config: configReducer,
+      user: userReducer,
+      auth: authReducer,
+    }),
+    provideEffects([ConfigEffects, UserEffects, AuthEffects]),
   ],
 };

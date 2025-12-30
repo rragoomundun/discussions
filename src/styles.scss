@@ -23,6 +23,8 @@
   --app-border-radius: 0.5rem;
 
   --app-transition-time: 0.3s;
+
+  --app-container-max-width: 1024px;
 }
 
 /* Custom CSS */
@@ -62,6 +64,10 @@ a {
 a:hover {
   color: var(--app-color-link-hover);
   transition: color var(--app-transition-time);
+}
+
+.app-container {
+  max-width: var(--app-container-max-width);
 }
 
 .app-auth-card {

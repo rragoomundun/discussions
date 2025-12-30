@@ -19,6 +19,7 @@ import {
   selectConfigOnGetExists,
   selectOnGetConfig,
 } from './shared/store/config/config.selectors';
+import { selectOnGetUser } from './shared/store/user/user.selectors';
 
 import { Header as HeaderComponent } from './core/components/header/header';
 import { Footer as FooterComponent } from './core/components/footer/footer';
@@ -48,6 +49,7 @@ export class App {
   config$: Observable<Config | null>;
   onGetExists$: Observable<string>;
   onGetConfig$: Observable<string>;
+  onGetUser$: Observable<string>;
 
   title: string | null = null;
   forumTitle: string | null = null;
@@ -57,6 +59,7 @@ export class App {
     this.config$ = this.store.select(selectConfigModel);
     this.onGetExists$ = this.store.select(selectConfigOnGetExists);
     this.onGetConfig$ = this.store.select(selectOnGetConfig);
+    this.onGetUser$ = this.store.select(selectOnGetUser);
 
     const configSubscription = this.config$.subscribe(
       (value: Config | null) => {
