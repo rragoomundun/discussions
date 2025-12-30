@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { App as AppService } from '../../../../shared/services/app/app';
-import { Auth as AuthService } from '../../services/auth/auth';
+import { Auth as AuthService } from '../../../../shared/services/auth/auth';
 
 @Component({
   selector: 'app-register-confirm',

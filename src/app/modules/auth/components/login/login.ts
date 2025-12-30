@@ -20,7 +20,7 @@ import { Input } from '../../../../shared/components/input/input';
 
 import { Config } from '../../../../shared/models/Config';
 
-import { Auth as AuthService } from '../../services/auth/auth';
+import { Auth as AuthService } from '../../../../shared/services/auth/auth';
 
 @Component({
   selector: 'app-login',

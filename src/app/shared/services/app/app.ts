@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
 
 import * as ConfigActions from '../../store/config/config.actions';
+import * as UserActions from '../../store/user/user.actions';
 import { selectConfigConfigExists } from '../../store/config/config.selectors';
 
 @Injectable({
@@ -24,6 +25,7 @@ export class App {
   init(): Promise<void> {
     return new Promise((resolve) => {
       this.store.dispatch(ConfigActions.getExists());
+
       const existsSubscription = this.store
         .select(selectConfigConfigExists)
         .subscribe((value) => {
@@ -39,6 +41,9 @@ export class App {
               this.router.navigate(['/auth/register']);
             } else if (this.router.url === '/setup') {
               this.router.navigate(['/']);
+              this.store.dispatch(UserActions.getUser());
+            } else {
+              this.store.dispatch(UserActions.getUser());
             }
           }
 

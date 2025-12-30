@@ -37,4 +37,10 @@ export class Auth {
       { withCredentials: true },
     );
   }
+
+  logout(): Observable<null> {
+    return this.http.get<null>(`${this.API_PREFIX}/logout`, {
+      withCredentials: true,
+    });
+  }
 }
