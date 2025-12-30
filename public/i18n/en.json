@@ -10,6 +10,7 @@
     "EMAIL": "Email",
     "PASSWORD": "Password",
     "PASSWORD_CONFIRMATION": "Password Confirmation",
+    "PASSWORD_FORGOTTEN": "Password forgotten?",
     "FORUM_TITLE": "Forum Title",
     "LANGUAGE": "Language",
     "SUBMIT": "Submit",
@@ -49,6 +50,14 @@
     "CONFIRMING": "Account confirmation in progress...",
     "SUCCESS": "Your account has been confirmed. You are going to be redirected...",
     "ERROR": "Impossible to confirm this account."
+  },
+  "LOGIN_PAGE": {
+    "MESSAGE": "Login on {{title}}",
+    "LOGIN_IN": "Login...",
+    "ERRORS": {
+      "INVALID": "The data entered is invalid.",
+      "UNCONFIRMED": "This account is unconfirmed."
+    }
   },
   "HOME_PAGE": {
     "TITLE": "Home"
