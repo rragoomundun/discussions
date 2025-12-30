@@ -49,5 +49,8 @@
     "CONFIRMING": "Account confirmation in progress...",
     "SUCCESS": "Your account has been confirmed. You are going to be redirected...",
     "ERROR": "Impossible to confirm this account."
+  },
+  "HOME_PAGE": {
+    "TITLE": "Home"
   }
 }
