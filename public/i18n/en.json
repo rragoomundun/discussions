@@ -18,7 +18,9 @@
   },
   "ERRORS": {
     "NAME_IN_USE": "This name is already used.",
+    "INVALID_EMAIL": "This is not a valid email.",
     "EMAIL_IN_USE": "This e-mail is already in use.",
+    "EMAIL_NOT_FOUND": "Cannot find any account for this email.",
     "PASSWORD_MIN_LENGTH": "The password must have at least 8 characters.",
     "PASSWORD_NOT_STRONG": "The password is not strong enough. A strong password must contains at least eight characters, one uppercase letter, one lowercase letter, one number, and one special character.",
     "PASSWORD_CONFIRMATION_NO_MATCH": "The confirmed password does not match the password."
@@ -57,6 +59,16 @@
     "ERRORS": {
       "INVALID": "The data entered is invalid.",
       "UNCONFIRMED": "This account is unconfirmed."
+    }
+  },
+  "PASSWORD_FORGOTTEN_PAGE": {
+    "TITLE": "Password Forgotten",
+    "ENTER_EMAIL": "Enter your e-mail address below in order to recover your account.",
+    "SUCCESS": "An email has been sent to this adress. Please consult it in order to recover your account.",
+    "ERRORS": {
+      "UNCONFIRMED": "This account is unconfirmed.",
+      "ALREADY_RECOVERING": "A recovery procedure is already is progress.",
+      "EMAIL_SENDING_FAILED": "Cannot send recovery e-mail."
     }
   },
   "HOME_PAGE": {
