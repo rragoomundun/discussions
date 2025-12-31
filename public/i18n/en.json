@@ -16,7 +16,7 @@
     "SUBMIT": "Submit",
     "SUBMITTING": "Submitting...",
     "MODIFY": "Modify",
-    "MODIFYING": "Modifying"
+    "MODIFYING": "Modifying..."
   },
   "ERRORS": {
     "NAME_IN_USE": "This name is already used.",
