@@ -38,7 +38,10 @@ export class Header {
     const navbarCollapseEl = <HTMLDivElement>(
       document.querySelector('.navbar-collapse.collapse.show')
     );
-    navbarCollapseEl.classList.remove('show');
+
+    if (navbarCollapseEl) {
+      navbarCollapseEl.classList.remove('show');
+    }
   }
 
   @HostListener('window:click', ['$event'])
@@ -54,7 +57,7 @@ export class Header {
   }
 
   onLogoutClick(): void {
-    this.hideHamburgerMenu();
     this.store.dispatch(AuthActions.logout());
+    this.hideHamburgerMenu();
   }
 }
