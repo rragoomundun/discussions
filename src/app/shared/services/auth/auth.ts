@@ -47,4 +47,15 @@ export class Auth {
   passwordForgotten(params: { email: string }): Observable<null> {
     return this.http.post<null>(`${this.API_PREFIX}/password/forgot`, params);
   }
+
+  resetPassword(
+    resetPasswordToken: string,
+    params: { password: string; passwordConfirmation: string },
+  ): Observable<{ token: string } | null> {
+    return this.http.put<{ token: string } | null>(
+      `${this.API_PREFIX}/password/reset/${resetPasswordToken}`,
+      params,
+      { withCredentials: true },
+    );
+  }
 }

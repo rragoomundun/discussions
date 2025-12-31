@@ -14,7 +14,9 @@
     "FORUM_TITLE": "Forum Title",
     "LANGUAGE": "Language",
     "SUBMIT": "Submit",
-    "SUBMITTING": "Submitting..."
+    "SUBMITTING": "Submitting...",
+    "MODIFY": "Modify",
+    "MODIFYING": "Modifying"
   },
   "ERRORS": {
     "NAME_IN_USE": "This name is already used.",
@@ -69,6 +71,14 @@
       "UNCONFIRMED": "This account is unconfirmed.",
       "ALREADY_RECOVERING": "A recovery procedure is already is progress.",
       "EMAIL_SENDING_FAILED": "Cannot send recovery e-mail."
+    }
+  },
+  "RESET_PASSWORD_PAGE": {
+    "TITLE": "Reset Password",
+    "ENTER_PASSWORD": "Enter your new password below.",
+    "SUCCESS": "Your password has been changed. You are going to be redirected...",
+    "ERRORS": {
+      "INVALID_TOKEN": "Impossible to set a new password."
     }
   },
   "HOME_PAGE": {
