@@ -1,0 +1,38 @@
+@if (label()) {
+  <label class="form-label">{{ label() }}</label>
+}
+
+<div>
+  <div class="mb-2">
+    @if (!control()?.value && !image()) {
+      <img
+        [src]="'assets/images/no-image-icon.png'"
+        [alt]="'IMAGE_INPUT_COMPONENT.NO_INPUT' | translate"
+      />
+    } @else if (image()) {
+      <img [src]="image()" />
+    } @else {
+      <img [src]="appService.SERVER_URL + control()?.value" />
+    }
+  </div>
+
+  <input
+    [id]="id()"
+    (change)="onFileSelected($event)"
+    type="file"
+    accept="image/*"
+    autocomplete="off"
+    hidden
+  />
+  <label [for]="id()" class="btn btn-sm btn-primary">
+    {{ "GENERAL.CHANGE" | translate }}
+  </label>
+
+  @if (image() || control()?.value) {
+    &nbsp;
+
+    <label (click)="onDeleteClick()" class="btn btn-sm btn-danger">
+      {{ "GENERAL.DELETE" | translate }}
+    </label>
+  }
+</div>

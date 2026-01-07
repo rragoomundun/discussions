@@ -1,4 +1,4 @@
-import { inject, Injectable, DestroyRef } from '@angular/core';
+import { inject, Injectable, DestroyRef, DOCUMENT } from '@angular/core';
 
 import { Router } from '@angular/router';
 
@@ -13,13 +13,18 @@ import * as ConfigActions from '../../store/config/config.actions';
 import * as UserActions from '../../store/user/user.actions';
 import { selectConfigConfigExists } from '../../store/config/config.selectors';
 
+import { environment } from '../../../../environments/environment';
+
 @Injectable({
   providedIn: 'root',
 })
 export class App {
+  readonly SERVER_URL = environment.API_URL;
+
   private store = inject(Store<AppState>);
   private destroyRef = inject(DestroyRef);
   private platformId = inject(PLATFORM_ID);
+  private document = inject(DOCUMENT);
   private router = inject(Router);
 
   init(): Promise<void> {
@@ -56,5 +61,17 @@ export class App {
 
   platform(): 'browser' | 'server' {
     return isPlatformBrowser(this.platformId) ? 'browser' : 'server';
+  }
+
+  setFavicon(href: string): void {
+    const link: HTMLLinkElement =
+      this.document.querySelector("link[rel*='icon']") ||
+      this.document.createElement('link');
+
+    link.type = 'image/x-icon';
+    link.rel = 'shortcut icon';
+    link.href = href;
+
+    this.document.head.appendChild(link);
   }
 }

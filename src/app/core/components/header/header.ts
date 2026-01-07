@@ -17,6 +17,8 @@ import * as AuthActions from '../../../shared/store/auth/auth.actions';
 import { Config } from '../../../shared/models/Config';
 import { User } from '../../../shared/models/User';
 
+import { App as AppService } from '../../../shared/services/app/app';
+
 @Component({
   selector: 'app-header',
   imports: [TranslateModule, RouterModule, AsyncPipe],
@@ -25,6 +27,8 @@ import { User } from '../../../shared/models/User';
 })
 export class Header {
   private store = inject(Store<AppState>);
+
+  appService = inject(AppService);
 
   config$: Observable<Config | null>;
   user$: Observable<User | null>;

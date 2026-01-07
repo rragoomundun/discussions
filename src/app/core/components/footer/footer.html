@@ -1,8 +1,16 @@
+@let bottomLinks = bottomLinks$ | async;
+
 <footer class="border-top">
-  <div class="mb-2">
-    <a href="#">Website</a>&nbsp; <a href="#">Terms</a>&nbsp;
-    <a href="#">Privacy</a>&nbsp; <a href="#">Contact</a>&nbsp;
-  </div>
+  @if (bottomLinks?.length) {
+    <div class="mb-2">
+      @for (bottomLink of bottomLinks; track bottomLink) {
+        <a [href]="bottomLink.link">
+          {{ bottomLink.name }}
+        </a>
+        &nbsp;
+      }
+    </div>
+  }
 
   <small>
     {{ "FOOTER.COPYRIGHT" | translate }}

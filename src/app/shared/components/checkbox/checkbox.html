@@ -1,0 +1,11 @@
+<div class="form-check">
+  <input
+    [id]="id()"
+    [formControlName]="control() ?? ''"
+    class="form-check-input"
+    type="checkbox"
+  />
+  <label [for]="id()" class="form-check-label">
+    {{ label() }}
+  </label>
+</div>

@@ -1,0 +1,18 @@
+@if (label()) {
+  <label [for]="id()" class="form-label">
+    @if (labelIcon()) {
+      <span [class]="labelIcon()"></span>
+    }
+
+    {{ label() }}
+  </label>
+
+  <textarea
+    [id]="id()"
+    [formControlName]="control()!"
+    [rows]="rows() ?? 3"
+    class="form-control"
+  ></textarea>
+} @else {
+  <textarea [id]="id()" [rows]="rows() ?? 3" class="form-control"></textarea>
+}

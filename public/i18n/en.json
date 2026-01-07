@@ -16,7 +16,15 @@
     "SUBMIT": "Submit",
     "SUBMITTING": "Submitting...",
     "MODIFY": "Modify",
-    "MODIFYING": "Modifying..."
+    "MODIFYING": "Modifying...",
+    "SAVE": "Save",
+    "SAVING": "Saving...",
+    "CHANGE": "Change",
+    "DELETE": "Delete",
+    "DELETING": "Deleting...",
+    "DESCRIPTION": "Description",
+    "META_DESCRIPTION": "Meta Description",
+    "TITLE": "Title"
   },
   "ERRORS": {
     "NAME_IN_USE": "This name is already used.",
@@ -81,7 +89,29 @@
       "INVALID_TOKEN": "Impossible to set a new password."
     }
   },
+  "FORUM_SETTINGS_PAGE": {
+    "CONFIGURATION_PAGE": {
+      "TITLE": "Forum Settings",
+      "TAB_NAME": "General",
+      "LOGO": "Logo",
+      "FAVICON": "Favicon",
+      "SHOW_TITLE": "Show title in the header",
+      "SHOW_LOGO": "Show logo in the header",
+      "SUCCESS": "General informations successfully updated."
+    },
+    "FORUMS_PAGE": {
+      "TITLE": "Setup Categories and Forums",
+      "TAB_NAME": "Forums"
+    },
+    "BOTTOM_LINKS_PAGE": {
+      "TITLE": "Setup Bottom Links",
+      "TAB_NAME": "Bottom Links"
+    }
+  },
   "HOME_PAGE": {
     "TITLE": "Home"
+  },
+  "IMAGE_INPUT_COMPONENT": {
+    "NO_IMAGE": "No Image"
   }
 }

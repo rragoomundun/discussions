@@ -20,6 +20,20 @@ button.navbar-toggler {
   text-decoration: none;
   color: var(--app-color-primary);
   font-size: 1.5rem;
+
+  img {
+    max-height: 48px;
+    margin-right: 1rem;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  #this-logo div {
+    max-width: 275px;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
 }
 
 #this-menu {
@@ -33,11 +47,13 @@ button.navbar-toggler {
 a {
   display: flex;
   align-items: center;
-  height: 50px;
+  height: 56px;
+  padding: 0 1rem;
   transition: var(--app-transition-time);
 }
 
 a:hover {
+  background-color: var(--app-color-secondary);
   transition: var(--app-transition-time);
 }
 
@@ -51,14 +67,6 @@ a:hover {
   margin-top: -1px;
   padding: 0;
 
-  a {
-    padding: 0 1rem;
-  }
-
-  a:hover {
-    background-color: var(--app-color-secondary);
-  }
-
   li:last-of-type a {
     border-bottom-left-radius: var(--app-border-radius);
     border-bottom-right-radius: var(--app-border-radius);
@@ -66,14 +74,6 @@ a:hover {
 }
 
 @media only screen and (max-width: 991px) {
-  a {
-    padding: 1rem;
-  }
-
-  a:hover {
-    background-color: var(--app-color-secondary);
-  }
-
   .dropdown-menu {
     border-radius: 0;
 
@@ -82,7 +82,7 @@ a:hover {
     }
 
     li a {
-      padding-left: 2rem;
+      padding-left: 2rem !important;
     }
   }
 }

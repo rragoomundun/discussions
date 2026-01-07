@@ -7,14 +7,17 @@ import { map, exhaustMap, catchError, of, tap } from 'rxjs';
 import * as ConfigActions from './config.actions';
 
 import { Config as ConfigService } from '../../services/config/config';
+import { App as AppService } from '../../services/app/app';
 
 import { Config } from '../../models/Config';
+import { BottomLink } from '../../models/BottomLink';
 
 @Injectable()
 export class ConfigEffects {
   private actions$ = inject(Actions);
   private router = inject(Router);
   private configService = inject(ConfigService);
+  private appService = inject(AppService);
 
   getExists$ = createEffect(() =>
     this.actions$.pipe(
@@ -53,8 +56,32 @@ export class ConfigEffects {
       ofType(ConfigActions.getConfig),
       exhaustMap(() =>
         this.configService.get().pipe(
-          map((config: Config) => ConfigActions.getConfigSuccess({ config })),
+          map((data: { config: Config; bottomLinks: BottomLink[] }) =>
+            ConfigActions.getConfigSuccess({
+              config: data.config,
+              bottomLinks: data.bottomLinks,
+            }),
+          ),
           catchError(() => of(ConfigActions.getConfigFailure())),
+        ),
+      ),
+    ),
+  );
+
+  updateConfig$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ConfigActions.updateConfig),
+      exhaustMap((value) =>
+        this.configService.update(value.config).pipe(
+          tap(() =>
+            this.appService.setFavicon(
+              this.appService.SERVER_URL + value.config.favicon,
+            ),
+          ),
+          map(() =>
+            ConfigActions.updateConfigSuccess({ config: value.config }),
+          ),
+          catchError(() => of(ConfigActions.updateConfigFailure())),
         ),
       ),
     ),

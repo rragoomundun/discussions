@@ -15,4 +15,8 @@ export class Translation {
   instant(key: string): string {
     return this.translateService.instant(key);
   }
+
+  onLangChange(): Observable<any> {
+    return this.translateService.onLangChange;
+  }
 }

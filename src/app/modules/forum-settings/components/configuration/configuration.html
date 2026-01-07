@@ -1,0 +1,103 @@
+@let onUpdateConfig = onUpdateConfig$ | async;
+
+<form [formGroup]="formGroup()" (submit)="onSubmit()">
+  <div class="mb-3">
+    <app-input
+      [id]="'this-title'"
+      [label]="'GENERAL.TITLE' | translate"
+      [type]="'text'"
+      [control]="'title'"
+    ></app-input>
+  </div>
+
+  <div class="mb-3">
+    <app-checkbox
+      [id]="'this-show-title'"
+      [label]="'FORUM_SETTINGS_PAGE.CONFIGURATION_PAGE.SHOW_TITLE' | translate"
+      [control]="'show_title'"
+    ></app-checkbox>
+  </div>
+
+  <div class="mb-3">
+    <app-select
+      [id]="'this-language'"
+      [label]="'GENERAL.LANGUAGE' | translate"
+      [control]="'lang'"
+      [data]="[{ value: 'en', label: 'LANGUAGES.ENGLISH' | translate }]"
+      [selected]="formGroup().controls.lang.value"
+    >
+    </app-select>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-sm-6 mb-3">
+      <app-image-input
+        #logo
+        [id]="'this-image'"
+        [label]="'FORUM_SETTINGS_PAGE.CONFIGURATION_PAGE.LOGO' | translate"
+        [control]="formGroup().controls.logo"
+      ></app-image-input>
+
+      <br />
+
+      <app-checkbox
+        [id]="'this-show-logo'"
+        [label]="'FORUM_SETTINGS_PAGE.CONFIGURATION_PAGE.SHOW_LOGO' | translate"
+        [control]="'show_logo'"
+      ></app-checkbox>
+    </div>
+    <div class="col-12 col-sm-6 mb-3">
+      <app-image-input
+        #favicon
+        [id]="'this-favicon'"
+        [label]="'FORUM_SETTINGS_PAGE.CONFIGURATION_PAGE.FAVICON' | translate"
+        [control]="formGroup().controls.favicon"
+      ></app-image-input>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <app-text-area
+      [id]="'this-description'"
+      [label]="'GENERAL.DESCRIPTION' | translate"
+      [control]="'description'"
+    >
+    </app-text-area>
+  </div>
+
+  <div class="mb-3">
+    <app-text-area
+      [id]="'this-meta-description'"
+      [label]="'GENERAL.META_DESCRIPTION' | translate"
+      [control]="'meta_description'"
+    >
+    </app-text-area>
+  </div>
+
+  <div class="text-center">
+    @if (onUpdateConfig === "success") {
+      <small class="text-success">
+        {{ "FORUM_SETTINGS_PAGE.CONFIGURATION_PAGE.SUCCESS" | translate }}
+      </small>
+
+      <br /><br />
+    }
+
+    @if (
+      onUpdateConfig !== "true" &&
+      onLogoDelete() !== "true" &&
+      onLogoUpload() !== "true" &&
+      onFaviconDelete() !== "true" &&
+      onFaviconUpload() !== "true"
+    ) {
+      <button [disabled]="formGroup().invalid" class="btn btn-primary">
+        {{ "GENERAL.SAVE" | translate }}
+      </button>
+    } @else {
+      <button [disabled]="true" class="btn btn-primary">
+        <span class="fas fa-spinner fa-spin"></span>
+        <span>{{ "GENERAL.SAVING" | translate }}</span>
+      </button>
+    }
+  </div>
+</form>

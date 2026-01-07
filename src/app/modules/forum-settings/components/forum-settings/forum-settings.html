@@ -1,0 +1,55 @@
+<div class="app-container container">
+  <h1 class="border-bottom pb-2 mb-2">
+    {{ "FORUM_SETTINGS_PAGE.CONFIGURATION_PAGE.TITLE" | translate }}
+  </h1>
+
+  <div id="this-content">
+    <div id="this-navigation" class="d-none d-lg-block">
+      <nav class="nav flex-column">
+        <a
+          routerLink="/forum-settings/general"
+          routerLinkActive="active"
+          class="nav-link"
+        >
+          {{ "FORUM_SETTINGS_PAGE.CONFIGURATION_PAGE.TAB_NAME" | translate }}
+        </a>
+        <a
+          routerLink="/forum-settings/forums"
+          routerLinkActive="active"
+          class="nav-link"
+        >
+          {{ "FORUM_SETTINGS_PAGE.FORUMS_PAGE.TAB_NAME" | translate }}
+        </a>
+        <a
+          routerLink="/forum-settings/bottom-links"
+          routerLinkActive="active"
+          class="nav-link"
+        >
+          {{ "FORUM_SETTINGS_PAGE.BOTTOM_LINKS_PAGE.TAB_NAME" | translate }}
+        </a>
+      </nav>
+    </div>
+
+    <div id="this-navigation-mobile" class="d-lg-none border-bottom pb-2">
+      <select
+        [value]="selectedSection"
+        (change)="onMobileSectionSelectorChange($event)"
+        class="form-select"
+      >
+        <option value="general">
+          {{ "FORUM_SETTINGS_PAGE.CONFIGURATION_PAGE.TAB_NAME" | translate }}
+        </option>
+        <option value="forums">
+          {{ "FORUM_SETTINGS_PAGE.FORUMS_PAGE.TAB_NAME" | translate }}
+        </option>
+        <option value="bottom-links">
+          {{ "FORUM_SETTINGS_PAGE.BOTTOM_LINKS_PAGE.TAB_NAME" | translate }}
+        </option>
+      </select>
+    </div>
+
+    <div id="this-section">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
