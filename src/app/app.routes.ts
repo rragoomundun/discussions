@@ -12,6 +12,13 @@ export const routes: Routes = [
       import('./modules/auth/auth.routes').then((m) => m.authRoutes),
   },
   {
+    path: 'forum-settings',
+    loadChildren: () =>
+      import('./modules/forum-settings/forum-settings.routes').then(
+        (m) => m.forumSettingsRoutes,
+      ),
+  },
+  {
     path: '',
     loadChildren: () =>
       import('./modules/home/home.routes').then((m) => m.homeRoutes),

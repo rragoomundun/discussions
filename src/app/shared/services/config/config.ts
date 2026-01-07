@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Config as ConfigModel } from '../../models/Config';
+import { BottomLink } from '../../models/BottomLink';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,15 @@ export class Config {
     return this.http.post<null>(`${this.API_PREFIX}/init`, data);
   }
 
-  get(): Observable<ConfigModel> {
-    return this.http.get<ConfigModel>(this.API_PREFIX);
+  get(): Observable<{ config: ConfigModel; bottomLinks: BottomLink[] }> {
+    return this.http.get<{ config: ConfigModel; bottomLinks: BottomLink[] }>(
+      this.API_PREFIX,
+    );
+  }
+
+  update(config: ConfigModel): Observable<null> {
+    return this.http.put<null>(this.API_PREFIX, config, {
+      withCredentials: true,
+    });
   }
 }

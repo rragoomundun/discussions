@@ -16,6 +16,11 @@ export const selectConfigModel = createSelector(
   (state: ConfigState) => state.config,
 );
 
+export const selectBottomLinks = createSelector(
+  selectConfig,
+  (state: ConfigState) => state.bottomLinks,
+);
+
 export const selectConfigOnGetExists = createSelector(
   selectConfig,
   (state: ConfigState) => state.onGetExists,
@@ -29,4 +34,9 @@ export const selectOnInit = createSelector(
 export const selectOnGetConfig = createSelector(
   selectConfig,
   (state: ConfigState) => state.onGetConfig,
+);
+
+export const selectOnUpdateConfig = createSelector(
+  selectConfig,
+  (state: ConfigState) => state.onUpdateConfig,
 );

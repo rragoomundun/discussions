@@ -8,9 +8,13 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { AppState } from '../../../shared/store/app.state';
-import { selectConfigModel } from '../../../shared/store/config/config.selectors';
+import {
+  selectBottomLinks,
+  selectConfigModel,
+} from '../../../shared/store/config/config.selectors';
 
 import { Config } from '../../../shared/models/Config';
+import { BottomLink } from '../../../shared/models/BottomLink';
 
 @Component({
   selector: 'app-footer',
@@ -23,12 +27,14 @@ export class Footer {
   private destroyRef = inject(DestroyRef);
 
   config$: Observable<Config | null>;
+  bottomLinks$: Observable<BottomLink[]>;
 
   createdYear: number | null;
   currentYear: number;
 
   constructor() {
     this.config$ = this.store.select(selectConfigModel);
+    this.bottomLinks$ = this.store.select(selectBottomLinks);
     this.createdYear = null;
     this.currentYear = new Date().getFullYear();
 

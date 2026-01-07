@@ -1,3 +1,4 @@
+import { BottomLink } from '../../models/BottomLink';
 import { Config } from '../../models/Config';
 
 export interface ConfigState {
@@ -6,7 +7,9 @@ export interface ConfigState {
     admin: boolean;
   } | null;
   config: Config | null;
+  bottomLinks: BottomLink[];
   onGetExists: string;
   onInit: string;
   onGetConfig: string;
+  onUpdateConfig: string;
 }

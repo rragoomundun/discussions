@@ -38,6 +38,7 @@ app-root {
 
 main {
   flex-grow: 1;
+  width: 100%;
   margin-top: 5rem;
   margin-left: auto;
   margin-right: auto;
@@ -153,9 +154,9 @@ a:hover {
   border-radius: var(--app-border-radius) !important;
 }
 
-input,
-select,
-textarea {
+input.form-control,
+select.form-select,
+textarea.form-control {
   box-shadow: none !important;
   border-radius: var(--app-border-radius) !important;
 }
@@ -164,4 +165,24 @@ input:focus,
 select:focus,
 textarea:focus {
   border: 1px solid var(--app-color-primary) !important;
+}
+
+.form-check-input:checked {
+  background-color: var(--app-color-primary);
+  border-color: var(--app-color-primary);
+}
+
+.nav {
+  a.nav-link {
+    color: var(--app-color-text);
+    transition: var(--app-transition-time);
+    margin-bottom: 0.5rem;
+    border-radius: var(--app-border-radius);
+  }
+
+  a.nav-link:hover,
+  a.nav-link.active {
+    background-color: var(--app-color-secondary);
+    transition: var(--app-transition-time);
+  }
 }

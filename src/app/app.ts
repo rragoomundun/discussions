@@ -64,6 +64,17 @@ export class App {
     const configSubscription = this.config$.subscribe(
       (value: Config | null) => {
         this.forumTitle = <string>value?.title;
+
+        if (value?.favicon) {
+          this.appService.setFavicon(
+            this.appService.SERVER_URL + value.favicon,
+          );
+        }
+
+        this.translationService.onLangChange().subscribe(() => {
+          this.setTitle();
+        });
+
         this.setTitle();
       },
     );
@@ -90,6 +101,11 @@ export class App {
       )
       .subscribe((title: string) => {
         this.title = title;
+
+        this.translationService.onLangChange().subscribe(() => {
+          this.setTitle();
+        });
+
         this.setTitle();
       });
   }

@@ -1,0 +1,19 @@
+@media (min-width: 992px) {
+  #this-content {
+    display: flex;
+  }
+}
+
+#this-navigation {
+  min-width: 200px;
+  max-width: 200px;
+  margin-right: 1rem;
+}
+
+#this-navigation-mobile {
+  margin-bottom: 1rem;
+}
+
+#this-section {
+  flex-grow: 1;
+}
