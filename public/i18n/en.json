@@ -23,7 +23,8 @@
     "DELETE": "Delete",
     "DELETING": "Deleting...",
     "DESCRIPTION": "Description",
-    "META_DESCRIPTION": "Meta Description"
+    "META_DESCRIPTION": "Meta Description",
+    "TITLE": "Title"
   },
   "ERRORS": {
     "NAME_IN_USE": "This name is already used.",
@@ -92,7 +93,6 @@
     "CONFIGURATION_PAGE": {
       "TITLE": "Forum Settings",
       "TAB_NAME": "General",
-      "TITLE_WORD": "Title",
       "LOGO": "Logo",
       "FAVICON": "Favicon",
       "SHOW_TITLE": "Show title in the header",
