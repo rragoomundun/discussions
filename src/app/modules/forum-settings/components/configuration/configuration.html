@@ -85,10 +85,10 @@
 
     @if (
       onUpdateConfig !== "true" &&
-      onLogoDelete !== "true" &&
-      onLogoUpload !== "true" &&
-      onFaviconDelete !== "true" &&
-      onFaviconUpload !== "true"
+      onLogoDelete() !== "true" &&
+      onLogoUpload() !== "true" &&
+      onFaviconDelete() !== "true" &&
+      onFaviconUpload() !== "true"
     ) {
       <button [disabled]="formGroup().invalid" class="btn btn-primary">
         {{ "GENERAL.SAVE" | translate }}

@@ -61,10 +61,10 @@ export class Configuration {
   config$: Observable<Config | null>;
   onUpdateConfig$: Observable<string>;
 
-  onLogoUpload: string = 'false';
-  onLogoDelete: string = 'false';
-  onFaviconUpload: string = 'false';
-  onFaviconDelete: string = 'false';
+  onLogoUpload = signal('false');
+  onLogoDelete = signal('false');
+  onFaviconUpload = signal('false');
+  onFaviconDelete = signal('false');
 
   formGroup = signal(
     new FormGroup({
@@ -134,7 +134,7 @@ export class Configuration {
     const tasks = [];
 
     if (this.logo()?.image()) {
-      this.onLogoUpload = 'true';
+      this.onLogoUpload.set('true');
 
       tasks.push(
         this.fileService.uploadFile(<Blob>this.logo()?.file).pipe(
@@ -142,9 +142,9 @@ export class Configuration {
             next: (value) => {
               this.formGroup().controls.logo.setValue(value.path);
 
-              this.onLogoUpload = 'success';
+              this.onLogoUpload.set('success');
             },
-            error: () => (this.onLogoUpload = 'error'),
+            error: () => this.onLogoUpload.set('error'),
           }),
         ),
       );
@@ -154,7 +154,7 @@ export class Configuration {
       this.logo()?.originalFilePath &&
       (this.formGroup().controls.logo.value === '' || this.logo()?.image())
     ) {
-      this.onLogoDelete = 'true';
+      this.onLogoDelete.set('true');
 
       tasks.push(
         this.fileService
@@ -162,16 +162,16 @@ export class Configuration {
           .pipe(
             tap({
               next: () => {
-                this.onLogoDelete = 'success';
+                this.onLogoDelete.set('success');
               },
-              error: () => (this.onLogoDelete = 'error'),
+              error: () => this.onLogoDelete.set('error'),
             }),
           ),
       );
     }
 
     if (this.favicon()?.image()) {
-      this.onFaviconUpload = 'true';
+      this.onFaviconUpload.set('true');
 
       tasks.push(
         this.fileService.uploadFile(<Blob>this.favicon()?.file).pipe(
@@ -179,9 +179,9 @@ export class Configuration {
             next: (value) => {
               this.formGroup().controls.favicon.setValue(value.path);
 
-              this.onFaviconUpload = 'success';
+              this.onFaviconUpload.set('success');
             },
-            error: () => (this.onFaviconUpload = 'error'),
+            error: () => this.onFaviconUpload.set('error'),
           }),
         ),
       );
@@ -192,15 +192,15 @@ export class Configuration {
       (this.formGroup().controls.favicon.value === '' ||
         this.favicon()?.image())
     ) {
-      this.onFaviconDelete = 'true';
+      this.onFaviconDelete.set('true');
 
       tasks.push(
         this.fileService
           .deleteFile({ path: <string>this.favicon()?.originalFilePath })
           .pipe(
             tap({
-              next: () => (this.onFaviconDelete = 'success'),
-              error: () => (this.onFaviconDelete = 'error'),
+              next: () => this.onFaviconDelete.set('success'),
+              error: () => this.onFaviconDelete.set('error'),
             }),
           ),
       );
