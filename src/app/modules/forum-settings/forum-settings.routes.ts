@@ -5,6 +5,8 @@ import { Configuration as ConfigurationComponent } from './components/configurat
 import { Forums as ForumsComponent } from './components/forums/forums';
 import { BottomLinks as BottomLinksComponent } from './components/bottom-links/bottom-links';
 
+import { adminGuard } from '../../core/guards/admin/admin-guard';
+
 export const forumSettingsRoutes: Routes = [
   {
     path: '',
@@ -30,5 +32,6 @@ export const forumSettingsRoutes: Routes = [
         redirectTo: 'general',
       },
     ],
+    canActivate: [adminGuard],
   },
 ];
