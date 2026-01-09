@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { filter, map } from 'rxjs';
+import { map } from 'rxjs';
 
 import { AppState } from '../../../shared/store/app.state';
 
