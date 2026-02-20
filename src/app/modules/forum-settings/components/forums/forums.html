@@ -1,1 +1,143 @@
-<p>forums works!</p>
+@if (onGetForums() === "true") {
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <p class="app-skeleton-loading-item">&nbsp;</p>
+
+      <div class="app-skeleton-loading-item mb-3"></div>
+      <div class="app-skeleton-loading-item mb-3"></div>
+    </div>
+
+    <div class="col-12 col-md-6 border-start">
+      <div class="d-md-none border-top mb-3"></div>
+
+      <p class="app-skeleton-loading-item">&nbsp;</p>
+
+      <div class="app-skeleton-loading-item mb-3"></div>
+      <div class="app-skeleton-loading-item mb-3"></div>
+    </div>
+  </div>
+} @else if (onGetForums() === "success") {
+  <form [formArray]="categoriesFormArray()" (submit)="onSubmit()">
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div cdkDropList (cdkDropListDropped)="onCategoryDropped($event)">
+          <p class="fw-bold">{{ "GENERAL.CATEGORIES" | translate }}</p>
+
+          @for (
+            categoryFormGroup of categoriesFormArray().controls;
+            track categoryFormGroup
+          ) {
+            <div cdkDrag (mousedown)="onCategoryClick($index, $event)">
+              <app-forum-category
+                [categoryFormGroup]="categoryFormGroup"
+                [selected]="selectedCategoryIndex() === $index"
+                (onDelete)="onDeleteCategory($index)"
+              ></app-forum-category>
+            </div>
+          }
+        </div>
+
+        @if (categoriesFormArray().length === 0) {
+          <p>
+            {{ "FORUM_SETTINGS_PAGE.FORUMS_PAGE.NO_CATEGORIES" | translate }}
+          </p>
+        }
+
+        <button
+          (click)="onAddCategoryClick()"
+          type="button"
+          class="btn btn-primary btn-sm"
+        >
+          {{ "FORUM_SETTINGS_PAGE.FORUMS_PAGE.ADD_CATEGORY" | translate }}
+        </button>
+      </div>
+
+      @if (selectedCategoryIndex() !== null) {
+        <div class="col-12 col-md-6 border-start">
+          <div class="d-md-none border-top mb-3"></div>
+
+          <div cdkDropList (cdkDropListDropped)="onForumDropped($event)">
+            <p class="fw-bold">
+              {{ "FORUM_SETTINGS_PAGE.FORUMS_PAGE.FORUMS_IN" | translate }}
+
+              @if (
+                categoriesFormArray().at(selectedCategoryIndex()!).controls.name
+                  .value
+              ) {
+                {{
+                  categoriesFormArray().at(selectedCategoryIndex()!).controls
+                    .name.value
+                }}
+              } @else {
+                {{ "GENERAL.UNTILTED" | translate }}
+              }
+            </p>
+
+            @if (forumsArrayFormArray()[selectedCategoryId()!]) {
+              @for (
+                forumFormGroup of forumsArrayFormArray()[selectedCategoryId()!]
+                  .controls;
+                track forumFormGroup
+              ) {
+                <div cdkDrag>
+                  <app-forum-forum
+                    [forumForm]="forumFormGroup"
+                    (onDelete)="onForumDeleteClick($index)"
+                    (onSettings)="onForumSettingsClick($index)"
+                  ></app-forum-forum>
+                </div>
+              }
+            }
+          </div>
+
+          @if (
+            !forumsArrayFormArray()[selectedCategoryId()!] ||
+            forumsArrayFormArray()[selectedCategoryId()!].length === 0
+          ) {
+            <p>{{ "FORUM_SETTINGS_PAGE.FORUMS_PAGE.NO_FORUMS" | translate }}</p>
+          }
+
+          <button
+            (click)="onAddForumClick()"
+            type="button"
+            class="btn btn-primary btn-sm"
+          >
+            {{ "FORUM_SETTINGS_PAGE.FORUMS_PAGE.ADD_FORUM" | translate }}
+          </button>
+        </div>
+      }
+    </div>
+
+    <div class="text-center border-top mt-3 pt-3">
+      @if (onUpdateForum() === "success") {
+        <small class="text-success">
+          {{ "FORUM_SETTINGS_PAGE.FORUMS_PAGE.UPDATE_SUCCESS" | translate }}
+        </small>
+
+        <br /><br />
+      }
+
+      @if (onUpdateForum() !== "true") {
+        <button
+          [disabled]="categoriesFormArray().invalid || isForumsValid === false"
+          class="btn btn-primary"
+        >
+          {{ "GENERAL.SAVE" | translate }}
+        </button>
+      } @else {
+        <button [disabled]="true" class="btn btn-primary">
+          {{ "GENERAL.SAVING" | translate }}
+        </button>
+      }
+    </div>
+  </form>
+}
+
+<app-forum-forum-edit
+  [categoryId]="selectedCategoryId()"
+  [categoriesFormArray]="categoriesFormArray()"
+  [name]="selectedForumForm()?.controls!.name.value"
+  [description]="selectedForumForm()?.controls!.description.value"
+  [metaDescription]="selectedForumForm()?.controls!.meta_description.value"
+  (onChange)="onForumSettingsChange($event)"
+></app-forum-forum-edit>

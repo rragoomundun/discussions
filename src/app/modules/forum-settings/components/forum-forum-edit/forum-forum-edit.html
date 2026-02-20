@@ -1,0 +1,71 @@
+<ng-template #modalEl let-modal>
+  <form [formGroup]="forumForm()!">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">
+        {{
+          "FORUM_SETTINGS_PAGE.FORUMS_PAGE.COMPONENTS.FORUM.TITLE" | translate
+        }}
+      </h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.dismiss()"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <div class="mb-3">
+        <app-input
+          [id]="'this-name'"
+          [label]="'GENERAL.NAME' | translate"
+          [type]="'text'"
+          [placeholder]="
+            'FORUM_SETTINGS_PAGE.FORUMS_PAGE.ENTER_FORUM_NAME' | translate
+          "
+          [control]="'name'"
+        ></app-input>
+      </div>
+
+      <div class="mb-3">
+        <app-text-area
+          [id]="'this-description'"
+          [label]="'GENERAL.DESCRIPTION' | translate"
+          [placeholder]="
+            'FORUM_SETTINGS_PAGE.FORUMS_PAGE.FORUM_DESCRIPTION' | translate
+          "
+          [control]="'description'"
+        ></app-text-area>
+      </div>
+
+      <div class="mb-3">
+        <app-text-area
+          [id]="'this-meta-description'"
+          [label]="'GENERAL.META_DESCRIPTION' | translate"
+          [placeholder]="
+            'FORUM_SETTINGS_PAGE.FORUMS_PAGE.FORUM_META_DESCRIPTION' | translate
+          "
+          [control]="'metaDescription'"
+        ></app-text-area>
+      </div>
+
+      <div class="mb-3">
+        <app-select
+          [id]="'this-category-id'"
+          [label]="'GENERAL.CATEGORY' | translate"
+          [data]="categoryOptions()"
+          [control]="'categoryId'"
+        ></app-select>
+      </div>
+    </div>
+    <div class="modal-footer justify-content-center">
+      <button
+        [disabled]="forumForm()!.invalid"
+        (click)="onOkClick()"
+        type="button"
+        class="btn btn-primary"
+      >
+        {{ "GENERAL.OK" | translate }}
+      </button>
+    </div>
+  </form>
+</ng-template>

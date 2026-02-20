@@ -8,7 +8,7 @@
   </label>
 }
 
-<select [id]="id()" class="form-select">
+<select [id]="id()" [formControlName]="control() ?? ''" class="form-select">
   @for (item of data(); track item) {
     <option [selected]="selected() === item.value" [value]="item.value">
       {{ item.label }}

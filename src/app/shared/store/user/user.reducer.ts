@@ -5,7 +5,7 @@ import { UserState } from './user.state';
 import * as UserActions from './user.actions';
 
 export const initialState: UserState = {
-  user: null,
+  user: undefined,
   onGetUser: 'false',
 };
 
@@ -23,6 +23,7 @@ export const userReducer = createReducer(
   })),
   on(UserActions.getUserFailure, (state) => ({
     ...state,
+    user: null,
     onGetUser: 'error',
   })),
 );
