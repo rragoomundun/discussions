@@ -1,6 +1,6 @@
 import { User } from '../../models/User';
 
 export interface UserState {
-  user: User | null;
+  user: User | null | undefined;
   onGetUser: string;
 }

@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { map } from 'rxjs';
+import { filter, map } from 'rxjs';
 
 import { AppState } from '../../../shared/store/app.state';
 
@@ -12,6 +12,7 @@ export const adminGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
   return store.select(selectUserModel).pipe(
+    filter((user) => user !== undefined),
     map((user) => {
       if (user && user.role === 'admin') {
         return true;

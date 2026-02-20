@@ -137,7 +137,7 @@ export class Configuration {
       this.onLogoUpload.set('true');
 
       tasks.push(
-        this.fileService.uploadFile(<Blob>this.logo()?.file).pipe(
+        this.fileService.uploadFile(<Blob>this.logo()?.file, 'forum').pipe(
           tap({
             next: (value) => {
               this.formGroup().controls.logo.setValue(value.path);
@@ -174,7 +174,7 @@ export class Configuration {
       this.onFaviconUpload.set('true');
 
       tasks.push(
-        this.fileService.uploadFile(<Blob>this.favicon()?.file).pipe(
+        this.fileService.uploadFile(<Blob>this.favicon()?.file, 'forum').pipe(
           tap({
             next: (value) => {
               this.formGroup().controls.favicon.setValue(value.path);

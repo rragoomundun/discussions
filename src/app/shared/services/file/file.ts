@@ -10,9 +10,13 @@ export class File {
 
   private http = inject(HttpClient);
 
-  uploadFile(file: Blob): Observable<{ path: string }> {
+  uploadFile(
+    file: Blob,
+    category: string = 'user',
+  ): Observable<{ path: string }> {
     const formData = new FormData();
 
+    formData.append('category', category);
     formData.append('file', file);
 
     return this.http.post<{ path: string }>(`${this.API_PREFIX}`, formData, {

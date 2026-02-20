@@ -31,7 +31,7 @@ export class Header {
   appService = inject(AppService);
 
   config$: Observable<Config | null>;
-  user$: Observable<User | null>;
+  user$: Observable<User | null | undefined>;
 
   constructor() {
     this.config$ = this.store.select(selectConfigModel);

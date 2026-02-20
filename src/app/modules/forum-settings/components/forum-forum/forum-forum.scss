@@ -1,0 +1,22 @@
+.card {
+  .card-body {
+    display: flex;
+    align-items: center;
+
+    input {
+      border: none !important;
+      background-color: transparent;
+      flex-grow: 1;
+      width: 100%;
+      margin-right: 0.25rem;
+    }
+
+    input:focus {
+      outline: none !important;
+    }
+
+    .fa-times {
+      cursor: pointer;
+    }
+  }
+}

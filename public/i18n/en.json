@@ -24,7 +24,13 @@
     "DELETING": "Deleting...",
     "DESCRIPTION": "Description",
     "META_DESCRIPTION": "Meta Description",
-    "TITLE": "Title"
+    "TITLE": "Title",
+    "SETTINGS": "Settings",
+    "POSITION": "Position",
+    "OK": "Ok",
+    "CATEGORY": "Category",
+    "CATEGORIES": "Categories",
+    "UNTILTED": "Untitled"
   },
   "ERRORS": {
     "NAME_IN_USE": "This name is already used.",
@@ -97,11 +103,33 @@
       "FAVICON": "Favicon",
       "SHOW_TITLE": "Show title in the header",
       "SHOW_LOGO": "Show logo in the header",
+      "DESCRIPTION": "Write a description for your forum.",
+      "META_DESCRIPTION": "Enter a meta description. It will be used by search engines to show a description of the website.",
       "SUCCESS": "General informations successfully updated."
     },
     "FORUMS_PAGE": {
       "TITLE": "Setup Categories and Forums",
-      "TAB_NAME": "Forums"
+      "TAB_NAME": "Forums",
+      "ADD_CATEGORY": "Add Category",
+      "ADD_FORUM": "Add Forum",
+      "NO_CATEGORIES": "No categories.",
+      "NO_FORUMS": "No forums.",
+      "FORUMS_IN": "Forums in",
+      "ENTER_CATEGORY_NAME": "Enter a category name",
+      "ENTER_CATEGORY_POSITION": "Enter the category position",
+      "ENTER_FORUM_NAME": "Enter a forum name",
+      "FORUM_DESCRIPTION": "Enter a description. It will be displayed under the forum name on the front page.",
+      "FORUM_META_DESCRIPTION": "Enter a meta description. It will be used by search engines to show a description of the forum.",
+      "ENTER_FORUM_POSITION": "Enter the forum position",
+      "UPDATE_SUCCESS": "Categories and forums successfully updated.",
+      "COMPONENTS": {
+        "CATEGORY": {
+          "TITLE": "Update Category"
+        },
+        "FORUM": {
+          "TITLE": "Update Forum"
+        }
+      }
     },
     "BOTTOM_LINKS_PAGE": {
       "TITLE": "Setup Bottom Links",

@@ -1,0 +1,13 @@
+<div [formGroup]="formGroup" class="card mb-3" [class.active]="selected()">
+  <div class="card-body">
+    <input
+      [placeholder]="
+        'FORUM_SETTINGS_PAGE.FORUMS_PAGE.ENTER_CATEGORY_NAME' | translate
+      "
+      formControlName="name"
+      type="text"
+    />
+
+    <span (click)="onDeleteClick()" class="fas fa-times"></span>
+  </div>
+</div>
