@@ -6,7 +6,6 @@ import {
   input,
   output,
   signal,
-  computed,
 } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import {
@@ -84,12 +83,6 @@ export class ForumForumEdit {
   }
 
   open() {
-    // this.originalCategoryId = Number(
-    //   this.formGroup()!.controls.categoryId.value,
-    // );
-
-    // this.setCategoryOptions();
-
     this.forumForm().controls.name.setValue(this.name());
     this.forumForm().controls.description.setValue(this.description());
     this.forumForm().controls.metaDescription.setValue(this.metaDescription());
