@@ -2,11 +2,20 @@
   <div class="card-body">
     <input
       [placeholder]="
-        'FORUM_SETTINGS_PAGE.FORUMS_PAGE.ENTER_CATEGORY_NAME' | translate
+        'FORUM_SETTINGS_PAGE.FORUMS_PAGE.COMPONENTS.CATEGORY.ENTER_NAME'
+          | translate
       "
       formControlName="name"
       type="text"
     />
+
+    <button
+      (click)="onSettingsClick()"
+      type="button"
+      class="btn btn-primary btn-sm me-3"
+    >
+      {{ "GENERAL.SETTINGS" | translate }}
+    </button>
 
     <span (click)="onDeleteClick()" class="fas fa-times"></span>
   </div>

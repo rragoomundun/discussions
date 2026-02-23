@@ -1,9 +1,10 @@
 <ng-template #modalEl let-modal>
-  <form [formGroup]="forumForm()!">
+  <form [formGroup]="categoryForm()!">
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">
         {{
-          "FORUM_SETTINGS_PAGE.FORUMS_PAGE.COMPONENTS.FORUM.TITLE" | translate
+          "FORUM_SETTINGS_PAGE.FORUMS_PAGE.COMPONENTS.CATEGORY.TITLE"
+            | translate
         }}
       </h4>
       <button
@@ -20,7 +21,7 @@
           [label]="'GENERAL.NAME' | translate"
           [type]="'text'"
           [placeholder]="
-            'FORUM_SETTINGS_PAGE.FORUMS_PAGE.COMPONENTS.FORUM.ENTER_NAME'
+            'FORUM_SETTINGS_PAGE.FORUMS_PAGE.COMPONENTS.CATEGORY.ENTER_NAME'
               | translate
           "
           [control]="'name'"
@@ -29,40 +30,19 @@
 
       <div class="mb-3">
         <app-text-area
-          [id]="'this-description'"
-          [label]="'GENERAL.DESCRIPTION' | translate"
-          [placeholder]="
-            'FORUM_SETTINGS_PAGE.FORUMS_PAGE.COMPONENTS.FORUM.ENTER_DESCRIPTION'
-              | translate
-          "
-          [control]="'description'"
-        ></app-text-area>
-      </div>
-
-      <div class="mb-3">
-        <app-text-area
           [id]="'this-meta-description'"
           [label]="'GENERAL.META_DESCRIPTION' | translate"
           [placeholder]="
-            'FORUM_SETTINGS_PAGE.FORUMS_PAGE.COMPONENTS.FORUM.ENTER_META_DESCRIPTION'
+            'FORUM_SETTINGS_PAGE.FORUMS_PAGE.COMPONENTS.CATEGORY.ENTER_META_DESCRIPTION'
               | translate
           "
           [control]="'metaDescription'"
         ></app-text-area>
       </div>
-
-      <div class="mb-3">
-        <app-select
-          [id]="'this-category-id'"
-          [label]="'GENERAL.CATEGORY' | translate"
-          [data]="categoryOptions()"
-          [control]="'categoryId'"
-        ></app-select>
-      </div>
     </div>
     <div class="modal-footer justify-content-center">
       <button
-        [disabled]="forumForm()!.invalid"
+        [disabled]="categoryForm()!.invalid"
         (click)="onOkClick()"
         type="button"
         class="btn btn-primary"

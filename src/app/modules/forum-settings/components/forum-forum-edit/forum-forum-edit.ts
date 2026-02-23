@@ -52,6 +52,7 @@ export class ForumForumEdit {
       FormGroup<{
         id: FormControl<number | null>;
         name: FormControl<string>;
+        meta_description: FormControl<string>;
         index: FormControl<number>;
       }>
     >
@@ -82,7 +83,7 @@ export class ForumForumEdit {
     );
   }
 
-  open() {
+  open(): void {
     this.forumForm().controls.name.setValue(this.name());
     this.forumForm().controls.description.setValue(this.description());
     this.forumForm().controls.metaDescription.setValue(this.metaDescription());

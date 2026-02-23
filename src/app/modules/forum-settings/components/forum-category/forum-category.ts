@@ -20,18 +20,25 @@ export class ForumCategory {
     FormGroup<{
       id: FormControl<number | null>;
       name: FormControl<string>;
+      meta_description: FormControl<string>;
       index: FormControl<number>;
     }>
   >();
   selected = input<boolean>(false);
+  onSettings = output<void>();
   onDelete = output<void>();
 
   get formGroup(): FormGroup<{
     id: FormControl<number | null>;
     name: FormControl<string>;
+    meta_description: FormControl<string>;
     index: FormControl<number>;
   }> {
     return <FormGroup>this.categoryFormGroup();
+  }
+
+  onSettingsClick(): void {
+    this.onSettings.emit();
   }
 
   onDeleteClick(): void {
