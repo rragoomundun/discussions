@@ -17,6 +17,7 @@ import {
 import { ForumCategory as ForumCategoryComponent } from '../forum-category/forum-category';
 import { ForumForum as ForumForumComponent } from '../forum-forum/forum-forum';
 import { ForumForumEdit as ForumForumEditComponent } from '../forum-forum-edit/forum-forum-edit';
+import { ForumCategoryEdit as ForumCategoryEditComponent } from '../forum-category-edit/forum-category-edit';
 
 import { Forum as ForumService } from '../../../../shared/services/forum/forum';
 
@@ -31,6 +32,7 @@ import { Category } from '../../../../shared/models/Category';
     ForumCategoryComponent,
     ForumForumComponent,
     ForumForumEditComponent,
+    ForumCategoryEditComponent,
   ],
   templateUrl: './forums.html',
   styleUrl: './forums.scss',
@@ -38,6 +40,9 @@ import { Category } from '../../../../shared/models/Category';
 export class Forums {
   private forumService = inject(ForumService);
 
+  forumCategoryEditComponent = viewChild<ForumCategoryEditComponent>(
+    ForumCategoryEditComponent,
+  );
   forumForumEditComponent = viewChild<ForumForumEditComponent>(
     ForumForumEditComponent,
   );
@@ -47,6 +52,7 @@ export class Forums {
       FormGroup<{
         id: FormControl<number | null>;
         name: FormControl<string>;
+        meta_description: FormControl<string>;
         index: FormControl<number>;
       }>
     >
@@ -55,6 +61,7 @@ export class Forums {
       FormGroup<{
         id: FormControl<number | null>;
         name: FormControl<string>;
+        meta_description: FormControl<string>;
         index: FormControl<number>;
       }>
     >([]),
@@ -78,6 +85,13 @@ export class Forums {
 
     return this.categoriesFormArray().at(this.selectedCategoryIndex()!).controls
       .id.value;
+  });
+  selectedCategoryForm = computed(() => {
+    if (this.selectedCategoryIndex() === null) {
+      return null;
+    }
+
+    return this.categoriesFormArray().at(this.selectedCategoryIndex()!);
   });
   selectedForumForm = signal<FormGroup<{
     id: FormControl<number | null>;
@@ -109,6 +123,7 @@ export class Forums {
             Number(category.id),
             category.index,
             category.name,
+            category.meta_description,
           );
 
           for (const forum of category.forums) {
@@ -179,17 +194,26 @@ export class Forums {
     >([]);
   }
 
-  createCategory(id: number | null, index: number, name: string): void {
+  createCategory(
+    id: number | null,
+    index: number,
+    name: string,
+    metaDescription: string,
+  ): void {
     this.categoriesFormArray().push(
       new FormGroup<{
         id: FormControl<number | null>;
         name: FormControl<string>;
+        meta_description: FormControl<string>;
         index: FormControl<number>;
       }>({
         id: new FormControl<number | null>(id),
         name: new FormControl<string>(name, {
           nonNullable: true,
           validators: [Validators.required],
+        }),
+        meta_description: new FormControl<string>(metaDescription, {
+          nonNullable: true,
         }),
         index: new FormControl<number>(index, { nonNullable: true }),
       }),
@@ -244,6 +268,23 @@ export class Forums {
       this.getNewId(this.categoriesFormArray().value),
       this.categoriesFormArray().length,
       '',
+      '',
+    );
+  }
+
+  onCategorySettingsClick(): void {
+    setTimeout(() => {
+      this.forumCategoryEditComponent()?.open();
+    });
+  }
+
+  onCategorySettingsChange(event: {
+    name: string | null;
+    metaDescription: string | null;
+  }): void {
+    this.selectedCategoryForm()!.controls.name.setValue(String(event.name));
+    this.selectedCategoryForm()!.controls.meta_description.setValue(
+      String(event.metaDescription),
     );
   }
 
@@ -360,6 +401,7 @@ export class Forums {
       (category) => ({
         id: !category.id || category.id < 0 ? undefined : Number(category.id),
         name: String(category.name),
+        meta_description: String(category.meta_description),
         index: Number(category.index),
         forums: !this.forumsArrayFormArray()[category.id!]
           ? []
