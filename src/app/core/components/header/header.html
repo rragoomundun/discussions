@@ -48,6 +48,8 @@
               @if (user.role === "admin") {
                 <li>
                   <a routerLink="/forum-settings" class="dropdown-item">
+                    <span class="fa-solid fa-gear"></span>
+                    &nbsp;
                     {{
                       "FORUM_SETTINGS_PAGE.CONFIGURATION_PAGE.TITLE" | translate
                     }}
