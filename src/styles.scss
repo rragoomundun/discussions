@@ -5,12 +5,12 @@
 
 /* Custom variables */
 :root {
-  --app-color-black: #000;
-  --app-color-white: #fff;
+  --app-color-black: #000000;
+  --app-color-white: #ffffff;
   --app-color-red: #ff0000;
   --app-color-gray: #999999;
   --app-color-primary: var(--app-color-black);
-  --app-color-primary-hover: #444;
+  --app-color-primary-hover: #444444;
   --app-color-secondary: #e0e0e0;
   --app-color-secondary-hover: #c0c0c0;
   --app-color-secondary-2: #cccccc;
@@ -18,10 +18,10 @@
   --app-color-success-hover: #3e5e0f;
   --app-color-danger: #a71b1b;
   --app-color-danger-hover: #bb2525;
-  --app-color-text: #444;
+  --app-color-text: #444444;
   --app-color-link: #154f6b;
   --app-color-link-hover: #0d6791;
-  --app-color-shadow: #eee;
+  --app-color-shadow: #dddddd;
 
   --app-border-radius: 0.5rem;
 
