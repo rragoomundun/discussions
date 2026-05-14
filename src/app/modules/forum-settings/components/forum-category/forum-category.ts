@@ -20,7 +20,7 @@ export class ForumCategory {
     FormGroup<{
       id: FormControl<number | null>;
       name: FormControl<string>;
-      meta_description: FormControl<string>;
+      metaDescription: FormControl<string>;
       index: FormControl<number>;
     }>
   >();
@@ -31,7 +31,7 @@ export class ForumCategory {
   get formGroup(): FormGroup<{
     id: FormControl<number | null>;
     name: FormControl<string>;
-    meta_description: FormControl<string>;
+    metaDescription: FormControl<string>;
     index: FormControl<number>;
   }> {
     return <FormGroup>this.categoryFormGroup();

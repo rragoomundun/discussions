@@ -3,7 +3,7 @@ import { Forum } from './Forum';
 export interface Category {
   id: number | undefined;
   name: string;
-  meta_description: string;
+  metaDescription: string;
   index: number;
   forums: Forum[];
 }

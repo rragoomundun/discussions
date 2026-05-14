@@ -52,7 +52,7 @@ export class ForumForumEdit {
       FormGroup<{
         id: FormControl<number | null>;
         name: FormControl<string>;
-        meta_description: FormControl<string>;
+        metaDescription: FormControl<string>;
         index: FormControl<number>;
       }>
     >

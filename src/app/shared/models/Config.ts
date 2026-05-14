@@ -4,8 +4,8 @@ export interface Config {
   logo: string;
   favicon: string;
   description: string;
-  meta_description: string;
-  show_title: boolean;
-  show_logo: boolean;
-  created_at: Date;
+  metaDescription: string;
+  showTitle: boolean;
+  showLogo: boolean;
+  createdAt: Date;
 }

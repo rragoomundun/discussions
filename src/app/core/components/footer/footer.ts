@@ -40,7 +40,7 @@ export class Footer {
 
     const configSubscription = this.config$.subscribe(
       (value: Config | null) => {
-        this.createdYear = new Date(<Date>value?.created_at).getFullYear();
+        this.createdYear = new Date(<Date>value?.createdAt).getFullYear();
       },
     );
 
