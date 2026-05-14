@@ -10,5 +10,5 @@ export interface User {
   gender: 'male' | 'female' | null;
   signature: string | null;
   active: boolean;
-  created_at: Date;
+  createdAt: Date;
 }

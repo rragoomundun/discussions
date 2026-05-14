@@ -3,17 +3,17 @@
 
 <header>
   <nav class="navbar navbar-expand-lg">
-    @if (config?.show_logo || config?.show_title) {
+    @if (config?.showLogo || config?.showTitle) {
       <a id="this-logo" routerLink="/">
         <div>
-          @if (config?.show_logo && config?.logo) {
+          @if (config?.showLogo && config?.logo) {
             <img
               [src]="appService.SERVER_URL + config?.logo"
               [alt]="config?.title"
             />
           }
 
-          @if (config?.show_title) {
+          @if (config?.showTitle) {
             <span>{{ config?.title }}</span>
           }
         </div>

@@ -139,12 +139,12 @@
   [categoriesFormArray]="categoriesFormArray()"
   [name]="selectedForumForm()?.controls!.name.value"
   [description]="selectedForumForm()?.controls!.description.value"
-  [metaDescription]="selectedForumForm()?.controls!.meta_description.value"
+  [metaDescription]="selectedForumForm()?.controls!.metaDescription.value"
   (onChange)="onForumSettingsChange($event)"
 ></app-forum-forum-edit>
 
 <app-forum-category-edit
   [name]="selectedCategoryForm()?.controls!.name.value"
-  [metaDescription]="selectedCategoryForm()?.controls!.meta_description.value"
+  [metaDescription]="selectedCategoryForm()?.controls!.metaDescription.value"
   (onChange)="onCategorySettingsChange($event)"
 ></app-forum-category-edit>

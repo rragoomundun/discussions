@@ -73,9 +73,9 @@ export class Configuration {
       logo: new FormControl(''),
       favicon: new FormControl(''),
       description: new FormControl(''),
-      meta_description: new FormControl(''),
-      show_title: new FormControl(true, [Validators.required]),
-      show_logo: new FormControl(false, [Validators.required]),
+      metaDescription: new FormControl(''),
+      showTitle: new FormControl(true, [Validators.required]),
+      showLogo: new FormControl(false, [Validators.required]),
     }),
   );
 
@@ -93,11 +93,11 @@ export class Configuration {
           this.formGroup().controls.logo.setValue(config.logo);
           this.formGroup().controls.favicon.setValue(config.favicon);
           this.formGroup().controls.description.setValue(config.description);
-          this.formGroup().controls.meta_description.setValue(
-            config.meta_description,
+          this.formGroup().controls.metaDescription.setValue(
+            config.metaDescription,
           );
-          this.formGroup().controls.show_title.setValue(config.show_title);
-          this.formGroup().controls.show_logo.setValue(config.show_logo);
+          this.formGroup().controls.showTitle.setValue(config.showTitle);
+          this.formGroup().controls.showLogo.setValue(config.showLogo);
         }
       },
     );
@@ -112,16 +112,14 @@ export class Configuration {
       logo: <string>this.formGroup().controls.logo.value,
       favicon: <string>this.formGroup().controls.favicon.value,
       description: <string>this.formGroup().controls.description.value,
-      meta_description: <string>(
-        this.formGroup().controls.meta_description.value
-      ),
-      show_title: <boolean>this.formGroup().controls.show_title.value,
-      show_logo: <boolean>this.formGroup().controls.show_logo.value,
+      metaDescription: <string>this.formGroup().controls.metaDescription.value,
+      showTitle: <boolean>this.formGroup().controls.showTitle.value,
+      showLogo: <boolean>this.formGroup().controls.showLogo.value,
       /*
        * Exists to maintain compatibility with the model,
        * it won't be used in the backend.
        */
-      created_at: new Date(),
+      createdAt: new Date(),
     };
 
     this.logo()!.originalFilePath = params.logo;

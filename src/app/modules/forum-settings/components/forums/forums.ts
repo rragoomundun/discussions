@@ -52,7 +52,7 @@ export class Forums {
       FormGroup<{
         id: FormControl<number | null>;
         name: FormControl<string>;
-        meta_description: FormControl<string>;
+        metaDescription: FormControl<string>;
         index: FormControl<number>;
       }>
     >
@@ -61,7 +61,7 @@ export class Forums {
       FormGroup<{
         id: FormControl<number | null>;
         name: FormControl<string>;
-        meta_description: FormControl<string>;
+        metaDescription: FormControl<string>;
         index: FormControl<number>;
       }>
     >([]),
@@ -73,7 +73,7 @@ export class Forums {
         index: FormControl<number>;
         name: FormControl<string | null>;
         description: FormControl<string | null>;
-        meta_description: FormControl<string | null>;
+        metaDescription: FormControl<string | null>;
       }>
     >[]
   >([]);
@@ -98,7 +98,7 @@ export class Forums {
     index: FormControl<number>;
     name: FormControl<string | null>;
     description: FormControl<string | null>;
-    meta_description: FormControl<string | null>;
+    metaDescription: FormControl<string | null>;
   }> | null>(null);
   onGetForums = signal('false');
   onUpdateForum = signal('false');
@@ -123,7 +123,7 @@ export class Forums {
             Number(category.id),
             category.index,
             category.name,
-            category.meta_description,
+            category.metaDescription,
           );
 
           for (const forum of category.forums) {
@@ -134,7 +134,7 @@ export class Forums {
               {
                 name: forum.name,
                 description: forum.description,
-                meta_description: forum.meta_description,
+                metaDescription: forum.metaDescription,
               },
             );
           }
@@ -189,7 +189,7 @@ export class Forums {
         index: FormControl<number>;
         name: FormControl<string | null>;
         description: FormControl<string | null>;
-        meta_description: FormControl<string | null>;
+        metaDescription: FormControl<string | null>;
       }>
     >([]);
   }
@@ -204,7 +204,7 @@ export class Forums {
       new FormGroup<{
         id: FormControl<number | null>;
         name: FormControl<string>;
-        meta_description: FormControl<string>;
+        metaDescription: FormControl<string>;
         index: FormControl<number>;
       }>({
         id: new FormControl<number | null>(id),
@@ -212,7 +212,7 @@ export class Forums {
           nonNullable: true,
           validators: [Validators.required],
         }),
-        meta_description: new FormControl<string>(metaDescription, {
+        metaDescription: new FormControl<string>(metaDescription, {
           nonNullable: true,
         }),
         index: new FormControl<number>(index, { nonNullable: true }),
@@ -224,7 +224,7 @@ export class Forums {
     categoryId: number,
     id: number | null,
     index: number,
-    infos: { name: string; description: string; meta_description: string },
+    infos: { name: string; description: string; metaDescription: string },
   ): void {
     if (this.forumsArrayFormArray()[categoryId] === undefined) {
       this.initForumsFormArray(categoryId);
@@ -236,7 +236,7 @@ export class Forums {
         index: FormControl<number>;
         name: FormControl<string | null>;
         description: FormControl<string | null>;
-        meta_description: FormControl<string | null>;
+        metaDescription: FormControl<string | null>;
       }>({
         id: new FormControl<number | null>(id),
         index: new FormControl<number>(index, { nonNullable: true }),
@@ -247,8 +247,8 @@ export class Forums {
         description: new FormControl<string | null>(infos.description, {
           nonNullable: true,
         }),
-        meta_description: new FormControl<string | null>(
-          infos.meta_description,
+        metaDescription: new FormControl<string | null>(
+          infos.metaDescription,
           { nonNullable: true },
         ),
       }),
@@ -283,7 +283,7 @@ export class Forums {
     metaDescription: string | null;
   }): void {
     this.selectedCategoryForm()!.controls.name.setValue(String(event.name));
-    this.selectedCategoryForm()!.controls.meta_description.setValue(
+    this.selectedCategoryForm()!.controls.metaDescription.setValue(
       String(event.metaDescription),
     );
   }
@@ -327,7 +327,7 @@ export class Forums {
       {
         name: '',
         description: '',
-        meta_description: '',
+        metaDescription: '',
       },
     );
   }
@@ -357,7 +357,7 @@ export class Forums {
   }): void {
     this.selectedForumForm()!.controls.name.setValue(event.name);
     this.selectedForumForm()!.controls.description.setValue(event.description);
-    this.selectedForumForm()!.controls.meta_description.setValue(
+    this.selectedForumForm()!.controls.metaDescription.setValue(
       event.metaDescription,
     );
 
@@ -369,8 +369,8 @@ export class Forums {
         {
           name: this.selectedForumForm()!.controls.name.value!,
           description: this.selectedForumForm()!.controls.description.value!,
-          meta_description:
-            this.selectedForumForm()!.controls.meta_description.value!,
+          metaDescription:
+            this.selectedForumForm()!.controls.metaDescription.value!,
         },
       );
       this.setForumsIndex(event.categoryId!);
@@ -401,7 +401,7 @@ export class Forums {
       (category) => ({
         id: !category.id || category.id < 0 ? undefined : Number(category.id),
         name: String(category.name),
-        meta_description: String(category.meta_description),
+        metaDescription: String(category.metaDescription),
         index: Number(category.index),
         forums: !this.forumsArrayFormArray()[category.id!]
           ? []
@@ -409,7 +409,7 @@ export class Forums {
               id: !forum.id || forum.id < 0 ? undefined : Number(forum.id),
               name: String(forum.name),
               description: String(forum.description),
-              meta_description: String(forum.meta_description),
+              metaDescription: String(forum.metaDescription),
               index: Number(forum.index),
             })),
       }),

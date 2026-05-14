@@ -15,7 +15,7 @@ export class ForumForum {
       index: FormControl<number>;
       name: FormControl<string | null>;
       description: FormControl<string | null>;
-      meta_description: FormControl<string | null>;
+      metaDescription: FormControl<string | null>;
     }>
   >();
   onSettings = output<void>();
@@ -26,7 +26,7 @@ export class ForumForum {
     index: FormControl<number>;
     name: FormControl<string | null>;
     description: FormControl<string | null>;
-    meta_description: FormControl<string | null>;
+    metaDescription: FormControl<string | null>;
   }> {
     return <FormGroup>this.forumForm();
   }
