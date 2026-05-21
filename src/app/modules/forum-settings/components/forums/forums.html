@@ -145,6 +145,7 @@
 
 <app-forum-category-edit
   [name]="selectedCategoryForm()?.controls!.name.value"
+  [description]="selectedCategoryForm()?.controls!.description.value"
   [metaDescription]="selectedCategoryForm()?.controls!.metaDescription.value"
   (onChange)="onCategorySettingsChange($event)"
 ></app-forum-category-edit>

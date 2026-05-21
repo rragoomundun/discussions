@@ -120,6 +120,7 @@
         "CATEGORY": {
           "TITLE": "Update Category",
           "ENTER_NAME": "Enter a category name",
+          "ENTER_DESCRIPTION": "Enter a description",
           "ENTER_META_DESCRIPTION": "Enter a meta description. It will be used by search engines to show a description of the category."
         },
         "FORUM": {

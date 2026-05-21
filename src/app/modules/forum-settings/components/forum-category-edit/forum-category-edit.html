@@ -30,6 +30,18 @@
 
       <div class="mb-3">
         <app-text-area
+          [id]="'this-description'"
+          [label]="'GENERAL.DESCRIPTION' | translate"
+          [placeholder]="
+            'FORUM_SETTINGS_PAGE.FORUMS_PAGE.COMPONENTS.CATEGORY.ENTER_DESCRIPTION'
+              | translate
+          "
+          [control]="'description'"
+        ></app-text-area>
+      </div>
+
+      <div class="mb-3">
+        <app-text-area
           [id]="'this-meta-description'"
           [label]="'GENERAL.META_DESCRIPTION' | translate"
           [placeholder]="

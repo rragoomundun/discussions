@@ -52,6 +52,7 @@ export class Forums {
       FormGroup<{
         id: FormControl<number | null>;
         name: FormControl<string>;
+        description: FormControl<string>;
         metaDescription: FormControl<string>;
         index: FormControl<number>;
       }>
@@ -61,6 +62,7 @@ export class Forums {
       FormGroup<{
         id: FormControl<number | null>;
         name: FormControl<string>;
+        description: FormControl<string>;
         metaDescription: FormControl<string>;
         index: FormControl<number>;
       }>
@@ -123,6 +125,7 @@ export class Forums {
             Number(category.id),
             category.index,
             category.name,
+            category.description,
             category.metaDescription,
           );
 
@@ -198,12 +201,14 @@ export class Forums {
     id: number | null,
     index: number,
     name: string,
+    description: string,
     metaDescription: string,
   ): void {
     this.categoriesFormArray().push(
       new FormGroup<{
         id: FormControl<number | null>;
         name: FormControl<string>;
+        description: FormControl<string>;
         metaDescription: FormControl<string>;
         index: FormControl<number>;
       }>({
@@ -211,6 +216,9 @@ export class Forums {
         name: new FormControl<string>(name, {
           nonNullable: true,
           validators: [Validators.required],
+        }),
+        description: new FormControl<string>(description, {
+          nonNullable: true,
         }),
         metaDescription: new FormControl<string>(metaDescription, {
           nonNullable: true,
@@ -269,6 +277,7 @@ export class Forums {
       this.categoriesFormArray().length,
       '',
       '',
+      '',
     );
   }
 
@@ -280,9 +289,11 @@ export class Forums {
 
   onCategorySettingsChange(event: {
     name: string | null;
+    description: string | null;
     metaDescription: string | null;
   }): void {
     this.selectedCategoryForm()!.controls.name.setValue(String(event.name));
+    this.selectedCategoryForm()!.controls.description.setValue(String(event.description));
     this.selectedCategoryForm()!.controls.metaDescription.setValue(
       String(event.metaDescription),
     );
@@ -401,6 +412,7 @@ export class Forums {
       (category) => ({
         id: !category.id || category.id < 0 ? undefined : Number(category.id),
         name: String(category.name),
+        description: String(category.description),
         metaDescription: String(category.metaDescription),
         index: Number(category.index),
         forums: !this.forumsArrayFormArray()[category.id!]
