@@ -39,3 +39,18 @@ export const updateConfigSuccess = createAction(
 export const updateConfigFailure = createAction(
   '[Config] Update Config Failure',
 );
+
+export const initUpdateBottomLinks = createAction(
+  '[Config] Init Update Bottom Links',
+);
+export const updateBottomLinks = createAction(
+  '[Config] Update Bottom Links',
+  props<{ bottomLinks: BottomLink[] }>(),
+);
+export const updateBottomLinksSuccess = createAction(
+  '[Config] Update Bottom Links Success',
+  props<{ bottomLinks: BottomLink[] }>(),
+);
+export const updateBottomLinksFailure = createAction(
+  '[Config] Update Bottom Links Failure',
+);

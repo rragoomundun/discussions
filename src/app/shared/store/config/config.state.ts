@@ -12,4 +12,5 @@ export interface ConfigState {
   onInit: string;
   onGetConfig: string;
   onUpdateConfig: string;
+  onUpdateBottomLinks: string;
 }

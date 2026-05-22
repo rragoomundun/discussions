@@ -133,7 +133,13 @@
     },
     "BOTTOM_LINKS_PAGE": {
       "TITLE": "Setup Bottom Links",
-      "TAB_NAME": "Bottom Links"
+      "TAB_NAME": "Bottom Links",
+      "DESCRIPTION": "Add links to the bottom of your forum. You can add external links and internal links by starting with a <strong>/</strong> character.",
+      "LINK": "Link",
+      "LINK_TEXT": "Link text",
+      "LINK_URL": "Link",
+      "ADD_LINK": "Add Link",
+      "SUCCESS": "Bottom links successfully updated."
     }
   },
   "HOME_PAGE": {

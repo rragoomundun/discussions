@@ -1,5 +1,5 @@
 export interface BottomLink {
-  id: number;
+  id?: number;
   name: string;
   link: string;
   index: number;
