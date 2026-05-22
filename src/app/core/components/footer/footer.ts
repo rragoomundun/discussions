@@ -1,5 +1,6 @@
 import { Component, inject, DestroyRef } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -18,7 +19,7 @@ import { BottomLink } from '../../../shared/models/BottomLink';
 
 @Component({
   selector: 'app-footer',
-  imports: [TranslateModule, AsyncPipe],
+  imports: [TranslateModule, AsyncPipe, RouterLink],
   templateUrl: './footer.html',
   styleUrl: './footer.scss',
 })

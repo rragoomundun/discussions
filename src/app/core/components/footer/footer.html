@@ -3,11 +3,15 @@
 <footer class="border-top">
   @if (bottomLinks?.length) {
     <div class="mb-2">
-      @for (bottomLink of bottomLinks; track bottomLink) {
-        <a [href]="bottomLink.link">
-          {{ bottomLink.name }}
-        </a>
-        &nbsp;
+      @for (bottomLink of bottomLinks; track bottomLink; let last = $last) {
+        @if (bottomLink.link.startsWith("/")) {
+          <a [routerLink]="bottomLink.link">{{ bottomLink.name }}</a>
+        } @else {
+          <a [href]="bottomLink.link">{{ bottomLink.name }}</a>
+        }
+        @if (!last) {
+          <span>&nbsp;·&nbsp;</span>
+        }
       }
     </div>
   }
