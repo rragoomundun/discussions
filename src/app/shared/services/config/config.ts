@@ -34,4 +34,10 @@ export class Config {
       withCredentials: true,
     });
   }
+
+  updateBottomLinks(bottomLinks: BottomLink[]): Observable<null> {
+    return this.http.put<null>(`${this.API_PREFIX}/bottom-links`, bottomLinks, {
+      withCredentials: true,
+    });
+  }
 }

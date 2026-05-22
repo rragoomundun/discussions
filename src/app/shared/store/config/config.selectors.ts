@@ -40,3 +40,8 @@ export const selectOnUpdateConfig = createSelector(
   selectConfig,
   (state: ConfigState) => state.onUpdateConfig,
 );
+
+export const selectOnUpdateBottomLinks = createSelector(
+  selectConfig,
+  (state: ConfigState) => state.onUpdateBottomLinks,
+);

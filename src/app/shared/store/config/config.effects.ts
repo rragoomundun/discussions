@@ -86,4 +86,20 @@ export class ConfigEffects {
       ),
     ),
   );
+
+  updateBottomLinks$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ConfigActions.updateBottomLinks),
+      exhaustMap((value) =>
+        this.configService.updateBottomLinks(value.bottomLinks).pipe(
+          map(() =>
+            ConfigActions.updateBottomLinksSuccess({
+              bottomLinks: value.bottomLinks,
+            }),
+          ),
+          catchError(() => of(ConfigActions.updateBottomLinksFailure())),
+        ),
+      ),
+    ),
+  );
 }

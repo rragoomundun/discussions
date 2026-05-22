@@ -12,6 +12,7 @@ export const initialState: ConfigState = {
   onInit: 'false',
   onGetConfig: 'false',
   onUpdateConfig: 'false',
+  onUpdateBottomLinks: 'false',
 };
 
 export const configReducer = createReducer(
@@ -105,5 +106,23 @@ export const configReducer = createReducer(
   on(ConfigActions.updateConfigFailure, (state) => ({
     ...state,
     onUpdateConfig: 'error',
+  })),
+
+  on(ConfigActions.initUpdateBottomLinks, (state) => ({
+    ...state,
+    onUpdateBottomLinks: 'false',
+  })),
+  on(ConfigActions.updateBottomLinks, (state) => ({
+    ...state,
+    onUpdateBottomLinks: 'true',
+  })),
+  on(ConfigActions.updateBottomLinksSuccess, (state, { bottomLinks }) => ({
+    ...state,
+    bottomLinks,
+    onUpdateBottomLinks: 'success',
+  })),
+  on(ConfigActions.updateBottomLinksFailure, (state) => ({
+    ...state,
+    onUpdateBottomLinks: 'error',
   })),
 );

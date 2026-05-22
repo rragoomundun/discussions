@@ -1,1 +1,51 @@
-<p>bottom-links works!</p>
+@let onUpdateBottomLinks = onUpdateBottomLinks$ | async;
+
+<p
+  class="mb-3"
+  [innerHTML]="'FORUM_SETTINGS_PAGE.BOTTOM_LINKS_PAGE.DESCRIPTION' | translate"
+></p>
+
+<div cdkDropList (cdkDropListDropped)="drop($event)">
+  @for (group of links(); track $index; let i = $index) {
+    <div class="row mb-3" cdkDrag>
+      <div class="col-12 col-md-6">
+        <app-bottom-link
+          [group]="group"
+          (delete)="removeLink(i)"
+        ></app-bottom-link>
+      </div>
+    </div>
+  }
+</div>
+
+<div class="mb-2">
+  <button type="button" class="btn btn-primary btn-sm" (click)="addLink()">
+    {{ "FORUM_SETTINGS_PAGE.BOTTOM_LINKS_PAGE.ADD_LINK" | translate }}
+  </button>
+</div>
+
+<div class="border-top mt-3 pt-3 text-center">
+  @if (onUpdateBottomLinks === "success") {
+    <small class="text-success">
+      {{ "FORUM_SETTINGS_PAGE.BOTTOM_LINKS_PAGE.SUCCESS" | translate }}
+    </small>
+
+    <br /><br />
+  }
+
+  @if (onUpdateBottomLinks !== "true") {
+    <button
+      type="button"
+      [disabled]="!isFormValid()"
+      class="btn btn-primary"
+      (click)="save()"
+    >
+      {{ "GENERAL.SAVE" | translate }}
+    </button>
+  } @else {
+    <button type="button" [disabled]="true" class="btn btn-primary">
+      <span class="fas fa-spinner fa-spin"></span>
+      <span>{{ "GENERAL.SAVING" | translate }}</span>
+    </button>
+  }
+</div>
