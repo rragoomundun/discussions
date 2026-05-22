@@ -142,6 +142,24 @@
       "SUCCESS": "Bottom links successfully updated."
     }
   },
+  "SETTINGS_PAGE": {
+    "TITLE": "Settings",
+    "EMAIL_PAGE": {
+      "TAB_NAME": "E-Mail"
+    },
+    "SECURITY_PAGE": {
+      "TAB_NAME": "Security"
+    },
+    "PICTURE_PAGE": {
+      "TAB_NAME": "Picture"
+    },
+    "INFORMATIONS_PAGE": {
+      "TAB_NAME": "Informations"
+    },
+    "SIGNATURE_PAGE": {
+      "TAB_NAME": "Signature"
+    }
+  },
   "HOME_PAGE": {
     "TITLE": "Home"
   },

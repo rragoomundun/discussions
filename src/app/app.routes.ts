@@ -19,6 +19,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'settings',
+    loadChildren: () =>
+      import('./modules/settings/settings.routes').then(
+        (m) => m.settingsRoutes,
+      ),
+  },
+  {
     path: '',
     loadChildren: () =>
       import('./modules/home/home.routes').then((m) => m.homeRoutes),

@@ -1,0 +1,75 @@
+<div class="app-container container">
+  <h1 class="fs-3 border-bottom pb-2 mb-2">
+    {{ "SETTINGS_PAGE.TITLE" | translate }}
+  </h1>
+
+  <div id="this-content">
+    <div id="this-navigation" class="d-none d-lg-block">
+      <nav class="nav flex-column">
+        <a
+          routerLink="/settings/email"
+          routerLinkActive="active"
+          class="nav-link"
+        >
+          {{ "SETTINGS_PAGE.EMAIL_PAGE.TAB_NAME" | translate }}
+        </a>
+        <a
+          routerLink="/settings/security"
+          routerLinkActive="active"
+          class="nav-link"
+        >
+          {{ "SETTINGS_PAGE.SECURITY_PAGE.TAB_NAME" | translate }}
+        </a>
+        <a
+          routerLink="/settings/picture"
+          routerLinkActive="active"
+          class="nav-link"
+        >
+          {{ "SETTINGS_PAGE.PICTURE_PAGE.TAB_NAME" | translate }}
+        </a>
+        <a
+          routerLink="/settings/informations"
+          routerLinkActive="active"
+          class="nav-link"
+        >
+          {{ "SETTINGS_PAGE.INFORMATIONS_PAGE.TAB_NAME" | translate }}
+        </a>
+        <a
+          routerLink="/settings/signature"
+          routerLinkActive="active"
+          class="nav-link"
+        >
+          {{ "SETTINGS_PAGE.SIGNATURE_PAGE.TAB_NAME" | translate }}
+        </a>
+      </nav>
+    </div>
+
+    <div id="this-navigation-mobile" class="d-lg-none border-bottom pb-2">
+      <select
+        [value]="selectedSection"
+        (change)="onMobileSectionSelectorChange($event)"
+        class="form-select"
+      >
+        <option value="email">
+          {{ "SETTINGS_PAGE.EMAIL_PAGE.TAB_NAME" | translate }}
+        </option>
+        <option value="security">
+          {{ "SETTINGS_PAGE.SECURITY_PAGE.TAB_NAME" | translate }}
+        </option>
+        <option value="picture">
+          {{ "SETTINGS_PAGE.PICTURE_PAGE.TAB_NAME" | translate }}
+        </option>
+        <option value="informations">
+          {{ "SETTINGS_PAGE.INFORMATIONS_PAGE.TAB_NAME" | translate }}
+        </option>
+        <option value="signature">
+          {{ "SETTINGS_PAGE.SIGNATURE_PAGE.TAB_NAME" | translate }}
+        </option>
+      </select>
+    </div>
+
+    <div id="this-section">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
