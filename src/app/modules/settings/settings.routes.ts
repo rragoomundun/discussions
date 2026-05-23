@@ -7,10 +7,13 @@ import { Picture as PictureComponent } from './components/picture/picture';
 import { Informations as InformationsComponent } from './components/informations/informations';
 import { Signature as SignatureComponent } from './components/signature/signature';
 
+import { authGuard } from '../../core/guards/auth/auth-guard';
+
 export const settingsRoutes: Routes = [
   {
     path: '',
     component: SettingsComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: 'email',
