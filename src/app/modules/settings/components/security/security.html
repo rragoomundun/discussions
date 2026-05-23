@@ -1,1 +1,50 @@
-<p>security works!</p>
+<form [formGroup]="formGroup" (submit)="onSubmit()">
+  <div class="mb-3">
+    <app-input
+      [id]="'this-password'"
+      [label]="'GENERAL.PASSWORD' | translate"
+      [type]="'password'"
+      [control]="'password'"
+      [error]="formErrors().password"
+    ></app-input>
+  </div>
+
+  <div class="mb-3">
+    <app-input
+      [id]="'this-password-confirmation'"
+      [label]="'GENERAL.PASSWORD_CONFIRMATION' | translate"
+      [type]="'password'"
+      [control]="'passwordConfirmation'"
+      [error]="formErrors().passwordConfirmation"
+    ></app-input>
+  </div>
+
+  <div class="border-top pt-3 text-center">
+    @if (onUpdatePassword() === "success") {
+      <small class="text-success">
+        {{ "SETTINGS_PAGE.SECURITY_PAGE.SUCCESS" | translate }}
+      </small>
+
+      <br /><br />
+    }
+
+    @if (onUpdatePassword() === "error" && !formErrors().password && !formErrors().passwordConfirmation) {
+      <small class="text-danger">
+        {{ "SETTINGS_PAGE.SECURITY_PAGE.ERROR" | translate }}
+      </small>
+
+      <br /><br />
+    }
+
+    @if (onUpdatePassword() !== "true") {
+      <button [disabled]="formGroup.invalid" class="btn btn-primary">
+        {{ "GENERAL.SAVE" | translate }}
+      </button>
+    } @else {
+      <button [disabled]="true" class="btn btn-primary">
+        <span class="fas fa-spinner fa-spin"></span>
+        <span>{{ "GENERAL.SAVING" | translate }}</span>
+      </button>
+    }
+  </div>
+</form>

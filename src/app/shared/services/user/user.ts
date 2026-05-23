@@ -24,4 +24,12 @@ export class User {
       { withCredentials: true },
     );
   }
+
+  updatePassword(password: string, passwordConfirmation: string): Observable<void> {
+    return this.http.put<void>(
+      `${this.API_PREFIX}/password`,
+      { password, passwordConfirmation },
+      { withCredentials: true },
+    );
+  }
 }

@@ -150,7 +150,9 @@
       "ERROR": "An error occurred while updating your e-mail."
     },
     "SECURITY_PAGE": {
-      "TAB_NAME": "Security"
+      "TAB_NAME": "Security",
+      "SUCCESS": "Password successfully updated.",
+      "ERROR": "An error occurred while updating your password."
     },
     "PICTURE_PAGE": {
       "TAB_NAME": "Picture"
