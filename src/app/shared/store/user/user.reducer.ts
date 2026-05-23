@@ -7,6 +7,7 @@ import * as UserActions from './user.actions';
 export const initialState: UserState = {
   user: undefined,
   onGetUser: 'false',
+  onUpdateEmail: 'false',
 };
 
 export const userReducer = createReducer(
@@ -25,5 +26,23 @@ export const userReducer = createReducer(
     ...state,
     user: null,
     onGetUser: 'error',
+  })),
+
+  on(UserActions.initUpdateEmail, (state) => ({
+    ...state,
+    onUpdateEmail: 'false',
+  })),
+  on(UserActions.updateEmail, (state) => ({
+    ...state,
+    onUpdateEmail: 'true',
+  })),
+  on(UserActions.updateEmailSuccess, (state, { email }) => ({
+    ...state,
+    user: state.user ? { ...state.user, email } : state.user,
+    onUpdateEmail: 'success',
+  })),
+  on(UserActions.updateEmailFailure, (state) => ({
+    ...state,
+    onUpdateEmail: 'error',
   })),
 );

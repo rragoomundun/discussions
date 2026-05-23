@@ -1,1 +1,41 @@
-<p>email works!</p>
+@let onUpdateEmail = onUpdateEmail$ | async;
+
+<form [formGroup]="formGroup" (submit)="onSubmit()">
+  <div class="mb-3">
+    <app-input
+      [id]="'this-email'"
+      [label]="'SETTINGS_PAGE.EMAIL_PAGE.TAB_NAME' | translate"
+      [type]="'email'"
+      [control]="'email'"
+    ></app-input>
+  </div>
+
+  <div class="text-center border-top pt-3">
+    @if (onUpdateEmail === "success") {
+      <small class="text-success">
+        {{ "SETTINGS_PAGE.EMAIL_PAGE.SUCCESS" | translate }}
+      </small>
+
+      <br /><br />
+    }
+
+    @if (onUpdateEmail === "error") {
+      <small class="text-danger">
+        {{ "SETTINGS_PAGE.EMAIL_PAGE.ERROR" | translate }}
+      </small>
+
+      <br /><br />
+    }
+
+    @if (onUpdateEmail !== "true") {
+      <button [disabled]="formGroup.invalid" class="btn btn-primary">
+        {{ "GENERAL.SAVE" | translate }}
+      </button>
+    } @else {
+      <button [disabled]="true" class="btn btn-primary">
+        <span class="fas fa-spinner fa-spin"></span>
+        <span>{{ "GENERAL.SAVING" | translate }}</span>
+      </button>
+    }
+  </div>
+</form>
