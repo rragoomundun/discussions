@@ -45,4 +45,9 @@ export const userReducer = createReducer(
     ...state,
     onUpdateEmail: 'error',
   })),
+
+  on(UserActions.updateProfilePicture, (state, { image }) => ({
+    ...state,
+    user: state.user ? { ...state.user, image } : state.user,
+  })),
 );

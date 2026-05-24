@@ -19,3 +19,8 @@ export const updateEmailSuccess = createAction(
   props<{ email: string }>(),
 );
 export const updateEmailFailure = createAction('[User] Update Email Failure');
+
+export const updateProfilePicture = createAction(
+  '[User] Update Profile Picture',
+  props<{ image: string | null }>(),
+);

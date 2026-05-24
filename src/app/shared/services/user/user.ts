@@ -32,4 +32,12 @@ export class User {
       { withCredentials: true },
     );
   }
+
+  updateProfilePicture(path: string | null): Observable<void> {
+    return this.http.put<void>(
+      `${this.API_PREFIX}/profile-picture`,
+      { path },
+      { withCredentials: true },
+    );
+  }
 }

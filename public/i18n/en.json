@@ -155,7 +155,14 @@
       "ERROR": "An error occurred while updating your password."
     },
     "PICTURE_PAGE": {
-      "TAB_NAME": "Picture"
+      "TAB_NAME": "Picture",
+      "CHANGE_PICTURE": "Change Picture",
+      "CROP_TITLE": "Crop Image",
+      "CROP": "Crop",
+      "CANCEL": "Cancel",
+      "APPLY": "Apply",
+      "SUCCESS": "Profile picture successfully updated.",
+      "ERROR": "An error occurred while updating your profile picture."
     },
     "INFORMATIONS_PAGE": {
       "TAB_NAME": "Informations"

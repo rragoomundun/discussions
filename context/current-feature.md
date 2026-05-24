@@ -1,18 +1,27 @@
-# Current Feature
-
-<!-- Feature name and short description -->
+# Current Feature: User Settings Picture
 
 ## Status
 
-<!-- Not Started | In Progress | Completed -->
+In Progress
 
 ## Goals
 
-<!-- Goals and requirements -->
+- Display `fa-regular fa-circle-user fa-8x` icon centered when no profile picture
+- If profile picture exists: display it at 128×128 px centered, with a red `fa-times` icon at top-right to clear it
+- Clicking the `fa-times` icon sets the image to null
+- Always show a centered "Change Picture" button below the picture/icon
+- Clicking "Change Picture" opens the file manager (jpeg, png, gif, webp, single file)
+- After file selection, open a crop modal (ngx-image-cropper): header with close (×) icon, footer with "Crop" and "Cancel" buttons; "Crop" confirms, "Cancel" discards
+- After cropping, display the new cropped image preview
+- Below the picture area, show a div (`.text-center.border-top.pt-3`) containing an "Apply" button
+- On "Apply": if image was deleted or changed, call `DELETE /file` with `{ path: user.image }`
+- If image was changed: call `POST /file` with the new Blob in `file` field, then call `PUT /user/profile-picture` with `{ path }` from the response; update `user.image` in the store to `API_URL + path`
 
 ## Notes
 
-<!-- Any extra notes -->
+- Profile picture is stored in `user.image`
+- Use ngx-image-cropper for the crop modal
+- `API_URL` is available from the environment
 
 ## History
 

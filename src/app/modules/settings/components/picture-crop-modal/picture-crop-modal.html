@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ "SETTINGS_PAGE.PICTURE_PAGE.CROP_TITLE" | translate }}</h4>
+  <button type="button" class="btn-close" (click)="cancel()"></button>
+</div>
+
+<div class="modal-body">
+  <image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="1"
+    [output]="'blob'"
+    format="png"
+    (imageCropped)="onImageCropped($event)"
+  ></image-cropper>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="cancel()">
+    {{ "SETTINGS_PAGE.PICTURE_PAGE.CANCEL" | translate }}
+  </button>
+  <button type="button" class="btn btn-primary" (click)="confirm()">
+    {{ "SETTINGS_PAGE.PICTURE_PAGE.CROP" | translate }}
+  </button>
+</div>
