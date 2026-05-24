@@ -1,1 +1,64 @@
-<p>picture works!</p>
+<div class="text-center mb-4">
+  @if (previewUrl()) {
+    <div class="position-relative d-inline-block">
+      <img
+        [src]="previewUrl()"
+        width="128"
+        height="128"
+        class="rounded-circle border"
+        alt="Profile picture"
+      />
+      <button
+        type="button"
+        class="btn btn-link p-0 position-absolute top-0 end-0"
+        (click)="clearImage()"
+      >
+        <i class="fa-solid far fa-times-circle clear-picture-btn"></i>
+      </button>
+    </div>
+  } @else {
+    <i class="fa-regular fa-circle-user fa-8x"></i>
+  }
+</div>
+
+<div class="text-center mb-3">
+  <input
+    #fileInputEl
+    type="file"
+    accept="image/jpeg,image/png,image/gif,image/webp"
+    class="d-none"
+    (change)="onFileSelected($event)"
+  />
+  <button type="button" class="btn btn-secondary" (click)="openFileManager()">
+    {{ "SETTINGS_PAGE.PICTURE_PAGE.CHANGE_PICTURE" | translate }}
+  </button>
+</div>
+
+<div class="text-center border-top pt-3">
+  @if (onApply() === "success") {
+    <small class="text-success">
+      {{ "SETTINGS_PAGE.PICTURE_PAGE.SUCCESS" | translate }}
+    </small>
+
+    <br /><br />
+  }
+
+  @if (onApply() === "error") {
+    <small class="text-danger">
+      {{ "SETTINGS_PAGE.PICTURE_PAGE.ERROR" | translate }}
+    </small>
+
+    <br /><br />
+  }
+
+  @if (onApply() !== "true") {
+    <button type="button" class="btn btn-primary" (click)="apply()">
+      {{ "SETTINGS_PAGE.PICTURE_PAGE.APPLY" | translate }}
+    </button>
+  } @else {
+    <button type="button" class="btn btn-primary" disabled>
+      <span class="fas fa-spinner fa-spin"></span>
+      <span>{{ "GENERAL.SAVING" | translate }}</span>
+    </button>
+  }
+</div>
