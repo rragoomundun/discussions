@@ -1,27 +1,18 @@
-# Current Feature: User Settings Picture
+# Current Feature
+
+<!-- Feature name and short description -->
 
 ## Status
 
-In Progress
+<!-- Not Started | In Progress | Completed -->
 
 ## Goals
 
-- Display `fa-regular fa-circle-user fa-8x` icon centered when no profile picture
-- If profile picture exists: display it at 128×128 px centered, with a red `fa-times` icon at top-right to clear it
-- Clicking the `fa-times` icon sets the image to null
-- Always show a centered "Change Picture" button below the picture/icon
-- Clicking "Change Picture" opens the file manager (jpeg, png, gif, webp, single file)
-- After file selection, open a crop modal (ngx-image-cropper): header with close (×) icon, footer with "Crop" and "Cancel" buttons; "Crop" confirms, "Cancel" discards
-- After cropping, display the new cropped image preview
-- Below the picture area, show a div (`.text-center.border-top.pt-3`) containing an "Apply" button
-- On "Apply": if image was deleted or changed, call `DELETE /file` with `{ path: user.image }`
-- If image was changed: call `POST /file` with the new Blob in `file` field, then call `PUT /user/profile-picture` with `{ path }` from the response; update `user.image` in the store to `API_URL + path`
+<!-- Goals and requirements -->
 
 ## Notes
 
-- Profile picture is stored in `user.image`
-- Use ngx-image-cropper for the crop modal
-- `API_URL` is available from the environment
+<!-- Any extra notes -->
 
 ## History
 
@@ -35,3 +26,4 @@ In Progress
 - **23-05-2026 — Auth Guard** — Created `authGuard` (allows access to authenticated users only) and applied it to the `/settings` route.
 - **23-05-2026 — User Settings E-Mail** — Added email change form to user settings: single email field pre-populated with current email, `PUT /user/email`, NgRx actions/effects/reducer/selector, store updated on success.
 - **23-05-2026 — User Settings Password** — Added password change form to security settings: password and passwordConfirmation fields, `PUT /user/password`, field-level error display for `PASSWORD_MIN_LENGTH`, `PASSWORD_NOT_STRONG`, `PASSWORD_CONFIRMATION_NO_MATCH` via direct service call.
+- **24-05-2026 — User Settings Picture** — Added profile picture management: placeholder icon or 128×128 image preview with red × to clear, "Change Picture" opens file manager, crop modal (ngx-image-cropper) in a separate component, Apply button calls `DELETE /file`, `POST /file`, and `PUT /user/profile-picture` as needed; NgRx action updates `user.image` in store.
