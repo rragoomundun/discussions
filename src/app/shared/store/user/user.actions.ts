@@ -24,3 +24,28 @@ export const updateProfilePicture = createAction(
   '[User] Update Profile Picture',
   props<{ image: string | null }>(),
 );
+
+export const initUpdatePersonalInformation = createAction(
+  '[User] Init Update Personal Information',
+);
+export const updatePersonalInformation = createAction(
+  '[User] Update Personal Information',
+  props<{
+    birthday: string | null;
+    location: string | null;
+    gender: 'male' | 'female' | null;
+    biography: string | null;
+  }>(),
+);
+export const updatePersonalInformationSuccess = createAction(
+  '[User] Update Personal Information Success',
+  props<{
+    birthday: string | null;
+    location: string | null;
+    gender: 'male' | 'female' | null;
+    biography: string | null;
+  }>(),
+);
+export const updatePersonalInformationFailure = createAction(
+  '[User] Update Personal Information Failure',
+);

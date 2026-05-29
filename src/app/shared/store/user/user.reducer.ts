@@ -8,6 +8,7 @@ export const initialState: UserState = {
   user: undefined,
   onGetUser: 'false',
   onUpdateEmail: 'false',
+  onUpdatePersonalInformation: 'false',
 };
 
 export const userReducer = createReducer(
@@ -49,5 +50,26 @@ export const userReducer = createReducer(
   on(UserActions.updateProfilePicture, (state, { image }) => ({
     ...state,
     user: state.user ? { ...state.user, image } : state.user,
+  })),
+
+  on(UserActions.initUpdatePersonalInformation, (state) => ({
+    ...state,
+    onUpdatePersonalInformation: 'false',
+  })),
+  on(UserActions.updatePersonalInformation, (state) => ({
+    ...state,
+    onUpdatePersonalInformation: 'true',
+  })),
+  on(
+    UserActions.updatePersonalInformationSuccess,
+    (state, { birthday, location, gender, biography }) => ({
+      ...state,
+      user: state.user ? { ...state.user, birthday, location, gender, biography } : state.user,
+      onUpdatePersonalInformation: 'success',
+    }),
+  ),
+  on(UserActions.updatePersonalInformationFailure, (state) => ({
+    ...state,
+    onUpdatePersonalInformation: 'error',
   })),
 );

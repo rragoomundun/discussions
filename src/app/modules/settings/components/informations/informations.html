@@ -1,1 +1,79 @@
-<p>informations works!</p>
+@let onUpdatePersonalInformation = onUpdatePersonalInformation$ | async;
+
+<form [formGroup]="formGroup" (submit)="onSubmit()">
+  <div class="row mb-3">
+    <div class="col-12 col-md-4 mb-3 mb-md-0">
+      <app-input
+        [id]="'this-location'"
+        [label]="'GENERAL.LOCATION' | translate"
+        [placeholder]="'SETTINGS_PAGE.INFORMATIONS_PAGE.ENTER_LOCATION' | translate"
+        [type]="'text'"
+        [control]="'location'"
+      ></app-input>
+    </div>
+
+    <div class="col-12 col-md-4 mb-3 mb-md-0">
+      <app-select
+        [id]="'this-gender'"
+        [label]="'GENERAL.GENDER' | translate"
+        [control]="'gender'"
+        [data]="[
+          { value: '', label: 'GENERAL.NOT_SPECIFIED' | translate },
+          { value: 'male', label: 'GENERAL.MALE' | translate },
+          { value: 'female', label: 'GENERAL.FEMALE' | translate }
+        ]"
+        [selected]="formGroup.controls.gender.value"
+      ></app-select>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <app-input
+        [id]="'this-birthday'"
+        [label]="'GENERAL.DATE_OF_BIRTH' | translate"
+        [type]="'date'"
+        [control]="'birthday'"
+      ></app-input>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-12">
+      <app-text-area
+        [id]="'this-biography'"
+        [label]="'GENERAL.BIOGRAPHY' | translate"
+        [placeholder]="'SETTINGS_PAGE.INFORMATIONS_PAGE.ENTER_BIOGRAPHY' | translate"
+        [control]="'biography'"
+        [rows]="10"
+      ></app-text-area>
+    </div>
+  </div>
+
+  <div class="text-center border-top pt-3">
+    @if (onUpdatePersonalInformation === "success") {
+      <small class="text-success">
+        {{ "SETTINGS_PAGE.INFORMATIONS_PAGE.SUCCESS" | translate }}
+      </small>
+
+      <br /><br />
+    }
+
+    @if (onUpdatePersonalInformation === "error") {
+      <small class="text-danger">
+        {{ "SETTINGS_PAGE.INFORMATIONS_PAGE.ERROR" | translate }}
+      </small>
+
+      <br /><br />
+    }
+
+    @if (onUpdatePersonalInformation !== "true") {
+      <button class="btn btn-primary">
+        {{ "GENERAL.SAVE" | translate }}
+      </button>
+    } @else {
+      <button [disabled]="true" class="btn btn-primary">
+        <span class="fas fa-spinner fa-spin"></span>
+        <span>{{ "GENERAL.SAVING" | translate }}</span>
+      </button>
+    }
+  </div>
+</form>

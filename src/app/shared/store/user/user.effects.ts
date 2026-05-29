@@ -35,4 +35,18 @@ export class UserEffects {
       ),
     ),
   );
+
+  updatePersonalInformation$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserActions.updatePersonalInformation),
+      exhaustMap(({ birthday, location, gender, biography }) =>
+        this.userService.updatePersonalInformation({ birthday, location, gender, biography }).pipe(
+          map(() =>
+            UserActions.updatePersonalInformationSuccess({ birthday, location, gender, biography }),
+          ),
+          catchError(() => of(UserActions.updatePersonalInformationFailure())),
+        ),
+      ),
+    ),
+  );
 }

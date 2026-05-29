@@ -30,7 +30,14 @@
     "OK": "Ok",
     "CATEGORY": "Category",
     "CATEGORIES": "Categories",
-    "UNTILTED": "Untitled"
+    "UNTILTED": "Untitled",
+    "LOCATION": "Location",
+    "GENDER": "Gender",
+    "DATE_OF_BIRTH": "Date of Birth",
+    "BIOGRAPHY": "Biography",
+    "NOT_SPECIFIED": "Not specified",
+    "MALE": "Male",
+    "FEMALE": "Female"
   },
   "ERRORS": {
     "NAME_IN_USE": "This name is already used.",
@@ -165,7 +172,11 @@
       "ERROR": "An error occurred while updating your profile picture."
     },
     "INFORMATIONS_PAGE": {
-      "TAB_NAME": "Informations"
+      "TAB_NAME": "Informations",
+      "ENTER_LOCATION": "Enter your location",
+      "ENTER_BIOGRAPHY": "Write a biography of yourself. It will be displayed on your profile page. You can use format it using markdown.",
+      "SUCCESS": "Informations successfully updated.",
+      "ERROR": "An error occurred while updating your informations."
     },
     "SIGNATURE_PAGE": {
       "TAB_NAME": "Signature"

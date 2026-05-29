@@ -4,4 +4,5 @@ export interface UserState {
   user: User | null | undefined;
   onGetUser: string;
   onUpdateEmail: string;
+  onUpdatePersonalInformation: string;
 }

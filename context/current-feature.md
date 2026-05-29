@@ -1,18 +1,22 @@
-# Current Feature
-
-<!-- Feature name and short description -->
+# Current Feature: User Settings Informations
 
 ## Status
 
-<!-- Not Started | In Progress | Completed -->
+In Progress
 
 ## Goals
 
-<!-- Goals and requirements -->
+- Add three inline fields on desktop (one per line on mobile): Location (text input), Gender (select: Not specific / Male / Female), Date of birth (date input, YYYY-MM-DD format)
+- Add Biography textarea below (10 rows initial height), always on its own line
+- Add a Save button div matching the style of the Security tab's bottom div
+- On load, pre-populate all fields with the current user's values from the store
+- On Save: `PUT /user/personal-information` with `{ birthday, location, gender, biography }`; on success update the store accordingly
 
 ## Notes
 
-<!-- Any extra notes -->
+- Location, Gender, Date of birth on one row (`col` each) on desktop; stacked on smaller screens
+- Biography always occupies its own row
+- Match the bottom div style from the Security tab (`border-top pt-3 text-center`)
 
 ## History
 

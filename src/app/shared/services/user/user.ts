@@ -33,6 +33,19 @@ export class User {
     );
   }
 
+  updatePersonalInformation(data: {
+    birthday: string | null;
+    location: string | null;
+    gender: 'male' | 'female' | null;
+    biography: string | null;
+  }): Observable<void> {
+    return this.http.put<void>(
+      `${this.API_PREFIX}/personal-information`,
+      data,
+      { withCredentials: true },
+    );
+  }
+
   updateProfilePicture(path: string | null): Observable<void> {
     return this.http.put<void>(
       `${this.API_PREFIX}/profile-picture`,

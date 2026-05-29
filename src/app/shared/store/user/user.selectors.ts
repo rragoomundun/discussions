@@ -20,3 +20,8 @@ export const selectOnUpdateEmail = createSelector(
   selectUser,
   (state: UserState) => state.onUpdateEmail,
 );
+
+export const selectOnUpdatePersonalInformation = createSelector(
+  selectUser,
+  (state: UserState) => state.onUpdatePersonalInformation,
+);
