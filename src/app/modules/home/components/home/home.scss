@@ -56,15 +56,12 @@
 
     .signature {
       padding-top: var(--bs-card-spacer-y);
+      margin-bottom: 0;
     }
 
     .message-date,
     .signature {
       font-size: 0.9rem;
-    }
-
-    p:last-of-type {
-      margin-bottom: 0;
     }
   }
 }
