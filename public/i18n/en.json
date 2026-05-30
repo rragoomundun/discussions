@@ -37,7 +37,8 @@
     "BIOGRAPHY": "Biography",
     "NOT_SPECIFIED": "Not specified",
     "MALE": "Male",
-    "FEMALE": "Female"
+    "FEMALE": "Female",
+    "SIGNATURE": "Signature"
   },
   "ERRORS": {
     "NAME_IN_USE": "This name is already used.",
@@ -174,12 +175,15 @@
     "INFORMATIONS_PAGE": {
       "TAB_NAME": "Informations",
       "ENTER_LOCATION": "Enter your location",
-      "ENTER_BIOGRAPHY": "Write a biography of yourself. It will be displayed on your profile page. You can use format it using markdown.",
+      "ENTER_BIOGRAPHY": "Write a biography of yourself. It will be displayed on your profile page. You can format it using markdown.",
       "SUCCESS": "Informations successfully updated.",
       "ERROR": "An error occurred while updating your informations."
     },
     "SIGNATURE_PAGE": {
-      "TAB_NAME": "Signature"
+      "TAB_NAME": "Signature",
+      "ENTER_SIGNATURE": "Write a signature that will be displayed below your messages.",
+      "SUCCESS": "Signature successfully updated.",
+      "ERROR": "An error occurred while updating your signature."
     }
   },
   "HOME_PAGE": {

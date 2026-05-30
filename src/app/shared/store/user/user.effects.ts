@@ -49,4 +49,16 @@ export class UserEffects {
       ),
     ),
   );
+
+  updateSignature$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserActions.updateSignature),
+      exhaustMap(({ signature }) =>
+        this.userService.updateSignature(signature).pipe(
+          map(() => UserActions.updateSignatureSuccess({ signature })),
+          catchError(() => of(UserActions.updateSignatureFailure())),
+        ),
+      ),
+    ),
+  );
 }

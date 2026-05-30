@@ -5,4 +5,5 @@ export interface UserState {
   onGetUser: string;
   onUpdateEmail: string;
   onUpdatePersonalInformation: string;
+  onUpdateSignature: string;
 }

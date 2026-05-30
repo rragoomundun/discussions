@@ -1,1 +1,45 @@
-<p>signature works!</p>
+@let onUpdateSignature = onUpdateSignature$ | async;
+
+<form [formGroup]="formGroup" (submit)="onSubmit()">
+  <div class="row mb-3">
+    <div class="col-12">
+      <app-text-area
+        [id]="'this-signature'"
+        [label]="'GENERAL.SIGNATURE' | translate"
+        [placeholder]="
+          'SETTINGS_PAGE.SIGNATURE_PAGE.ENTER_SIGNATURE' | translate
+        "
+        [control]="'signature'"
+      ></app-text-area>
+    </div>
+  </div>
+
+  <div class="text-center border-top pt-3">
+    @if (onUpdateSignature === "success") {
+      <small class="text-success">
+        {{ "SETTINGS_PAGE.SIGNATURE_PAGE.SUCCESS" | translate }}
+      </small>
+
+      <br /><br />
+    }
+
+    @if (onUpdateSignature === "error") {
+      <small class="text-danger">
+        {{ "SETTINGS_PAGE.SIGNATURE_PAGE.ERROR" | translate }}
+      </small>
+
+      <br /><br />
+    }
+
+    @if (onUpdateSignature !== "true") {
+      <button class="btn btn-primary">
+        {{ "GENERAL.SAVE" | translate }}
+      </button>
+    } @else {
+      <button [disabled]="true" class="btn btn-primary">
+        <span class="fas fa-spinner fa-spin"></span>
+        <span>{{ "GENERAL.SAVING" | translate }}</span>
+      </button>
+    }
+  </div>
+</form>

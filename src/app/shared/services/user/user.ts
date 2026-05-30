@@ -53,4 +53,12 @@ export class User {
       { withCredentials: true },
     );
   }
+
+  updateSignature(signature: string | null): Observable<void> {
+    return this.http.put<void>(
+      `${this.API_PREFIX}/signature`,
+      { signature },
+      { withCredentials: true },
+    );
+  }
 }
