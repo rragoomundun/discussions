@@ -1,20 +1,16 @@
-# Current Feature: User Settings Signature
+# Current Feature
 
 ## Status
 
-In Progress
+<!-- Not Started | In Progress | Completed -->
 
 ## Goals
 
-- Add a textarea to the Signature component in the settings module with label "Signature"
-- Placeholder text: "Write a signature that will be displayed below your messages."
-- Add a Save button below the textarea (same pattern as the Informations component)
-- On Save, call `PUT /user/signature`; on success update the store and show a success message; on error show an error message
+<!-- Goals and requirements -->
 
 ## Notes
 
-- Follow the same structure as the Informations component for layout and button row
-- Wire up NgRx actions/effects/reducer/selector for the signature update
+<!-- Any extra notes -->
 
 ## History
 
@@ -30,3 +26,4 @@ In Progress
 - **23-05-2026 — User Settings Password** — Added password change form to security settings: password and passwordConfirmation fields, `PUT /user/password`, field-level error display for `PASSWORD_MIN_LENGTH`, `PASSWORD_NOT_STRONG`, `PASSWORD_CONFIRMATION_NO_MATCH` via direct service call.
 - **24-05-2026 — User Settings Picture** — Added profile picture management: placeholder icon or 128×128 image preview with red × to clear, "Change Picture" opens file manager, crop modal (ngx-image-cropper) in a separate component, Apply button calls `DELETE /file`, `POST /file`, and `PUT /user/profile-picture` as needed; NgRx action updates `user.image` in store.
 - **29-05-2026 — User Settings Informations** — Added personal information form: Location (text), Gender (select), Date of birth (date) on one row on desktop / stacked on mobile; Biography textarea (10 rows); `PUT /user/personal-information`; NgRx actions/effects/reducer/selector update store on success.
+- **30-05-2026 — User Settings Signature** — Added signature textarea (10 rows) to the Signature settings page; `PUT /user/signature`; NgRx actions/effects/reducer/selector update `user.signature` in store on success; success/error feedback messages.
