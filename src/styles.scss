@@ -92,6 +92,14 @@ a:hover {
   animation: skeleton-loading 1s linear infinite alternate;
 }
 
+.app-text-success {
+  color: var(--app-color-success);
+}
+
+.app-text-danger {
+  color: var(--app-color-danger);
+}
+
 @keyframes skeleton-loading {
   0% {
     background-color: hsl(200, 20%, 80%);
