@@ -9,6 +9,7 @@ export const initialState: UserState = {
   onGetUser: 'false',
   onUpdateEmail: 'false',
   onUpdatePersonalInformation: 'false',
+  onUpdateSignature: 'false',
 };
 
 export const userReducer = createReducer(
@@ -71,5 +72,23 @@ export const userReducer = createReducer(
   on(UserActions.updatePersonalInformationFailure, (state) => ({
     ...state,
     onUpdatePersonalInformation: 'error',
+  })),
+
+  on(UserActions.initUpdateSignature, (state) => ({
+    ...state,
+    onUpdateSignature: 'false',
+  })),
+  on(UserActions.updateSignature, (state) => ({
+    ...state,
+    onUpdateSignature: 'true',
+  })),
+  on(UserActions.updateSignatureSuccess, (state, { signature }) => ({
+    ...state,
+    user: state.user ? { ...state.user, signature } : state.user,
+    onUpdateSignature: 'success',
+  })),
+  on(UserActions.updateSignatureFailure, (state) => ({
+    ...state,
+    onUpdateSignature: 'error',
   })),
 );

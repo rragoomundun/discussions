@@ -49,3 +49,14 @@ export const updatePersonalInformationSuccess = createAction(
 export const updatePersonalInformationFailure = createAction(
   '[User] Update Personal Information Failure',
 );
+
+export const initUpdateSignature = createAction('[User] Init Update Signature');
+export const updateSignature = createAction(
+  '[User] Update Signature',
+  props<{ signature: string | null }>(),
+);
+export const updateSignatureSuccess = createAction(
+  '[User] Update Signature Success',
+  props<{ signature: string | null }>(),
+);
+export const updateSignatureFailure = createAction('[User] Update Signature Failure');

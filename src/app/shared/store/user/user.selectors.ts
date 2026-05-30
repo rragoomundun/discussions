@@ -25,3 +25,8 @@ export const selectOnUpdatePersonalInformation = createSelector(
   selectUser,
   (state: UserState) => state.onUpdatePersonalInformation,
 );
+
+export const selectOnUpdateSignature = createSelector(
+  selectUser,
+  (state: UserState) => state.onUpdateSignature,
+);

@@ -1,18 +1,20 @@
-# Current Feature
-
-<!-- Feature name and short description -->
+# Current Feature: User Settings Signature
 
 ## Status
 
-<!-- Not Started | In Progress | Completed -->
+In Progress
 
 ## Goals
 
-<!-- Goals and requirements -->
+- Add a textarea to the Signature component in the settings module with label "Signature"
+- Placeholder text: "Write a signature that will be displayed below your messages."
+- Add a Save button below the textarea (same pattern as the Informations component)
+- On Save, call `PUT /user/signature`; on success update the store and show a success message; on error show an error message
 
 ## Notes
 
-<!-- Any extra notes -->
+- Follow the same structure as the Informations component for layout and button row
+- Wire up NgRx actions/effects/reducer/selector for the signature update
 
 ## History
 
