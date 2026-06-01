@@ -1,19 +1,16 @@
-# Current Feature: Category Page
+# Current Feature
 
 ## Status
 
-In Progress
+<!-- Not Started | In Progress | Completed -->
 
 ## Goals
 
-- Read the category ID from the URL param (format: `/:categoryId-categoryName`) in the `CategoryHome` component
-- Call `GET /category/:categoryId/forum` and store the result in a signal (not in the NgRx store)
+<!-- Goals and requirements -->
 
 ## Notes
 
-- URL format is `/:categoryId-categoryName` — extract the numeric ID from the prefix before the first `-`
-- Do not modify HTML or SCSS
-- Do not store API data in the NgRx store; use signals
+<!-- Any extra notes -->
 
 ## History
 
@@ -31,3 +28,4 @@ In Progress
 - **29-05-2026 — User Settings Informations** — Added personal information form: Location (text), Gender (select), Date of birth (date) on one row on desktop / stacked on mobile; Biography textarea (10 rows); `PUT /user/personal-information`; NgRx actions/effects/reducer/selector update store on success.
 - **30-05-2026 — User Settings Signature** — Added signature textarea (10 rows) to the Signature settings page; `PUT /user/signature`; NgRx actions/effects/reducer/selector update `user.signature` in store on success; success/error feedback messages.
 - **01-06-2026 — Home Page** — Extended Forum model with `nbDiscussions`, `nbMessages`, `lastMessage` optional fields; added `getHome()` to ForumService; replaced `home` module with `forum` module — ForumHome fetches `GET /forum` into a signal and renders categories/forums via ForumLink shared component; added routes for `/:category`, `/:category/:forum`, `/:category/:forum/:discussion`; added SeoService and UtilService.
+- **01-06-2026 — Category Page** — Added CategoryService with `getCategoryForums(categoryId)` calling `GET /category/:categoryId/forum`; CategoryHome reads category ID from URL slug, fetches data into a signal, and sets SEO title/description on success.
