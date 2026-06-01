@@ -1,19 +1,16 @@
-# Current Feature: Home
+# Current Feature
 
 ## Status
 
-In Progress
+<!-- Not Started | In Progress | Completed -->
 
 ## Goals
 
-- Update the `Forum` shared model to add `nbDiscussions`, `nbMessages`, and `lastMessage` (with `discussion: { id, name }` and `date`) — all optional/nullable
-- Call `GET /forum` to fetch home page content and store the result in a signal (not in the NgRx store)
+<!-- Goals and requirements -->
 
 ## Notes
 
-- `nbDiscussions`, `nbMessages`, and `lastMessage` fields on Forum may be `null` or `undefined` (only populated on the home page response)
-- `lastMessage` shape: `{ discussion: { id: string, name: string }, date: string | Date }`
-- Do not save the `/forum` response in the NgRx store — use a local signal instead
+<!-- Any extra notes -->
 
 ## History
 
@@ -30,3 +27,4 @@ In Progress
 - **24-05-2026 — User Settings Picture** — Added profile picture management: placeholder icon or 128×128 image preview with red × to clear, "Change Picture" opens file manager, crop modal (ngx-image-cropper) in a separate component, Apply button calls `DELETE /file`, `POST /file`, and `PUT /user/profile-picture` as needed; NgRx action updates `user.image` in store.
 - **29-05-2026 — User Settings Informations** — Added personal information form: Location (text), Gender (select), Date of birth (date) on one row on desktop / stacked on mobile; Biography textarea (10 rows); `PUT /user/personal-information`; NgRx actions/effects/reducer/selector update store on success.
 - **30-05-2026 — User Settings Signature** — Added signature textarea (10 rows) to the Signature settings page; `PUT /user/signature`; NgRx actions/effects/reducer/selector update `user.signature` in store on success; success/error feedback messages.
+- **01-06-2026 — Home Page** — Extended Forum model with `nbDiscussions`, `nbMessages`, `lastMessage` optional fields; added `getHome()` to ForumService; replaced `home` module with `forum` module — ForumHome fetches `GET /forum` into a signal and renders categories/forums via ForumLink shared component; added routes for `/:category`, `/:category/:forum`, `/:category/:forum/:discussion`; added SeoService and UtilService.
