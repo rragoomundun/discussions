@@ -1,0 +1,28 @@
+#this {
+  align-items: center;
+  min-height: 82px;
+  margin-left: 0;
+  margin-right: 0;
+
+  .col-8.col-md-6 {
+    padding-left: 0;
+  }
+
+  .col-4.col-md-2 {
+    padding-right: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.this-last-message-link {
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

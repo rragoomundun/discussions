@@ -1,0 +1,50 @@
+<div id="this" class="border-bottom pt-3 pb-3 row">
+  <div class="col-8 col-md-6">
+    <a
+      [routerLink]="[
+        category()?.id + '-' + utilService.getSlug(category()!.name),
+        forum()?.id + '-' + utilService.getSlug(forum()!.name),
+      ]"
+    >
+      {{ forum()!.name }}
+    </a>
+
+    @if (forum()!.description) {
+      <br />
+      <span class="text-muted app-font-size-xs">
+        {{ forum()!.description }}
+      </span>
+    }
+  </div>
+  <div class="app-font-size-xs col-md-2 d-none d-md-block text-center">
+    <span>{{ forum()?.nbDiscussions }}</span
+    >&nbsp;
+    <span>{{ "GENERAL.DISCUSSIONS_LOWERCASE" | translate }}</span>
+  </div>
+  <div class="app-font-size-xs col-md-2 d-none d-md-block text-center">
+    <span>{{ forum()?.nbMessages }}</span
+    >&nbsp;
+    <span>{{ "GENERAL.MESSAGES_LOWERCASE" | translate }}</span>
+  </div>
+
+  @if (forum()?.lastMessage) {
+    <div class="app-font-size-xs col-4 col-md-2">
+      <span>{{ forum()?.lastMessage?.date | date: "MMM d, yyy, HH:mm" }}</span>
+
+      <div class="this-last-message-link">
+        <a
+          [routerLink]="[
+            category()?.id + '-' + utilService.getSlug(category()!.name),
+            forum()?.id + '-' + utilService.getSlug(forum()!.name),
+            forum()?.lastMessage?.discussion?.id +
+              '-' +
+              utilService.getSlug(forum()!.lastMessage!.discussion.name),
+          ]"
+          [queryParams]="{ goToLastPage: true }"
+        >
+          {{ forum()?.lastMessage?.discussion?.name }}
+        </a>
+      </div>
+    </div>
+  }
+</div>
