@@ -1,4 +1,10 @@
 @if (onLoad() == "true") {
+  <div class="app-container container">
+    <div class="app-skeleton-loading-item this-loading-title mb-3"></div>
+    <div class="app-skeleton-loading-item this-loading-content mb-5"></div>
+    <div class="app-skeleton-loading-item this-loading-title mb-3"></div>
+    <div class="app-skeleton-loading-item this-loading-content"></div>
+  </div>
 } @else if (onLoad() === "success") {
   @if (categories()?.length == 0) {
     <div id="this-not-configured" class="card">
@@ -13,24 +19,26 @@
   } @else {
     <div class="app-container container">
       @for (category of categories()!; track category) {
-        <h2
-          class="fs-4 border-bottom pb-3 mb-0 this-category-name"
-          [class.mt-5]="$index > 0"
-        >
-          <a
-            [routerLink]="[
-              category.id + '-' + utilService.getSlug(category.name),
-            ]"
+        @if (category.forums.length > 0) {
+          <h2
+            class="fs-4 border-bottom pb-3 mb-0 this-category-name"
+            [class.mt-5]="$index > 0"
           >
-            {{ category.name }}
-          </a>
-        </h2>
+            <a
+              [routerLink]="[
+                category.id + '-' + utilService.getSlug(category.name),
+              ]"
+            >
+              {{ category.name }}
+            </a>
+          </h2>
 
-        @for (forum of category.forums; track forum) {
-          <app-forum-link
-            [category]="{ id: category.id, name: category.name }"
-            [forum]="forum"
-          ></app-forum-link>
+          @for (forum of category.forums; track forum) {
+            <app-forum-link
+              [category]="{ id: category.id, name: category.name }"
+              [forum]="forum"
+            ></app-forum-link>
+          }
         }
       }
     </div>
