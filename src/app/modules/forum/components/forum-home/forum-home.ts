@@ -3,7 +3,7 @@ import { Component, inject, DestroyRef, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 
-import { filter, map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { selectConfigModel } from '../../../../shared/store/config/config.selectors';
