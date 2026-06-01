@@ -193,6 +193,9 @@
     "NOT_CONFIGURED": "Forum Not Configured",
     "NOT_CONFIGURED_TEXT": "This forum is not yet configured. Please come back later."
   },
+  "CATEGORY_PAGE": {
+    "NOT_FOUND": "This category cannot be found."
+  },
   "IMAGE_INPUT_COMPONENT": {
     "NO_IMAGE": "No Image"
   }

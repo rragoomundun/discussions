@@ -1,16 +1,19 @@
-# Current Feature
+# Current Feature: Category Page
 
 ## Status
 
-<!-- Not Started | In Progress | Completed -->
+In Progress
 
 ## Goals
 
-<!-- Goals and requirements -->
+- Read the category ID from the URL param (format: `/:categoryId-categoryName`) in the `CategoryHome` component
+- Call `GET /category/:categoryId/forum` and store the result in a signal (not in the NgRx store)
 
 ## Notes
 
-<!-- Any extra notes -->
+- URL format is `/:categoryId-categoryName` — extract the numeric ID from the prefix before the first `-`
+- Do not modify HTML or SCSS
+- Do not store API data in the NgRx store; use signals
 
 ## History
 

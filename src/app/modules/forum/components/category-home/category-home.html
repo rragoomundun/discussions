@@ -1,1 +1,43 @@
-<p>category works!</p>
+@if (onLoad() == "true") {
+  <div class="app-container container">
+    <div class="app-skeleton-loading-item this-loading-breadcrumb mb-3"></div>
+    <div class="app-skeleton-loading-item this-loading-title mb-3"></div>
+    <div class="app-skeleton-loading-item this-loading-content"></div>
+  </div>
+} @else if (
+  onLoad() === "success" && category()?.forums && category()?.forums!.length > 0
+) {
+  <div class="app-container container">
+    <div class="border-bottom">
+      <h2
+        [class.pb-2]="!category()!.description"
+        class="fs-4 mb-0 this-category-name"
+      >
+        {{ category()!.name }}
+      </h2>
+
+      @if (category()!.description) {
+        <p class="mb-0 pb-2">
+          {{ category()!.description }}
+        </p>
+      }
+    </div>
+
+    @for (forum of category()?.forums; track forum) {
+      <app-forum-link
+        [category]="{ id: category()!.id, name: category()!.name }"
+        [forum]="forum"
+      ></app-forum-link>
+    }
+  </div>
+} @else {
+  <div id="this-not-found" class="app-container container">
+    <h1>
+      <span class="fa-solid fa-triangle-exclamation"></span>
+
+      <br />
+
+      <span>{{ "CATEGORY_PAGE.NOT_FOUND" | translate }}</span>
+    </h1>
+  </div>
+}

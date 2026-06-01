@@ -1,13 +1,15 @@
 <div id="this" class="border-bottom pt-3 pb-3 row">
   <div class="col-8 col-md-6">
-    <a
-      [routerLink]="[
-        category()?.id + '-' + utilService.getSlug(category()!.name),
-        forum()?.id + '-' + utilService.getSlug(forum()!.name),
-      ]"
-    >
-      {{ forum()!.name }}
-    </a>
+    @if (isCategorySlugSet()) {
+      <a
+        [routerLink]="[
+          categorySlug(),
+          forum()?.id + '-' + utilService.getSlug(forum()!.name),
+        ]"
+      >
+        {{ forum()!.name }}
+      </a>
+    }
 
     @if (forum()!.description) {
       <br />
@@ -32,18 +34,20 @@
       <span>{{ forum()?.lastMessage?.date | date: "MMM d, yyy, HH:mm" }}</span>
 
       <div class="this-last-message-link">
-        <a
-          [routerLink]="[
-            category()?.id + '-' + utilService.getSlug(category()!.name),
-            forum()?.id + '-' + utilService.getSlug(forum()!.name),
-            forum()?.lastMessage?.discussion?.id +
-              '-' +
-              utilService.getSlug(forum()!.lastMessage!.discussion.name),
-          ]"
-          [queryParams]="{ goToLastPage: true }"
-        >
-          {{ forum()?.lastMessage?.discussion?.name }}
-        </a>
+        @if (isCategorySlugSet()) {
+          <a
+            [routerLink]="[
+              categorySlug(),
+              forum()?.id + '-' + utilService.getSlug(forum()!.name),
+              forum()?.lastMessage?.discussion?.id +
+                '-' +
+                utilService.getSlug(forum()!.lastMessage!.discussion.name),
+            ]"
+            [queryParams]="{ goToLastPage: true }"
+          >
+            {{ forum()?.lastMessage?.discussion?.name }}
+          </a>
+        }
       </div>
     </div>
   }
