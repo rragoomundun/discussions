@@ -38,7 +38,9 @@
     "NOT_SPECIFIED": "Not specified",
     "MALE": "Male",
     "FEMALE": "Female",
-    "SIGNATURE": "Signature"
+    "SIGNATURE": "Signature",
+    "DISCUSSIONS_LOWERCASE": "discussions",
+    "MESSAGES_LOWERCASE": "messages"
   },
   "ERRORS": {
     "NAME_IN_USE": "This name is already used.",
@@ -186,8 +188,10 @@
       "ERROR": "An error occurred while updating your signature."
     }
   },
-  "HOME_PAGE": {
-    "TITLE": "Home"
+  "FORUM_PAGE": {
+    "TITLE": "Home",
+    "NOT_CONFIGURED": "Forum Not Configured",
+    "NOT_CONFIGURED_TEXT": "This forum is not yet configured. Please come back later."
   },
   "IMAGE_INPUT_COMPONENT": {
     "NO_IMAGE": "No Image"

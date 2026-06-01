@@ -1,3 +1,26 @@
+#this-not-configured {
+  text-align: center;
+  margin-top: 20vh;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 300px;
+
+  h1,
+  p {
+    margin: 0;
+  }
+}
+
+.this-category-name {
+  border-color: var(--app-color-gray) !important;
+
+  a {
+    color: inherit !important;
+    text-decoration: none;
+    font-weight: normal;
+  }
+}
+
 // .card {
 //   .card-header,
 //   .card-footer {

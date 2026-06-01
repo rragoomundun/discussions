@@ -19,13 +19,15 @@
   --app-color-danger: #a71b1b;
   --app-color-danger-hover: #bb2525;
   --app-color-text: #444444;
-  --app-color-link: #154f6b;
-  --app-color-link-hover: #0d6791;
+  --app-color-link: #0284c7;
+  --app-color-link-hover: #00a8ff;
   --app-color-shadow: #dddddd;
 
   --app-border-radius: 0.5rem;
 
   --app-transition-time: 0.3s;
+
+  --app-font-size-xs: 0.9rem;
 
   --app-container-max-width: 1024px;
 }
@@ -98,6 +100,10 @@ a:hover {
 
 .app-text-danger {
   color: var(--app-color-danger);
+}
+
+.app-font-size-xs {
+  font-size: var(--app-font-size-xs);
 }
 
 @keyframes skeleton-loading {
@@ -220,4 +226,19 @@ textarea:focus {
     background-color: var(--app-color-secondary);
     transition: var(--app-transition-time);
   }
+}
+
+.card-header,
+.card-footer {
+  background-color: var(--app-color-white);
+}
+
+.card-header {
+  border-top-left-radius: var(--app-border-radius) !important;
+  border-top-right-radius: var(--app-border-radius) !important;
+}
+
+.card-footer {
+  border-bottom-left-radius: var(--app-border-radius) !important;
+  border-bottom-right-radius: var(--app-border-radius) !important;
 }

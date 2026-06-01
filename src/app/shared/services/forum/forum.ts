@@ -16,6 +16,10 @@ export class Forum {
     return this.http.get<Category[]>(this.API_PREFIX);
   }
 
+  getHome(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.API_PREFIX);
+  }
+
   updateForums(params: Category[]): Observable<void> {
     return this.http.put<void>(this.API_PREFIX, params, {
       withCredentials: true,

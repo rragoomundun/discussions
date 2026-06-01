@@ -1,16 +1,19 @@
-# Current Feature
+# Current Feature: Home
 
 ## Status
 
-<!-- Not Started | In Progress | Completed -->
+In Progress
 
 ## Goals
 
-<!-- Goals and requirements -->
+- Update the `Forum` shared model to add `nbDiscussions`, `nbMessages`, and `lastMessage` (with `discussion: { id, name }` and `date`) — all optional/nullable
+- Call `GET /forum` to fetch home page content and store the result in a signal (not in the NgRx store)
 
 ## Notes
 
-<!-- Any extra notes -->
+- `nbDiscussions`, `nbMessages`, and `lastMessage` fields on Forum may be `null` or `undefined` (only populated on the home page response)
+- `lastMessage` shape: `{ discussion: { id: string, name: string }, date: string | Date }`
+- Do not save the `/forum` response in the NgRx store — use a local signal instead
 
 ## History
 

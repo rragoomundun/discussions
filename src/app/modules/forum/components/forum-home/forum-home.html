@@ -1,3 +1,42 @@
+@if (onLoad() == "true") {
+} @else if (onLoad() === "success") {
+  @if (categories()?.length == 0) {
+    <div id="this-not-configured" class="card">
+      <div class="card-header">
+        <h1 class="fs-5">{{ "HOME_PAGE.NOT_CONFIGURED" | translate }}</h1>
+      </div>
+
+      <div class="card-body">
+        <p>{{ "HOME_PAGE.NOT_CONFIGURED_TEXT" | translate }}</p>
+      </div>
+    </div>
+  } @else {
+    <div class="app-container container">
+      @for (category of categories()!; track category) {
+        <h2
+          class="fs-4 border-bottom pb-3 mb-0 this-category-name"
+          [class.mt-5]="$index > 0"
+        >
+          <a
+            [routerLink]="[
+              category.id + '-' + utilService.getSlug(category.name),
+            ]"
+          >
+            {{ category.name }}
+          </a>
+        </h2>
+
+        @for (forum of category.forums; track forum) {
+          <app-forum-link
+            [category]="{ id: category.id, name: category.name }"
+            [forum]="forum"
+          ></app-forum-link>
+        }
+      }
+    </div>
+  }
+}
+
 <!-- <div class="app-container container">
   <a href="#message-1">Go to message 1</a><br />
   <a href="#message-2">Go to message 2</a>
