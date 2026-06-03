@@ -1,0 +1,12 @@
+.page-item:not(.active) {
+  button {
+    color: var(--app-color-link);
+  }
+}
+
+.page-item.active {
+  button {
+    background-color: var(--app-color-link);
+    border-color: var(--app-color-link);
+  }
+}

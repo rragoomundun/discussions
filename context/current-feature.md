@@ -1,16 +1,20 @@
-# Current Feature
+# Current Feature: Get Discussions
 
 ## Status
 
-<!-- Not Started | In Progress | Completed -->
+In Progress
 
 ## Goals
 
-<!-- Goals and requirements -->
+- Call `GET /forum/:forumId/meta` and store the response (`id, name, category {id, name}, nbPages`) in a `ForumMetaData` model using a signal
+- After fetching meta, call `GET /discussion/all?forumId=&page=` and map the response to a `Discussion` model (`id, title, open, createdAt, user {id, name}, nbMessages, lastMessage {messageId, date, user {id, name}}`) stored in a signal
+- Build a shared pagination component that accepts `nbPages` as input and reads `page` from query params; displays page numbers 1 to nbPages
 
 ## Notes
 
-<!-- Any extra notes -->
+- Working component: `forum` module
+- Do not use NgRx store — use signals only
+- Do not write HTML/CSS for the forum component (only HTML/CSS for the pagination component)
 
 ## History
 

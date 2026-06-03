@@ -43,7 +43,7 @@
                 '-' +
                 utilService.getSlug(forum()!.lastMessage!.discussion.name),
             ]"
-            [queryParams]="{ goToLastPage: true }"
+            [queryParams]="{ goToLastMessage: true }"
           >
             {{ forum()?.lastMessage?.discussion?.name }}
           </a>

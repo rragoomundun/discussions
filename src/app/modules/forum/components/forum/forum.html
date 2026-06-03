@@ -1,1 +1,48 @@
-<p>forum works!</p>
+@if (onLoadMeta() === "true" || onLoadMeta() === "success") {
+  <div class="app-container container">
+    @if (onLoadMeta() === "true") {
+      <div
+        id="this-loading-breadcrumb"
+        class="app-skeleton-loading-item mb-3"
+      ></div>
+      <div id="this-loading-title" class="app-skeleton-loading-item mb-3"></div>
+    } @else {
+      <h1 class="fs-3">{{ forumMeta()?.name }}</h1>
+
+      @if (forumMeta()?.description) {
+        <p>{{ forumMeta()?.description }}</p>
+      }
+    }
+
+    @if (onLoadDiscussions() === "true") {
+      <div class="this-loading-pagination app-skeleton-loading-item mb-3"></div>
+      <div
+        id="this-loading-content"
+        class="app-skeleton-loading-item mb-3"
+      ></div>
+      <div class="this-loading-pagination app-skeleton-loading-item mb-3"></div>
+    } @else if (onLoadDiscussions() === "success") {
+      <div class="border-bottom pb-3">
+        <app-pagination [nbPages]="forumMeta()!.nbPages"></app-pagination>
+      </div>
+
+      @for (discussion of discussions(); track discussion) {
+        <app-discussion-link [discussion]="discussion"></app-discussion-link>
+      }
+
+      <div class="mt-3">
+        <app-pagination [nbPages]="forumMeta()!.nbPages"></app-pagination>
+      </div>
+    }
+  </div>
+} @else if (onLoadMeta() === "error") {
+  <div id="this-not-found" class="app-container container">
+    <h1>
+      <span class="fa-solid fa-triangle-exclamation"></span>
+
+      <br />
+
+      <span>{{ "FORUM_PAGE.NOT_FOUND" | translate }}</span>
+    </h1>
+  </div>
+}

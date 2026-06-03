@@ -8,7 +8,6 @@ import { Category as CategoryModel } from '../../../../shared/models/Category';
 import { ForumLink as ForumLinkComponent } from '../../../../shared/components/forum-link/forum-link';
 
 import { Category as CategoryService } from '../../../../shared/services/category/category';
-import { Translation as TranslationService } from '../../../../shared/services/translation/translation';
 import { Seo as SeoService } from '../../../../shared/services/seo/seo';
 
 @Component({
@@ -19,7 +18,6 @@ import { Seo as SeoService } from '../../../../shared/services/seo/seo';
 })
 export class CategoryHome {
   private route = inject(ActivatedRoute);
-  private translationService = inject(TranslationService);
   private categoryService = inject(CategoryService);
   private seoService = inject(SeoService);
 
@@ -35,9 +33,7 @@ export class CategoryHome {
     this.categoryService.getCategoryForums(categoryId).subscribe({
       next: (data) => {
         this.category.set(data);
-        this.seoService.updateTitle(
-          `${data.name} - ${this.translationService.instant('GENERAL.CATEGORY')}`,
-        );
+        this.seoService.updateTitle(data.name);
         this.seoService.updateDescription(data.metaDescription);
         this.onLoad.set('success');
       },

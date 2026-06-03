@@ -1,0 +1,83 @@
+<nav aria-label="Page navigation">
+  <ul class="pagination mb-0">
+    @if (nbPages() <= 4) {
+      @for (page of pages(); track page) {
+        <li class="page-item" [class.active]="page === currentPage()">
+          <button type="button" class="page-link" (click)="navigate(page)">
+            {{ page }}
+          </button>
+        </li>
+      }
+    } @else {
+      @if (currentPage() <= 3) {
+        @for (page of [1, 2, 3, 4]; track page) {
+          <li class="page-item" [class.active]="page === currentPage()">
+            <button type="button" class="page-link" (click)="navigate(page)">
+              {{ page }}
+            </button>
+          </li>
+        }
+
+        @if (nbPages() > 5) {
+          <li class="page-item">
+            <button class="page-link">...</button>
+          </li>
+        }
+
+        <li class="page-item">
+          <button type="button" class="page-link" (click)="navigate(nbPages())">
+            {{ nbPages() }}
+          </button>
+        </li>
+      } @else if (currentPage() > nbPages() - 3) {
+        <li class="page-item">
+          <button type="button" class="page-link" (click)="navigate(1)">
+            1
+          </button>
+        </li>
+
+        @if (nbPages() > 5) {
+          <li class="page-item">
+            <button class="page-link">...</button>
+          </li>
+        }
+
+        @for (p of pagesEnd; track p) {
+          <li [class.active]="p === currentPage()" class="page-item">
+            <button type="button" class="page-link" (click)="navigate(p)">
+              {{ p }}
+            </button>
+          </li>
+        }
+      } @else {
+        <li class="page-item">
+          <button type="button" class="page-link" (click)="navigate(1)">
+            1
+          </button>
+        </li>
+
+        <li class="page-item">
+          <button class="page-link">...</button>
+        </li>
+
+        @for (p of pagesIn; track p) {
+          <li [class.active]="p === currentPage()" class="page-item">
+            <button type="button" class="page-link" (click)="navigate(p)">
+              {{ p }}
+            </button>
+          </li>
+        }
+
+        <li class="page-item">
+          <button class="page-link">...</button>
+        </li>
+
+        <li class="page-item">
+          <button type="button" class="page-link" (click)="navigate(nbPages())">
+            {{ nbPages() }}
+          </button>
+        </li>
+      }
+    }
+  </ul>
+</nav>

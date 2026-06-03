@@ -9,7 +9,7 @@ export const forumRoutes: Routes = [
   {
     path: '',
     component: ForumHomeComponent,
-    data: { title: 'FORUM_PAGE.TITLE' },
+    data: { title: 'FORUM_HOME_PAGE.TITLE' },
   },
   {
     path: ':category',

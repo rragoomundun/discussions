@@ -1,0 +1,18 @@
+#this {
+  align-items: center;
+  min-height: 82px;
+  margin-left: 0;
+  margin-right: 0;
+
+  .col-8 {
+    padding-left: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}

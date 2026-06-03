@@ -1,0 +1,48 @@
+<div id="this" class="border-bottom pt-3 pb-3 row">
+  <div class="col-8">
+    <a [routerLink]="discussionSlug()">
+      {{ discussion()!.title }}
+    </a>
+
+    <br />
+
+    <span class="app-font-size-xs">
+      {{ "GENERAL.BY" | translate }}
+
+      <a [routerLink]="['/user', userSlug()]"> {{ discussion()!.user.name }} </a
+      >,
+
+      {{ discussion()!.createdAt | date: "MMM d, yyy, HH:mm" }}
+    </span>
+  </div>
+
+  <div class="col-2 d-none d-md-block app-font-size-xs">
+    <span>
+      {{ discussion()!.nbMessages - 1 }}
+      {{ "FORUM_PAGE.REPLIES_LOWERCASE" | translate }}
+    </span>
+  </div>
+
+  <div class="col-4 col-md-2 app-font-size-xs">
+    <a
+      [routerLink]="discussionSlug()"
+      [queryParams]="{ goToLastMessage: true }"
+    >
+      {{ "FORUM_PAGE.LAST_MESSAGE" | translate }}
+
+      <br />
+
+      {{ discussion()!.lastMessage?.date | date: "MMM d, yyy, HH:mm" }}
+    </a>
+
+    <br />
+
+    <span>
+      {{ "GENERAL.BY" | translate }}
+
+      <a [routerLink]="['/user', lastUserSlug()]">
+        {{ discussion()!.lastMessage?.user!.name }}
+      </a>
+    </span>
+  </div>
+</div>
