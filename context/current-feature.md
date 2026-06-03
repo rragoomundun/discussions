@@ -1,20 +1,16 @@
-# Current Feature: Get Discussions
+# Current Feature
 
 ## Status
 
-In Progress
+<!-- Not Started | In Progress | Completed -->
 
 ## Goals
 
-- Call `GET /forum/:forumId/meta` and store the response (`id, name, category {id, name}, nbPages`) in a `ForumMetaData` model using a signal
-- After fetching meta, call `GET /discussion/all?forumId=&page=` and map the response to a `Discussion` model (`id, title, open, createdAt, user {id, name}, nbMessages, lastMessage {messageId, date, user {id, name}}`) stored in a signal
-- Build a shared pagination component that accepts `nbPages` as input and reads `page` from query params; displays page numbers 1 to nbPages
+<!-- Goals and requirements -->
 
 ## Notes
 
-- Working component: `forum` module
-- Do not use NgRx store — use signals only
-- Do not write HTML/CSS for the forum component (only HTML/CSS for the pagination component)
+<!-- Any extra notes -->
 
 ## History
 
@@ -33,3 +29,4 @@ In Progress
 - **30-05-2026 — User Settings Signature** — Added signature textarea (10 rows) to the Signature settings page; `PUT /user/signature`; NgRx actions/effects/reducer/selector update `user.signature` in store on success; success/error feedback messages.
 - **01-06-2026 — Home Page** — Extended Forum model with `nbDiscussions`, `nbMessages`, `lastMessage` optional fields; added `getHome()` to ForumService; replaced `home` module with `forum` module — ForumHome fetches `GET /forum` into a signal and renders categories/forums via ForumLink shared component; added routes for `/:category`, `/:category/:forum`, `/:category/:forum/:discussion`; added SeoService and UtilService.
 - **01-06-2026 — Category Page** — Added CategoryService with `getCategoryForums(categoryId)` calling `GET /category/:categoryId/forum`; CategoryHome reads category ID from URL slug, fetches data into a signal, and sets SEO title/description on success.
+- **03-06-2026 — Get Discussions** — Added ForumMetaData and Discussion models; added `getForumMeta()` to ForumService; created DiscussionService with `getDiscussions(forumId, page)`; updated Forum component to fetch meta then discussions into signals, re-fetching on page query param changes; created shared Pagination component with smart ellipsis logic (Bootstrap 5); added SSR server route for `/:category/:forum`.
