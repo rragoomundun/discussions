@@ -22,17 +22,27 @@
       ></div>
       <div class="this-loading-pagination app-skeleton-loading-item mb-3"></div>
     } @else if (onLoadDiscussions() === "success") {
-      <div class="border-bottom pb-3">
-        <app-pagination [nbPages]="forumMeta()!.nbPages"></app-pagination>
-      </div>
-
-      @for (discussion of discussions(); track discussion) {
-        <app-discussion-link [discussion]="discussion"></app-discussion-link>
+      @if (discussions().length > 0) {
+        <div class="border-bottom pb-3">
+          <app-pagination [nbPages]="forumMeta()!.nbPages"></app-pagination>
+        </div>
       }
 
-      <div class="mt-3">
-        <app-pagination [nbPages]="forumMeta()!.nbPages"></app-pagination>
-      </div>
+      @if (discussions().length > 0) {
+        @for (discussion of discussions(); track discussion) {
+          <app-discussion-link [discussion]="discussion"></app-discussion-link>
+        }
+      } @else {
+        <div class="border-top pt-3">
+          <p>{{ "FORUM_PAGE.NO_DISCUSSIONS" | translate }}</p>
+        </div>
+      }
+
+      @if (discussions().length > 0) {
+        <div class="mt-3">
+          <app-pagination [nbPages]="forumMeta()!.nbPages"></app-pagination>
+        </div>
+      }
     }
   </div>
 } @else if (onLoadMeta() === "error") {

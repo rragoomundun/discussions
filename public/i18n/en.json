@@ -199,6 +199,7 @@
   },
   "FORUM_PAGE": {
     "NOT_FOUND": "This forum cannot be found.",
+    "NO_DISCUSSIONS": "They are no discussions in this forum. Start a new one by clicking on the \"New\" button.",
     "REPLIES_LOWERCASE": "replies",
     "LAST_MESSAGE": "Last message"
   },

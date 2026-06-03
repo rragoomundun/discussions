@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -20,7 +20,8 @@ import { Seo as SeoService } from '../../../../shared/services/seo/seo';
   styleUrl: './forum.scss',
 })
 export class Forum {
-  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private activatedRoute = inject(ActivatedRoute);
   private forumService = inject(ForumService);
   private discussionService = inject(DiscussionService);
   private seoService = inject(SeoService);
@@ -34,8 +35,8 @@ export class Forum {
   page: number;
 
   constructor() {
-    const param = this.route.snapshot.paramMap.get('forum') ?? '';
-    const pageQueryParam = this.route.snapshot.queryParams['page'];
+    const param = this.activatedRoute.snapshot.paramMap.get('forum') ?? '';
+    const pageQueryParam = this.activatedRoute.snapshot.queryParams['page'];
 
     this.forumId = parseInt(param.split('-')[0], 10);
     this.page = parseInt(pageQueryParam, 10) || 1;
@@ -51,6 +52,16 @@ export class Forum {
         this.seoService.updateTitle(data.name);
         this.seoService.updateDescription(data.metaDescription);
 
+        if (this.page > data.nbPages || this.page < 1) {
+          this.router.navigate([], {
+            relativeTo: this.activatedRoute,
+            queryParams: { page: 1 },
+            queryParamsHandling: 'merge',
+          });
+
+          this.page = 1;
+        }
+
         this.getDisussions();
       },
       error: () => {
@@ -58,8 +69,8 @@ export class Forum {
       },
     });
 
-    this.route.queryParams.subscribe(() => {
-      const pageQueryParam = this.route.snapshot.queryParams['page'];
+    this.activatedRoute.queryParams.subscribe(() => {
+      const pageQueryParam = this.activatedRoute.snapshot.queryParams['page'];
 
       if ((parseInt(pageQueryParam, 10) || 1) !== this.page) {
         this.page = parseInt(pageQueryParam, 10) || 1;
