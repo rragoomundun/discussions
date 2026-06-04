@@ -1,22 +1,16 @@
-# Current Feature: Create Discussion
+# Current Feature
 
 ## Status
 
-In Progress
+<!-- Not Started | In Progress | Completed -->
 
 ## Goals
 
-- Create a `NewDiscussion` component in `modules/forum/components/`, routable at `/:category/:forum/new`
-- Title input field (using custom `app-input` component) with label "Title"
-- `app-message-input` field with `[isNew]="true"`
-- On submit: call `POST /discussion`, save result to a signal (`{id, title, open, createdAt, updatedAt, forumId, userId}`)
-- On discussion created: call `POST /message` with `{message, discussionId}`
-- On message created: navigate to `/:category/:forum/:discussionId-:discussionSlug` using `UtilService.getSlug()`
+<!-- Goals and requirements -->
 
 ## Notes
 
-- Two sequential API calls: create discussion first, then post first message
-- Navigate away only after both succeed
+<!-- Any extra notes -->
 
 ## History
 
@@ -38,3 +32,4 @@ In Progress
 - **03-06-2026 — Get Discussions** — Added ForumMetaData and Discussion models; added `getForumMeta()` to ForumService; created DiscussionService with `getDiscussions(forumId, page)`; updated Forum component to fetch meta then discussions into signals, re-fetching on page query param changes; created shared Pagination component with smart ellipsis logic (Bootstrap 5); added SSR server route for `/:category/:forum`.
 - **04-06-2026 — Get Discussion** — Added `DiscussionDetail` model and `getDiscussion()` to DiscussionService; added `Message` model and `MessageService` with `getMessages(discussionId, page)`; implemented Discussion component fetching discussion metadata then paginated messages into signals; added SSR server route for `/:category/:forum/:discussion`.
 - **04-06-2026 — New Message** — Created shared `MessageInput` component: 8-row textarea (via `app-text-area`), Preview button opening a Bootstrap modal with markdown-rendered preview (`utilService.markdownToHTML`), Reply/Send button emitting the message; supports `isNew` and `onPost` inputs for dual new/reply mode; fixed `TextArea` no-label branch to bind `formControlName` and `placeholder`.
+- **04-06-2026 — Create Discussion** — Added `NewDiscussionResult` model and `createDiscussion(title, forumId)` to `DiscussionService`; created `NewDiscussion` component at `/:category/:forum/new` with title input + `app-message-input [isNew]="true"`, sequential `POST /discussion` → `POST /message` API calls, then navigates to `/:category/:forum/:id-:slug` on success.
