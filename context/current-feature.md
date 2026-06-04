@@ -1,16 +1,21 @@
-# Current Feature
+# Current Feature: Breadcrumb
 
 ## Status
 
-<!-- Not Started | In Progress | Completed -->
+In Progress
 
 ## Goals
 
-<!-- Goals and requirements -->
+- Create a shared `Breadcrumb` component in `src/app/shared/components/`
+- Component accepts an input: array of `{ link, title }` objects
+- Always renders a home page item first (with a home icon) linking to `/`
+- Subsequent items are displayed separated by `>`
 
 ## Notes
 
-<!-- Any extra notes -->
+- Use `routerLink` for navigation links
+- Home icon via Font Awesome (free tier)
+- Standalone component, Bootstrap 5 styling
 
 ## History
 

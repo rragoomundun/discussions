@@ -50,7 +50,8 @@
     "ADMIN": "Admin",
     "MODERATOR": "Moderator",
     "MEMBER": "Member",
-    "OR_LOWERCASE": "or"
+    "OR_LOWERCASE": "or",
+    "NEW_DISCUSSION": "New Discussion"
   },
   "ERRORS": {
     "NAME_IN_USE": "This name is already used.",
@@ -208,7 +209,7 @@
   },
   "FORUM_PAGE": {
     "NOT_FOUND": "This forum cannot be found.",
-    "NO_DISCUSSIONS": "They are no discussions in this forum. Start a new one by clicking on the \"New\" button.",
+    "NO_DISCUSSIONS": "They are no discussions in this forum. Start a new one by clicking on the \"New Discussion\" button.",
     "REPLIES_LOWERCASE": "replies",
     "LAST_MESSAGE": "Last message"
   },

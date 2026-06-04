@@ -1,6 +1,10 @@
 @let user = user$ | async;
 
 @if (onLoadDiscussion() === "true" || onLoadDiscussion() === "success") {
+  @if (onLoadDiscussion() === "success") {
+    <app-breadcrumb [items]="breadcumbItems()"></app-breadcrumb>
+  }
+
   <div class="app-container container">
     @if (onLoadDiscussion() === "true") {
       <div

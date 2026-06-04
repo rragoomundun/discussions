@@ -12,6 +12,7 @@ import { Category } from '../../../../shared/models/Category';
 import { Config } from '../../../../shared/models/Config';
 
 import { ForumLink as ForumLinkComponent } from '../../../../shared/components/forum-link/forum-link';
+import { Breadcrumb as BreadcrumbComponent } from '../../../../shared/components/breadcrumb/breadcrumb';
 
 import { Forum as ForumService } from '../../../../shared/services/forum/forum';
 import { Util as UtilService } from '../../../../shared/services/util/util';
@@ -19,7 +20,12 @@ import { Seo as SeoService } from '../../../../shared/services/seo/seo';
 
 @Component({
   selector: 'app-forum-home',
-  imports: [TranslateModule, RouterModule, ForumLinkComponent],
+  imports: [
+    TranslateModule,
+    RouterModule,
+    ForumLinkComponent,
+    BreadcrumbComponent,
+  ],
   templateUrl: './forum-home.html',
   styleUrl: './forum-home.scss',
   standalone: true,

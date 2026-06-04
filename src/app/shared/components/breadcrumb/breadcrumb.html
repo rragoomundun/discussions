@@ -1,0 +1,28 @@
+<div class="app-container container d-none d-md-block">
+  <nav aria-label="breadcrumb" class="mb-2 pb-2 border-bottom">
+    <ol class="breadcrumb mb-0 app-font-size-xs">
+      <li class="breadcrumb-item">
+        @if (items().length === 0) {
+          <a id="this-position">
+            <span class="fa-solid fa-house"></span>
+            {{ "FORUM_HOME_PAGE.TITLE" | translate }}
+          </a>
+        } @else {
+          <a routerLink="/">
+            <span class="fa-solid fa-house"></span>
+            {{ "FORUM_HOME_PAGE.TITLE" | translate }}
+          </a>
+        }
+      </li>
+      @for (item of items(); track item.link) {
+        <li class="breadcrumb-item">
+          @if ($index + 1 < items().length) {
+            <a [routerLink]="item.link">{{ item.title }}</a>
+          } @else {
+            <a id="this-position">{{ item.title }}</a>
+          }
+        </li>
+      }
+    </ol>
+  </nav>
+</div>

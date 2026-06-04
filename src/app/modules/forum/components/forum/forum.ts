@@ -1,13 +1,15 @@
 import { Component, inject, signal } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 
 import { TranslateModule } from '@ngx-translate/core';
 
 import { ForumMetaData } from '../../../../shared/models/ForumMetaData';
 import { Discussion as DiscussionModel } from '../../../../shared/models/Discussion';
+import { BreadcrumbItem } from '../../../../shared/models/BreadcrumbItem';
 
 import { DiscussionLink as DiscussionLinkComponent } from '../discussion-link/discussion-link';
 import { Pagination as PaginationComponent } from '../../../../shared/components/pagination/pagination';
+import { Breadcrumb as BreadcrumbComponent } from '../../../../shared/components/breadcrumb/breadcrumb';
 
 import { Forum as ForumService } from '../../../../shared/services/forum/forum';
 import { Discussion as DiscussionService } from '../../../../shared/services/discussion/discussion';
@@ -15,7 +17,13 @@ import { Seo as SeoService } from '../../../../shared/services/seo/seo';
 
 @Component({
   selector: 'app-forum',
-  imports: [TranslateModule, DiscussionLinkComponent, PaginationComponent],
+  imports: [
+    TranslateModule,
+    RouterModule,
+    DiscussionLinkComponent,
+    PaginationComponent,
+    BreadcrumbComponent,
+  ],
   templateUrl: './forum.html',
   styleUrl: './forum.scss',
 })
@@ -28,6 +36,7 @@ export class Forum {
 
   forumMeta = signal<ForumMetaData | null>(null);
   discussions = signal<DiscussionModel[]>([]);
+  breadcrumbItems = signal<BreadcrumbItem[]>([]);
   onLoadMeta = signal('false');
   onLoadDiscussions = signal('false');
 
@@ -47,6 +56,16 @@ export class Forum {
     this.forumService.getForumMeta(this.forumId).subscribe({
       next: (data) => {
         this.forumMeta.set(data);
+        this.breadcrumbItems.set([
+          {
+            link: `/${this.activatedRoute.snapshot.params['category']}`,
+            title: <string>this.forumMeta()?.category.name,
+          },
+          {
+            link: `/${this.activatedRoute.snapshot.params['category']}/${this.activatedRoute.snapshot.params['forum']}`,
+            title: <string>this.forumMeta()?.name,
+          },
+        ]);
         this.onLoadMeta.set('success');
 
         this.seoService.updateTitle(data.name);

@@ -7,6 +7,8 @@
 } @else if (
   onLoad() === "success" && category()?.forums && category()?.forums!.length > 0
 ) {
+  <app-breadcrumb [items]="breadcrumbItems()"></app-breadcrumb>
+
   <div class="app-container container">
     <div class="border-bottom">
       <h2
