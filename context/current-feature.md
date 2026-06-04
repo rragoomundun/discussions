@@ -1,21 +1,16 @@
-# Current Feature: Breadcrumb
+# Current Feature
 
 ## Status
 
-In Progress
+<!-- Not Started | In Progress | Completed -->
 
 ## Goals
 
-- Create a shared `Breadcrumb` component in `src/app/shared/components/`
-- Component accepts an input: array of `{ link, title }` objects
-- Always renders a home page item first (with a home icon) linking to `/`
-- Subsequent items are displayed separated by `>`
+<!-- Goals and requirements -->
 
 ## Notes
 
-- Use `routerLink` for navigation links
-- Home icon via Font Awesome (free tier)
-- Standalone component, Bootstrap 5 styling
+<!-- Any extra notes -->
 
 ## History
 
@@ -38,3 +33,4 @@ In Progress
 - **04-06-2026 — Get Discussion** — Added `DiscussionDetail` model and `getDiscussion()` to DiscussionService; added `Message` model and `MessageService` with `getMessages(discussionId, page)`; implemented Discussion component fetching discussion metadata then paginated messages into signals; added SSR server route for `/:category/:forum/:discussion`.
 - **04-06-2026 — New Message** — Created shared `MessageInput` component: 8-row textarea (via `app-text-area`), Preview button opening a Bootstrap modal with markdown-rendered preview (`utilService.markdownToHTML`), Reply/Send button emitting the message; supports `isNew` and `onPost` inputs for dual new/reply mode; fixed `TextArea` no-label branch to bind `formControlName` and `placeholder`.
 - **04-06-2026 — Create Discussion** — Added `NewDiscussionResult` model and `createDiscussion(title, forumId)` to `DiscussionService`; created `NewDiscussion` component at `/:category/:forum/new` with title input + `app-message-input [isNew]="true"`, sequential `POST /discussion` → `POST /message` API calls, then navigates to `/:category/:forum/:id-:slug` on success.
+- **04-06-2026 — Breadcrumb** — Created shared `Breadcrumb` component (`BreadcrumbItem` model, home icon, `routerLink` navigation, current-item greyed styling); integrated into forum-home, category-home, forum, discussion, new-discussion, settings, and forum-settings pages.
