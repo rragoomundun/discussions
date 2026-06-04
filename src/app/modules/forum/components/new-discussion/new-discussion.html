@@ -1,33 +1,46 @@
-<div class="app-container container">
-  <div class="border-bottom mb-3">
-    <h1 class="fs-3">{{ "DISCUSSION_PAGE.NEW_DISCUSSION" | translate }}</h1>
+@if (onLoad() === "true") {
+  <div class="app-container container">
+    <div
+      id="this-loading-breadcrumb"
+      class="app-skeleton-loading-item mb-2"
+    ></div>
+    <div id="this-loading-title" class="app-skeleton-loading-item mb-2"></div>
+    <div id="this-loading-content" class="app-skeleton-loading-item"></div>
   </div>
+} @else if (onLoad() === "success") {
+  <app-breadcrumb [items]="breadcrumbItems()"></app-breadcrumb>
 
-  <form [formGroup]="form()">
-    <div class="mb-3">
-      <app-input
-        [id]="'this-title'"
-        [label]="'GENERAL.TITLE' | translate"
-        [placeholder]="'GENERAL.ENTER_TITLE' | translate"
-        [type]="'text'"
-        [control]="'title'"
-      ></app-input>
+  <div class="app-container container">
+    <div class="border-bottom mb-3">
+      <h1 class="fs-3">{{ "DISCUSSION_PAGE.NEW_DISCUSSION" | translate }}</h1>
     </div>
-  </form>
 
-  <app-message-input
-    [isNew]="true"
-    [additionalValidation]="{
-      exist: true,
-      value: form().valid,
-    }"
-    [onPost]="onPost()"
-    (post)="onSubmit($event)"
-  ></app-message-input>
+    <form [formGroup]="form()">
+      <div class="mb-3">
+        <app-input
+          [id]="'this-title'"
+          [label]="'GENERAL.TITLE' | translate"
+          [placeholder]="'GENERAL.ENTER_TITLE' | translate"
+          [type]="'text'"
+          [control]="'title'"
+        ></app-input>
+      </div>
+    </form>
 
-  @if (onPost() === "error") {
-    <div class="alert alert-danger mt-3">
-      {{ "DISCUSSION_PAGE.NEW_DISCUSSION_ERROR" | translate }}
-    </div>
-  }
-</div>
+    <app-message-input
+      [isNew]="true"
+      [additionalValidation]="{
+        exist: true,
+        value: form().valid,
+      }"
+      [onPost]="onPost()"
+      (post)="onSubmit($event)"
+    ></app-message-input>
+
+    @if (onPost() === "error") {
+      <div class="alert alert-danger mt-3">
+        {{ "DISCUSSION_PAGE.NEW_DISCUSSION_ERROR" | translate }}
+      </div>
+    }
+  </div>
+}

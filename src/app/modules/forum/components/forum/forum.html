@@ -1,4 +1,8 @@
 @if (onLoadMeta() === "true" || onLoadMeta() === "success") {
+  @if (onLoadMeta() === "success") {
+    <app-breadcrumb [items]="breadcrumbItems()"></app-breadcrumb>
+  }
+
   <div class="app-container container">
     @if (onLoadMeta() === "true") {
       <div
@@ -7,12 +11,29 @@
       ></div>
       <div id="this-loading-title" class="app-skeleton-loading-item mb-3"></div>
     } @else {
-      <div [class.border-bottom]="forumMeta()!.nbPages === 1">
-        <h1 class="fs-3">{{ forumMeta()?.name }}</h1>
+      <div
+        [class.border-bottom]="forumMeta()!.nbPages === 1"
+        class="align-items-center pb-2"
+      >
+        <div>
+          <h1 class="fs-3">{{ forumMeta()?.name }}</h1>
 
-        @if (forumMeta()?.description) {
-          <p>{{ forumMeta()?.description }}</p>
-        }
+          @if (forumMeta()?.description) {
+            <p>{{ forumMeta()?.description }}</p>
+          }
+        </div>
+
+        <div class="text-end d-none d-md-block">
+          <a routerLink="./new" class="btn btn-primary">
+            {{ "GENERAL.NEW_DISCUSSION" | translate }}
+          </a>
+        </div>
+
+        <div class="d-grid gap-2 d-md-none">
+          <a routerLink="./new" class="btn btn-primary">
+            {{ "GENERAL.NEW_DISCUSSION" | translate }}
+          </a>
+        </div>
       </div>
     }
 
@@ -35,7 +56,7 @@
           <app-discussion-link [discussion]="discussion"></app-discussion-link>
         }
       } @else {
-        <div class="border-top pt-3">
+        <div class="pt-3">
           <p>{{ "FORUM_PAGE.NO_DISCUSSIONS" | translate }}</p>
         </div>
       }

@@ -15,10 +15,12 @@ import { selectUserModel } from '../../../../shared/store/user/user.selectors';
 import { User } from '../../../../shared/models/User';
 import { DiscussionDetail } from '../../../../shared/models/Discussion';
 import { Message as MessageModel } from '../../../../shared/models/Message';
+import { BreadcrumbItem } from '../../../../shared/models/BreadcrumbItem';
 
 import { Pagination as PaginationComponent } from '../../../../shared/components/pagination/pagination';
 import { Message as MessageComponent } from '../../../../shared/components/message/message';
 import { MessageInput as MessageInputComponent } from '../../../../shared/components/message-input/message-input';
+import { Breadcrumb as BreadcrumbComponent } from '../../../../shared/components/breadcrumb/breadcrumb';
 
 import { Discussion as DiscussionService } from '../../../../shared/services/discussion/discussion';
 import { Message as MessageService } from '../../../../shared/services/message/message';
@@ -35,6 +37,7 @@ import { App as AppService } from '../../../../shared/services/app/app';
     MessageComponent,
     PaginationComponent,
     MessageInputComponent,
+    BreadcrumbComponent,
     AsyncPipe,
   ],
   templateUrl: './discussion.html',
@@ -48,12 +51,12 @@ export class Discussion {
   private messageService = inject(MessageService);
   private seoService = inject(SeoService);
   private utilService = inject(UtilService);
-  private appService = inject(AppService);
 
   messageInputComponent = viewChild(MessageInputComponent);
 
   discussion = signal<DiscussionDetail | null>(null);
   messages = signal<MessageModel[]>([]);
+  breadcumbItems = signal<BreadcrumbItem[]>([]);
   authorLink = computed(() => {
     if (!this.discussion()) {
       return null;
@@ -79,7 +82,8 @@ export class Discussion {
   constructor() {
     this.user$ = this.store.select(selectUserModel);
 
-    const param = this.activatedRoute.snapshot.paramMap.get('discussion') ?? '';
+    const params = this.activatedRoute.snapshot.params;
+    const param = params['discussion'] ?? '';
     const pageQueryParam = this.activatedRoute.snapshot.queryParams['page'];
 
     this.discussionId = parseInt(param.split('-')[0], 10);
@@ -91,9 +95,23 @@ export class Discussion {
     this.discussionService.getDiscussion(this.discussionId).subscribe({
       next: (data) => {
         this.discussion.set(data);
+        this.seoService.updateTitle(data.title);
         this.onLoadDiscussion.set('success');
 
-        this.seoService.updateTitle(data.title);
+        this.breadcumbItems.set([
+          {
+            link: `/${params['category']}`,
+            title: <string>this.discussion()?.category.name,
+          },
+          {
+            link: `/${params['category']}/${params['forum']}`,
+            title: <string>this.discussion()?.forum.name,
+          },
+          {
+            link: `/${params['category']}/${params['forum']}/${params['discussion']}`,
+            title: <string>this.discussion()?.title,
+          },
+        ]);
 
         if (this.goToLastMessage) {
           this.page = data.nbPages;

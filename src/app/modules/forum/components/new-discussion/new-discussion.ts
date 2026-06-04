@@ -10,13 +10,17 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { NewDiscussionResult } from '../../../../shared/models/Discussion';
+import { BreadcrumbItem } from '../../../../shared/models/BreadcrumbItem';
 
 import { Input as InputComponent } from '../../../../shared/components/input/input';
 import { MessageInput as MessageInputComponent } from '../../../../shared/components/message-input/message-input';
+import { Breadcrumb as BreadcrumbComponent } from '../../../../shared/components/breadcrumb/breadcrumb';
 
 import { Discussion as DiscussionService } from '../../../../shared/services/discussion/discussion';
 import { Message as MessageService } from '../../../../shared/services/message/message';
 import { Util as UtilService } from '../../../../shared/services/util/util';
+import { Forum as ForumService } from '../../../../shared/services/forum/forum';
+import { Translation as TranslationService } from '../../../../shared/services/translation/translation';
 
 @Component({
   selector: 'app-new-discussion',
@@ -25,6 +29,7 @@ import { Util as UtilService } from '../../../../shared/services/util/util';
     TranslateModule,
     InputComponent,
     MessageInputComponent,
+    BreadcrumbComponent,
   ],
   templateUrl: './new-discussion.html',
   styleUrl: './new-discussion.scss',
@@ -32,9 +37,11 @@ import { Util as UtilService } from '../../../../shared/services/util/util';
 export class NewDiscussion {
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
+  private forumService = inject(ForumService);
   private discussionService = inject(DiscussionService);
   private messageService = inject(MessageService);
   private utilService = inject(UtilService);
+  private translationService = inject(TranslationService);
 
   form = signal(
     new FormGroup({
@@ -44,8 +51,9 @@ export class NewDiscussion {
       }),
     }),
   );
-
+  breadcrumbItems = signal<BreadcrumbItem[]>([]);
   newDiscussion = signal<NewDiscussionResult | null>(null);
+  onLoad = signal('false');
   onPost = signal('false');
 
   forumId: number;
@@ -60,6 +68,32 @@ export class NewDiscussion {
     this.forumId = parseInt(forumParam.split('-')[0], 10);
     this.categorySlug = categoryParam;
     this.forumSlug = forumParam;
+
+    this.onLoad.set('true');
+
+    this.forumService.getForumMeta(this.forumId).subscribe({
+      next: (data) => {
+        this.breadcrumbItems.set([
+          {
+            link: `/${this.categorySlug}`,
+            title: data.category.name,
+          },
+          {
+            link: `/${this.categorySlug}/${this.forumSlug}`,
+            title: data.name,
+          },
+          {
+            link: '#',
+            title: this.translationService.instant('GENERAL.NEW_DISCUSSION'),
+          },
+        ]);
+
+        this.onLoad.set('success');
+      },
+      error: () => {
+        this.onLoad.set('error');
+      },
+    });
   }
 
   onSubmit(message: string): void {
