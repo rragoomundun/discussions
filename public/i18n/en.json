@@ -41,7 +41,11 @@
     "SIGNATURE": "Signature",
     "DISCUSSIONS_LOWERCASE": "discussions",
     "MESSAGES_LOWERCASE": "messages",
-    "BY": "By"
+    "BY": "By",
+    "IMAGE_LOWERCASE": "image",
+    "ADMIN": "Admin",
+    "MODERATOR": "Moderator",
+    "MEMBER": "Member"
   },
   "ERRORS": {
     "NAME_IN_USE": "This name is already used.",
@@ -203,7 +207,19 @@
     "REPLIES_LOWERCASE": "replies",
     "LAST_MESSAGE": "Last message"
   },
+  "DISCUSSION_PAGE": {
+    "NOT_FOUND": "This discussion cannot be found.",
+    "EDITED": "Edited",
+    "STARTED_BY": "Started by"
+  },
   "IMAGE_INPUT_COMPONENT": {
     "NO_IMAGE": "No Image"
+  },
+  "MESSAGE_COMPONENT": {
+    "POSTED": "Posted:",
+    "EDITED": "Edited:",
+    "EDITED_BY": "Edited by:",
+    "EDITED_REASON": "Edited reason:",
+    "USER_IMAGE": "User image"
   }
 }

@@ -121,6 +121,16 @@ a:hover {
   border-radius: var(--app-border-radius);
 }
 
+.card-header {
+  border-top-left-radius: var(--app-border-radius);
+  border-top-right-radius: var(--app-border-radius);
+}
+
+.card-footer {
+  border-bottom-left-radius: var(--app-border-radius);
+  border-bottom-right-radius: var(--app-border-radius);
+}
+
 .btn {
   border-radius: var(--app-border-radius);
   transition: var(--app-transition-time) !important;

@@ -1,16 +1,20 @@
-# Current Feature
+# Current Feature: Get Discussion
 
 ## Status
 
-<!-- Not Started | In Progress | Completed -->
+In Progress
 
 ## Goals
 
-<!-- Goals and requirements -->
+- Call `GET /discussion/:discussionId` and display discussion metadata (id, title, open, forum, category, nbPages)
+- Call `GET /message/all?discussionId=&page=` and display the list of messages with author info (id, name, image, signature) and editor info
+- Use signals for all local state — no NgRx store
 
 ## Notes
 
-<!-- Any extra notes -->
+- Work inside the existing Discussion component
+- Message object shape: `{id, message, date, editedDate, editionComment, author {id, name, image, signature}, editor {id, name}}`
+- Discussion object shape: `{id, title, open, forum {id, name}, category {id, name}, nbPages}`
 
 ## History
 

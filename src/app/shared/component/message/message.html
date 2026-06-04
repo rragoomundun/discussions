@@ -1,0 +1,88 @@
+<div [id]="message()?.id" class="card mb-3">
+  <div class="card-header">
+    <a [routerLink]="authorLink()">
+      @if (authorImage()) {
+        <img
+          [src]="authorImage()"
+          class="border rounded-circle"
+          [alt]="
+            message()?.author?.name +
+            ' ' +
+            translationService.instant('GENERAL.IMAGE_LOWERCASE')
+          "
+        />
+      } @else {
+        <img
+          src="/assets/images/user.png"
+          [alt]="'MESSAGE_COMPONENT.USER_IMAGE' | translate"
+        />
+      }
+    </a>
+
+    <div>
+      <a [routerLink]="[authorLink()]" id="this-author-name" class="fs-5">
+        {{ message()?.author?.name }}
+      </a>
+      <span class="app-font-size-xs">
+        @if (message()?.author?.role === "admin") {
+          {{ "GENERAL.ADMIN" | translate }}
+        } @else if (message()?.author?.role === "moderator") {
+          {{ "GENERAL.MODERATOR" | translate }}
+        } @else {
+          {{ "GENERAL.MEMBER" | translate }}
+        }
+      </span>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <p class="message-date">
+      {{ "MESSAGE_COMPONENT.POSTED" | translate }}
+      {{ message()?.date | date: "MMM d, yyy, HH:mm" }}
+
+      @if (message()?.editedDate) {
+        <span class="d-none d-md-inline">·</span>
+        <br class="d-md-none" />
+
+        @if (message()?.editor) {
+          {{ "MESSAGE_COMPONENT.EDITED_BY" | translate }}
+          <a id="this-editor-link" [routerLink]="editorLink()">{{
+            message()?.editor?.name
+          }}</a
+          >,
+        } @else {
+          {{ "MESSAGE_COMPONENT.EDITED" | translate }}
+        }
+
+        {{ message()?.editedDate | date: "MMM d, yyy, HH:mm" }}
+
+        @if (message()?.editionComment) {
+          <br />
+          {{ "MESSAGE_COMPONENT.EDITED_REASON" | translate }}
+          {{ message()?.editionComment }}
+        }
+      }
+    </p>
+
+    <div [innerHTML]="utilService.markdownToHTML(message()!.message)"></div>
+  </div>
+
+  <!-- <div class="card-footer">
+    <div class="app-font-size-xs">
+      <a href="#">@ User</a>&nbsp; <a href="#">Quote</a>&nbsp;
+      <a href="#">Report</a>
+    </div>
+
+    <div>
+      <a id="this-thumbs-up" href="#">
+        <span class="fa-solid fa-thumbs-up"></span>3
+      </a>
+
+      &nbsp;
+
+      <a id="this-thumbs-down" href="#">
+        <span class="fa-solid fa-thumbs-down"></span>1
+      </a>
+    </div>
+  </div> -->
+</div>

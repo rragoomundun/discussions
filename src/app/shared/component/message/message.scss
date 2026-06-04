@@ -1,0 +1,81 @@
+.card {
+  .card-header {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+    }
+
+    #this-author-name {
+      color: inherit;
+      text-decoration: none;
+      font-weight: normal;
+    }
+
+    div {
+      margin-left: 1rem;
+
+      span {
+        display: block;
+      }
+    }
+  }
+
+  .card-body {
+    margin-left: var(--bs-card-cap-padding-x);
+    margin-right: var(--bs-card-cap-padding-x);
+    padding-left: 0;
+    padding-right: 0;
+
+    #this-editor-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .message-date {
+      color: var(--app-color-gray);
+    }
+
+    .signature {
+      padding-top: var(--bs-card-spacer-y);
+      margin-bottom: 0;
+    }
+
+    .message-date,
+    .signature {
+      font-size: 0.9rem;
+    }
+  }
+
+  .card-footer {
+    display: flex;
+
+    a {
+      text-decoration: none;
+    }
+
+    div:nth-child(2) {
+      margin-left: auto;
+
+      #this-thumbs-up,
+      #this-thumbs-down {
+        transition: var(--app-transition-time);
+        color: var(--app-text-color);
+        font-weight: normal;
+      }
+
+      #this-thumbs-up:hover {
+        color: var(--app-color-success);
+        transition: var(--app-transition-time);
+      }
+
+      #this-thumbs-down:hover {
+        color: var(--app-color-danger);
+        transition: var(--app-transition-time);
+      }
+    }
+  }
+}

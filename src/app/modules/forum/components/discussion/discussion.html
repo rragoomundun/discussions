@@ -1,1 +1,49 @@
-<p>discussion works!</p>
+@if (onLoadDiscussion() === "true" || onLoadDiscussion() === "success") {
+  <div class="app-container container">
+    @if (onLoadDiscussion() === "true") {
+      <div
+        id="this-loading-breadcrumb"
+        class="app-skeleton-loading-item mb-3"
+      ></div>
+      <div id="this-loading-title" class="app-skeleton-loading-item mb-3"></div>
+    } @else {
+      <div
+        id="this-discussion-info"
+        [class.border-bottom]="discussion()?.nbPages === 1"
+        class="mb-3"
+      >
+        <h1 class="fs-3">{{ discussion()?.title }}</h1>
+
+        <span>{{ "DISCUSSION_PAGE.STARTED_BY" | translate }} </span>
+        <a [routerLink]="authorLink()">{{ discussion()?.author?.name }}</a
+        >,
+        <span>{{ discussion()?.createdAt | date: "MMM d, yyy, HH:mm" }}</span>
+      </div>
+    }
+
+    @if (onLoadMessages() === "true") {
+      <div class="this-loading-pagination app-skeleton-loading-item mb-3"></div>
+      <div
+        id="this-loading-content"
+        class="app-skeleton-loading-item mb-3"
+      ></div>
+      <div class="this-loading-pagination app-skeleton-loading-item"></div>
+    } @else if (onLoadMessages() === "success") {
+      @if (messages().length > 0 && discussion()!.nbPages > 1) {
+        <div class="border-bottom pb-3 mb-3">
+          <app-pagination [nbPages]="discussion()!.nbPages"></app-pagination>
+        </div>
+      }
+
+      @for (message of messages(); track message) {
+        <app-message [message]="message"></app-message>
+      }
+
+      @if (messages().length > 0 && discussion()!.nbPages > 1) {
+        <div class="border-top pt-3">
+          <app-pagination [nbPages]="discussion()!.nbPages"></app-pagination>
+        </div>
+      }
+    }
+  </div>
+}

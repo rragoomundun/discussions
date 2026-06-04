@@ -31,9 +31,7 @@ export class ForumLink implements AfterViewInit {
           '-' +
           this.utilService.getSlug(this.category()!.name),
       );
-      console.log('in first if');
     } else {
-      console.log('in else');
       this.categorySlug.set('./');
     }
 
