@@ -5,6 +5,7 @@
   "GENERAL": {
     "LOGIN": "Login",
     "REGISTER": "Register",
+    "CREATE_ACCOUNT_LOWERCASE": "create an account",
     "LOGOUT": "Logout",
     "NAME": "Name",
     "EMAIL": "Email",
@@ -22,6 +23,8 @@
     "CHANGE": "Change",
     "DELETE": "Delete",
     "DELETING": "Deleting...",
+    "SEND": "Send",
+    "SENDING": "Sending...",
     "DESCRIPTION": "Description",
     "META_DESCRIPTION": "Meta Description",
     "TITLE": "Title",
@@ -45,7 +48,8 @@
     "IMAGE_LOWERCASE": "image",
     "ADMIN": "Admin",
     "MODERATOR": "Moderator",
-    "MEMBER": "Member"
+    "MEMBER": "Member",
+    "OR_LOWERCASE": "or"
   },
   "ERRORS": {
     "NAME_IN_USE": "This name is already used.",
@@ -210,7 +214,17 @@
   "DISCUSSION_PAGE": {
     "NOT_FOUND": "This discussion cannot be found.",
     "EDITED": "Edited",
-    "STARTED_BY": "Started by"
+    "STARTED_BY": "Started by",
+    "CLOSED": "This discussion is closed to further replies.",
+    "TO_REPLY_LOWERCASE": "to reply."
+  },
+  "MESSAGE_INPUT_COMPONENT": {
+    "YOUR_MESSAGE": "Your message",
+    "WRITE_MESSAGE": "Write your message here. You can format it using markdown.",
+    "PREVIEW": "Preview",
+    "REPLY": "Reply",
+    "REPLYING": "Replying...",
+    "REPLY_TEXT": "Reply to this discussion"
   },
   "IMAGE_INPUT_COMPONENT": {
     "NO_IMAGE": "No Image"

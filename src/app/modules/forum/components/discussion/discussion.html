@@ -1,3 +1,5 @@
+@let user = user$ | async;
+
 @if (onLoadDiscussion() === "true" || onLoadDiscussion() === "success") {
   <div class="app-container container">
     @if (onLoadDiscussion() === "true") {
@@ -44,6 +46,30 @@
           <app-pagination [nbPages]="discussion()!.nbPages"></app-pagination>
         </div>
       }
+
+      <div class="mt-3 pt-3 border-top">
+        @if (discussion()?.open) {
+          @if (user) {
+            <app-message-input
+              [onPost]="onReply()"
+              (post)="onReplyClick($event)"
+            ></app-message-input>
+          } @else {
+            <p>
+              <a [routerLink]="['/auth/login']">{{
+                "GENERAL.LOGIN" | translate
+              }}</a>
+              {{ "GENERAL.OR_LOWERCASE" | translate }}
+              <a [routerLink]="['/auth/register']">{{
+                "GENERAL.CREATE_ACCOUNT_LOWERCASE" | translate
+              }}</a>
+              {{ "DISCUSSION_PAGE.TO_REPLY_LOWERCASE" | translate }}
+            </p>
+          }
+        } @else {
+          <p>{{ "DISCUSSION_PAGE.CLOSED" | translate }}</p>
+        }
+      </div>
     }
   </div>
 }

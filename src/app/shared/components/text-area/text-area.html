@@ -15,5 +15,11 @@
     class="form-control"
   ></textarea>
 } @else {
-  <textarea [id]="id()" [rows]="rows() ?? 3" class="form-control"></textarea>
+  <textarea
+    [id]="id()"
+    [formControlName]="control()!"
+    [rows]="rows() ?? 3"
+    [placeholder]="placeholder() ?? ''"
+    class="form-control"
+  ></textarea>
 }

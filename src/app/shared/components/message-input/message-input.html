@@ -1,0 +1,76 @@
+<form [formGroup]="form()">
+  <div class="mb-3">
+    <app-text-area
+      [label]="
+        isNew()
+          ? ('MESSAGE_INPUT_COMPONENT.YOUR_MESSAGE' | translate)
+          : ('MESSAGE_INPUT_COMPONENT.REPLY_TEXT' | translate)
+      "
+      [control]="'message'"
+      [rows]="8"
+      [placeholder]="'MESSAGE_INPUT_COMPONENT.WRITE_MESSAGE' | translate"
+    ></app-text-area>
+  </div>
+
+  <div class="d-flex gap-2 justify-content-end">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      [disabled]="!form().controls.message.value"
+      (click)="onPreview()"
+    >
+      {{ "MESSAGE_INPUT_COMPONENT.PREVIEW" | translate }}
+    </button>
+
+    @if (isNew()) {
+      @if (onPost() !== "true") {
+        <button
+          type="button"
+          class="btn btn-primary"
+          [disabled]="!form().controls.message.value"
+          (click)="onPostClick()"
+        >
+          {{ "GENERAL.SEND" | translate }}
+        </button>
+      } @else {
+        <button [disabled]="true" type="button" class="btn btn-primary">
+          <span class="fas fa-spinner fa-spin"></span>
+          <span>{{ "GENERAL.SENDING" | translate }}</span>
+        </button>
+      }
+    } @else {
+      @if (onPost() !== "true") {
+        <button
+          type="button"
+          class="btn btn-primary"
+          [disabled]="!form().controls.message.value"
+          (click)="onPostClick()"
+        >
+          {{ "MESSAGE_INPUT_COMPONENT.REPLY" | translate }}
+        </button>
+      } @else {
+        <button [disabled]="true" type="button" class="btn btn-primary">
+          <span class="fas fa-spinner fa-spin"></span>
+          <span>{{ "MESSAGE_INPUT_COMPONENT.REPLYING" | translate }}</span>
+        </button>
+      }
+    }
+  </div>
+</form>
+
+<ng-template #previewModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">
+      {{ "MESSAGE_INPUT_COMPONENT.PREVIEW" | translate }}
+    </h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div [innerHTML]="previewHtml()"></div>
+  </div>
+</ng-template>

@@ -17,4 +17,15 @@ export class Message {
       params: { discussionId, page },
     });
   }
+
+  postMessage(message: string, discussionId: number): Observable<MessageModel> {
+    return this.http.post<MessageModel>(
+      `${this.API_PREFIX}`,
+      {
+        message,
+        discussionId,
+      },
+      { withCredentials: true },
+    );
+  }
 }

@@ -1,16 +1,21 @@
-# Current Feature
+# Current Feature: New Message
 
 ## Status
 
-<!-- Not Started | In Progress | Completed -->
+In Progress
 
 ## Goals
 
-<!-- Goals and requirements -->
+- Create a shared `MessageInput` component
+- Text area of at least 8 rows with placeholder "Write your message here."
+- Two buttons below: "Preview" and "Reply"
+- "Preview" opens a modal showing the message rendered via `utilService.markdownToHTML()`
+- "Reply" emits the message content to the parent
 
 ## Notes
 
-<!-- Any extra notes -->
+- Shared component (not module-scoped)
+- Use `utilService.markdownToHTML` for preview rendering
 
 ## History
 
