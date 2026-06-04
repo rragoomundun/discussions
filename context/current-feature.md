@@ -1,20 +1,16 @@
-# Current Feature: Get Discussion
+# Current Feature
 
 ## Status
 
-In Progress
+<!-- Not Started | In Progress | Completed -->
 
 ## Goals
 
-- Call `GET /discussion/:discussionId` and display discussion metadata (id, title, open, forum, category, nbPages)
-- Call `GET /message/all?discussionId=&page=` and display the list of messages with author info (id, name, image, signature) and editor info
-- Use signals for all local state — no NgRx store
+<!-- Goals and requirements -->
 
 ## Notes
 
-- Work inside the existing Discussion component
-- Message object shape: `{id, message, date, editedDate, editionComment, author {id, name, image, signature}, editor {id, name}}`
-- Discussion object shape: `{id, title, open, forum {id, name}, category {id, name}, nbPages}`
+<!-- Any extra notes -->
 
 ## History
 
@@ -34,3 +30,4 @@ In Progress
 - **01-06-2026 — Home Page** — Extended Forum model with `nbDiscussions`, `nbMessages`, `lastMessage` optional fields; added `getHome()` to ForumService; replaced `home` module with `forum` module — ForumHome fetches `GET /forum` into a signal and renders categories/forums via ForumLink shared component; added routes for `/:category`, `/:category/:forum`, `/:category/:forum/:discussion`; added SeoService and UtilService.
 - **01-06-2026 — Category Page** — Added CategoryService with `getCategoryForums(categoryId)` calling `GET /category/:categoryId/forum`; CategoryHome reads category ID from URL slug, fetches data into a signal, and sets SEO title/description on success.
 - **03-06-2026 — Get Discussions** — Added ForumMetaData and Discussion models; added `getForumMeta()` to ForumService; created DiscussionService with `getDiscussions(forumId, page)`; updated Forum component to fetch meta then discussions into signals, re-fetching on page query param changes; created shared Pagination component with smart ellipsis logic (Bootstrap 5); added SSR server route for `/:category/:forum`.
+- **04-06-2026 — Get Discussion** — Added `DiscussionDetail` model and `getDiscussion()` to DiscussionService; added `Message` model and `MessageService` with `getMessages(discussionId, page)`; implemented Discussion component fetching discussion metadata then paginated messages into signals; added SSR server route for `/:category/:forum/:discussion`.
