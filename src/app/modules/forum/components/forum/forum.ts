@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ForumMetaData } from '../../../../shared/models/ForumMetaData';
 import { Discussion as DiscussionModel } from '../../../../shared/models/Discussion';
 
-import { DiscussionLink as DiscussionLinkComponent } from '../../discussion-link/discussion-link';
+import { DiscussionLink as DiscussionLinkComponent } from '../discussion-link/discussion-link';
 import { Pagination as PaginationComponent } from '../../../../shared/components/pagination/pagination';
 
 import { Forum as ForumService } from '../../../../shared/services/forum/forum';

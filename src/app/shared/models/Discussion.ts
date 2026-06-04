@@ -45,3 +45,13 @@ export interface DiscussionDetail {
   createdAt: Date;
   nbPages: number;
 }
+
+export interface NewDiscussionResult {
+  id: number;
+  title: string;
+  open: boolean;
+  createdAt: string;
+  updatedAt: string;
+  forumId: number;
+  userId: number;
+}

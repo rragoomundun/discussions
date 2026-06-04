@@ -1,16 +1,22 @@
-# Current Feature
+# Current Feature: Create Discussion
 
 ## Status
 
-<!-- Not Started | In Progress | Completed -->
+In Progress
 
 ## Goals
 
-<!-- Goals and requirements -->
+- Create a `NewDiscussion` component in `modules/forum/components/`, routable at `/:category/:forum/new`
+- Title input field (using custom `app-input` component) with label "Title"
+- `app-message-input` field with `[isNew]="true"`
+- On submit: call `POST /discussion`, save result to a signal (`{id, title, open, createdAt, updatedAt, forumId, userId}`)
+- On discussion created: call `POST /message` with `{message, discussionId}`
+- On message created: navigate to `/:category/:forum/:discussionId-:discussionSlug` using `UtilService.getSlug()`
 
 ## Notes
 
-<!-- Any extra notes -->
+- Two sequential API calls: create discussion first, then post first message
+- Navigate away only after both succeed
 
 ## History
 

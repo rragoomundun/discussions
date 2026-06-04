@@ -4,6 +4,7 @@ import { ForumHome as ForumHomeComponent } from './components/forum-home/forum-h
 import { CategoryHome as CategoryHomeComponent } from './components/category-home/category-home';
 import { Forum as ForumComponent } from './components/forum/forum';
 import { Discussion as DiscussionComponent } from './components/discussion/discussion';
+import { NewDiscussion as NewDiscussionComponent } from './components/new-discussion/new-discussion';
 
 export const forumRoutes: Routes = [
   {
@@ -18,6 +19,11 @@ export const forumRoutes: Routes = [
   {
     path: ':category/:forum',
     component: ForumComponent,
+  },
+  {
+    path: ':category/:forum/new',
+    component: NewDiscussionComponent,
+    data: { title: 'DISCUSSION_PAGE.NEW_DISCUSSION' },
   },
   {
     path: ':category/:forum/:discussion',

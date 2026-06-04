@@ -35,6 +35,10 @@ export class MessageInput {
 
   previewHtml = signal('');
   isNew = input();
+  additionalValidation = input<{ exist: boolean; value: boolean }>({
+    exist: false,
+    value: false,
+  });
   onPost = input();
 
   post = output<string>();

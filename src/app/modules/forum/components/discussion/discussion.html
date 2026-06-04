@@ -12,6 +12,7 @@
       <div
         id="this-discussion-info"
         [class.border-bottom]="discussion()?.nbPages === 1"
+        [class.pb-3]="discussion()?.nbPages === 1"
         class="mb-3"
       >
         <h1 class="fs-3">{{ discussion()?.title }}</h1>

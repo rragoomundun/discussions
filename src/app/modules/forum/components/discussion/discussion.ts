@@ -165,9 +165,9 @@ export class Discussion {
 
     this.messageService.postMessage(reply, this.discussionId).subscribe({
       next: (data: MessageModel) => {
-        this.discussion()!.nbPages++;
-
         if (this.messages().length === 20) {
+          this.discussion()!.nbPages++;
+
           this.router.navigate([], {
             relativeTo: this.activatedRoute,
             queryParams: { page: this.discussion()!.nbPages },

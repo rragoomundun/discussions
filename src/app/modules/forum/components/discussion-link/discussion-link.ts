@@ -4,9 +4,9 @@ import { DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { Discussion as DiscussionModel } from '../../../shared/models/Discussion';
+import { Discussion as DiscussionModel } from '../../../../shared/models/Discussion';
 
-import { Util as UtilService } from '../../../shared/services/util/util';
+import { Util as UtilService } from '../../../../shared/services/util/util';
 
 @Component({
   selector: 'app-discussion-link',

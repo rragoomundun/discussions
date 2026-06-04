@@ -27,7 +27,10 @@
         <button
           type="button"
           class="btn btn-primary"
-          [disabled]="!form().controls.message.value"
+          [disabled]="
+            !form().controls.message.value ||
+            (additionalValidation().exist && !additionalValidation().value)
+          "
           (click)="onPostClick()"
         >
           {{ "GENERAL.SEND" | translate }}
@@ -43,7 +46,10 @@
         <button
           type="button"
           class="btn btn-primary"
-          [disabled]="!form().controls.message.value"
+          [disabled]="
+            !form().controls.message.value ||
+            (additionalValidation().exist && !additionalValidation().value)
+          "
           (click)="onPostClick()"
         >
           {{ "MESSAGE_INPUT_COMPONENT.REPLY" | translate }}

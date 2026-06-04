@@ -28,6 +28,7 @@
     "DESCRIPTION": "Description",
     "META_DESCRIPTION": "Meta Description",
     "TITLE": "Title",
+    "ENTER_TITLE": "Enter a title",
     "SETTINGS": "Settings",
     "POSITION": "Position",
     "OK": "Ok",
@@ -216,7 +217,9 @@
     "EDITED": "Edited",
     "STARTED_BY": "Started by",
     "CLOSED": "This discussion is closed to further replies.",
-    "TO_REPLY_LOWERCASE": "to reply."
+    "TO_REPLY_LOWERCASE": "to reply.",
+    "NEW_DISCUSSION": "New Discussion",
+    "NEW_DISCUSSION_ERROR": "An error occurred while creating the discussion."
   },
   "MESSAGE_INPUT_COMPONENT": {
     "YOUR_MESSAGE": "Your message",
