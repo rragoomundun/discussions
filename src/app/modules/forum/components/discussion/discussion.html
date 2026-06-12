@@ -43,7 +43,7 @@
       }
 
       @for (message of messages(); track message) {
-        <app-message [message]="message"></app-message>
+        <app-message [index]="$index" [message]="message"></app-message>
       }
 
       @if (messages().length > 0 && discussion()!.nbPages > 1) {

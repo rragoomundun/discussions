@@ -238,6 +238,10 @@
     "EDITED": "Edited:",
     "EDITED_BY": "Edited by:",
     "EDITED_REASON": "Edited reason:",
-    "USER_IMAGE": "User image"
+    "USER_IMAGE": "User image",
+    "TAG_USER": "@ User",
+    "QUOTE_USER": "Quote",
+    "REPORT_USER": "Report",
+    "EDIT": "Edit"
   }
 }

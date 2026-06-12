@@ -27,11 +27,7 @@
             class="fs-4 border-bottom pb-2 mb-0 this-category-name"
             [class.mt-5]="$index > 0"
           >
-            <a
-              [routerLink]="[
-                category.id + '-' + utilService.getSlug(category.name),
-              ]"
-            >
+            <a [routerLink]="[getCategorySlug(category)]">
               {{ category.name }}
             </a>
           </h2>

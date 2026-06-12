@@ -25,8 +25,9 @@ import { Breadcrumb as BreadcrumbComponent } from '../../../../shared/components
 import { Discussion as DiscussionService } from '../../../../shared/services/discussion/discussion';
 import { Message as MessageService } from '../../../../shared/services/message/message';
 import { Seo as SeoService } from '../../../../shared/services/seo/seo';
-import { Util as UtilService } from '../../../../shared/services/util/util';
 import { App as AppService } from '../../../../shared/services/app/app';
+
+import * as urlUtil from '../../../../shared/utils/url/url.util';
 
 @Component({
   selector: 'app-discussion',
@@ -50,7 +51,6 @@ export class Discussion {
   private discussionService = inject(DiscussionService);
   private messageService = inject(MessageService);
   private seoService = inject(SeoService);
-  private utilService = inject(UtilService);
 
   messageInputComponent = viewChild(MessageInputComponent);
 
@@ -62,7 +62,7 @@ export class Discussion {
       return null;
     }
 
-    return `/user/${this.discussion()?.author.id}-${this.utilService.getSlug(<string>this.discussion()?.author?.name)}`;
+    return `/user/${this.discussion()?.author.id}-${urlUtil.getSlug(<string>this.discussion()?.author?.name)}`;
   });
   onLoadDiscussion = signal('false');
   onLoadMessages = signal('false');
@@ -175,7 +175,7 @@ export class Discussion {
   }
 
   getUserSlug(id: number, name: string): string {
-    return `${id}-${this.utilService.getSlug(name)}`;
+    return `${id}-${urlUtil.getSlug(name)}`;
   }
 
   onReplyClick(reply: string): void {

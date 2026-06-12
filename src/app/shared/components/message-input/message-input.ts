@@ -13,7 +13,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { TextArea as TextAreaComponent } from '../text-area/text-area';
-import { Util as UtilService } from '../../services/util/util';
+
+import * as textUtil from '../../utils/text/text.util';
 
 @Component({
   selector: 'app-message-input',
@@ -23,7 +24,6 @@ import { Util as UtilService } from '../../services/util/util';
 })
 export class MessageInput {
   private modalService = inject(NgbModal);
-  private utilService = inject(UtilService);
 
   previewModal = viewChild<ElementRef>('previewModal');
 
@@ -45,7 +45,7 @@ export class MessageInput {
 
   onPreview(): void {
     this.previewHtml.set(
-      this.utilService.markdownToHTML(this.form().controls.message.value),
+      textUtil.markdownToHTML(this.form().controls.message.value),
     );
     this.modalService.open(this.previewModal(), { size: 'lg' });
   }

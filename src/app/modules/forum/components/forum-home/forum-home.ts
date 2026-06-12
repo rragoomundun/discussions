@@ -15,8 +15,9 @@ import { ForumLink as ForumLinkComponent } from '../../../../shared/components/f
 import { Breadcrumb as BreadcrumbComponent } from '../../../../shared/components/breadcrumb/breadcrumb';
 
 import { Forum as ForumService } from '../../../../shared/services/forum/forum';
-import { Util as UtilService } from '../../../../shared/services/util/util';
 import { Seo as SeoService } from '../../../../shared/services/seo/seo';
+
+import * as urlUtil from '../../../../shared/utils/url/url.util';
 
 @Component({
   selector: 'app-forum-home',
@@ -35,8 +36,6 @@ export class ForumHome {
   private seoService = inject(SeoService);
   private store = inject(Store);
   private destroyRef = inject(DestroyRef);
-
-  utilService = inject(UtilService);
 
   config$: Observable<Config | null>;
 
@@ -68,5 +67,9 @@ export class ForumHome {
     );
 
     this.destroyRef.onDestroy(() => configSubscription.unsubscribe());
+  }
+
+  getCategorySlug(category: Category) {
+    return category.id + '-' + urlUtil.getSlug(category.name);
   }
 }

@@ -65,17 +65,44 @@
       }
     </p>
 
-    <div [innerHTML]="utilService.markdownToHTML(message()!.message)"></div>
+    <div [innerHTML]="html()"></div>
 
     @if (message()?.author?.signature) {
       <p class="signature border-top">{{ message()?.author?.signature }}</p>
     }
   </div>
 
-  <!-- <div class="card-footer">
+  <div class="card-footer">
     <div class="app-font-size-xs">
-      <a href="#">@ User</a>&nbsp; <a href="#">Quote</a>&nbsp;
-      <a href="#">Report</a>
+      <a href="#">
+        {{ "MESSAGE_COMPONENT.TAG_USER" | translate }}
+      </a>
+
+      &nbsp;
+
+      <a href="#">
+        {{ "MESSAGE_COMPONENT.QUOTE_USER" | translate }}
+      </a>
+
+      &nbsp;
+
+      <a href="#">
+        {{ "MESSAGE_COMPONENT.REPORT_USER" | translate }}
+      </a>
+
+      &nbsp;
+
+      @if (canEdit) {
+        @if ((page() === 1 || !page()) && index() === 0) {
+          <a routerLink="/discussion/{{ discussionId() }}/edit">
+            {{ "MESSAGE_COMPONENT.EDIT" | translate }}
+          </a>
+        } @else {
+          <a routerLink="/message/{{ message()?.id }}/edit">
+            {{ "MESSAGE_COMPONENT.EDIT" | translate }}
+          </a>
+        }
+      }
     </div>
 
     <div>
@@ -89,5 +116,5 @@
         <span class="fa-solid fa-thumbs-down"></span>1
       </a>
     </div>
-  </div> -->
+  </div>
 </div>
