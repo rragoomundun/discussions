@@ -12,6 +12,16 @@ export class Message {
 
   private http = inject(HttpClient);
 
+  getFirstMessage(discussionId: number): Observable<MessageModel> {
+    return this.http.get<MessageModel>(`${this.API_PREFIX}/first`, {
+      params: { discussionId },
+    });
+  }
+
+  getMessage(messageId: number): Observable<MessageModel> {
+    return this.http.get<MessageModel>(`${this.API_PREFIX}/${messageId}`);
+  }
+
   getMessages(discussionId: number, page: number): Observable<MessageModel[]> {
     return this.http.get<MessageModel[]>(`${this.API_PREFIX}/all`, {
       params: { discussionId, page },
@@ -25,6 +35,18 @@ export class Message {
         message,
         discussionId,
       },
+      { withCredentials: true },
+    );
+  }
+
+  updateMessage(
+    message: string,
+    editionComment: string | null,
+    messageId: number,
+  ): Observable<MessageModel> {
+    return this.http.put<MessageModel>(
+      `${this.API_PREFIX}/${messageId}`,
+      { message, editionComment },
       { withCredentials: true },
     );
   }

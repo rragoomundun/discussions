@@ -1,10 +1,7 @@
 @if (onLoad() === "true") {
   <div class="app-container container">
-    <div
-      id="this-loading-breadcrumb"
-      class="app-skeleton-loading-item mb-2"
-    ></div>
-    <div id="this-loading-title" class="app-skeleton-loading-item mb-2"></div>
+    <div class="app-skeleton-loading-item app-loading-breadcrumb mb-2"></div>
+    <div class="app-skeleton-loading-item app-loading-title mb-2"></div>
     <div id="this-loading-content" class="app-skeleton-loading-item"></div>
   </div>
 } @else if (onLoad() === "success") {

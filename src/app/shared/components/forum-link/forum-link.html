@@ -1,12 +1,7 @@
 <div id="this" class="border-bottom pt-2 pb-2 row">
   <div class="col-8 col-md-6">
     @if (isCategorySlugSet()) {
-      <a
-        [routerLink]="[
-          categorySlug(),
-          forum()?.id + '-' + utilService.getSlug(forum()!.name),
-        ]"
-      >
+      <a [routerLink]="[categorySlug(), forumSlug()]">
         {{ forum()!.name }}
       </a>
     }
@@ -36,13 +31,7 @@
       <div class="this-last-message-link">
         @if (isCategorySlugSet()) {
           <a
-            [routerLink]="[
-              categorySlug(),
-              forum()?.id + '-' + utilService.getSlug(forum()!.name),
-              forum()?.lastMessage?.discussion?.id +
-                '-' +
-                utilService.getSlug(forum()!.lastMessage!.discussion.name),
-            ]"
+            [routerLink]="[categorySlug(), forumSlug(), lastMessageSlug()]"
             [queryParams]="{ goToLastMessage: true }"
           >
             {{ forum()?.lastMessage?.discussion?.name }}

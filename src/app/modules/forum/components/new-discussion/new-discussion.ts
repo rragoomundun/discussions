@@ -18,9 +18,10 @@ import { Breadcrumb as BreadcrumbComponent } from '../../../../shared/components
 
 import { Discussion as DiscussionService } from '../../../../shared/services/discussion/discussion';
 import { Message as MessageService } from '../../../../shared/services/message/message';
-import { Util as UtilService } from '../../../../shared/services/util/util';
 import { Forum as ForumService } from '../../../../shared/services/forum/forum';
 import { Translation as TranslationService } from '../../../../shared/services/translation/translation';
+
+import * as urlUtil from '../../../../shared/utils/url/url.util';
 
 @Component({
   selector: 'app-new-discussion',
@@ -40,7 +41,6 @@ export class NewDiscussion {
   private forumService = inject(ForumService);
   private discussionService = inject(DiscussionService);
   private messageService = inject(MessageService);
-  private utilService = inject(UtilService);
   private translationService = inject(TranslationService);
 
   form = signal(
@@ -111,7 +111,7 @@ export class NewDiscussion {
 
         this.messageService.postMessage(message, discussion.id).subscribe({
           next: () => {
-            const discussionSlug = `${discussion.id}-${this.utilService.getSlug(discussion.title)}`;
+            const discussionSlug = `${discussion.id}-${urlUtil.getSlug(discussion.title)}`;
 
             this.router.navigate([
               '/',

@@ -1,7 +1,7 @@
 import {
   Component,
   ElementRef,
-  inject,
+  // inject,
   input,
   output,
   signal,
@@ -10,22 +10,24 @@ import {
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { TextArea as TextAreaComponent } from '../text-area/text-area';
-import { Util as UtilService } from '../../services/util/util';
+import { MessagePreview as MessagePreviewComponent } from '../message-preview/message-preview';
 
 @Component({
   selector: 'app-message-input',
-  imports: [ReactiveFormsModule, TranslateModule, TextAreaComponent],
+  imports: [
+    ReactiveFormsModule,
+    TranslateModule,
+    TextAreaComponent,
+    MessagePreviewComponent,
+  ],
   templateUrl: './message-input.html',
   styleUrl: './message-input.scss',
 })
 export class MessageInput {
-  private modalService = inject(NgbModal);
-  private utilService = inject(UtilService);
-
-  previewModal = viewChild<ElementRef>('previewModal');
+  previewComponent = viewChild<MessagePreviewComponent>(
+    MessagePreviewComponent,
+  );
 
   form = signal(
     new FormGroup({
@@ -33,7 +35,6 @@ export class MessageInput {
     }),
   );
 
-  previewHtml = signal('');
   isNew = input();
   additionalValidation = input<{ exist: boolean; value: boolean }>({
     exist: false,
@@ -43,11 +44,8 @@ export class MessageInput {
 
   post = output<string>();
 
-  onPreview(): void {
-    this.previewHtml.set(
-      this.utilService.markdownToHTML(this.form().controls.message.value),
-    );
-    this.modalService.open(this.previewModal(), { size: 'lg' });
+  onPreviewClick(): void {
+    this.previewComponent()?.preview(<string>this.form().get('message')?.value);
   }
 
   onPostClick(): void {

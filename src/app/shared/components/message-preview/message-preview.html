@@ -1,0 +1,16 @@
+<ng-template #previewModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">
+      {{ "MESSAGE_PREVIEW_COMPONENT.TITLE" | translate }}
+    </h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div [innerHTML]="previewHTML()"></div>
+  </div>
+</ng-template>
