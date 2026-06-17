@@ -6,6 +6,7 @@ import { Forum as ForumComponent } from './components/forum/forum';
 import { Discussion as DiscussionComponent } from './components/discussion/discussion';
 import { NewDiscussion as NewDiscussionComponent } from './components/new-discussion/new-discussion';
 import { EditDiscussion as EditDiscussionComponent } from './components/edit-discussion/edit-discussion';
+import { EditMessage as EditMessageComponent } from './components/edit-message/edit-message';
 
 import { authGuard } from '../../core/guards/auth/auth-guard';
 
@@ -18,6 +19,11 @@ export const forumRoutes: Routes = [
   {
     path: 'discussion/:discussionId/edit',
     component: EditDiscussionComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'message/:messageId/edit',
+    component: EditMessageComponent,
     canActivate: [authGuard],
   },
   {

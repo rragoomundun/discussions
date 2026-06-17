@@ -155,18 +155,24 @@ export class Discussion {
         this.messages.set(data);
         this.onLoadMessages.set('success');
 
-        if (this.goToLastMessage) {
-          this.router.navigate([], {
-            relativeTo: this.activatedRoute,
-            queryParams: { goToLastMessage: undefined },
-            queryParamsHandling: 'merge',
-          });
+        setTimeout(() => {
+          if (this.goToLastMessage) {
+            this.router.navigate([], {
+              relativeTo: this.activatedRoute,
+              queryParams: { goToLastMessage: undefined },
+              queryParamsHandling: 'merge',
+            });
 
-          setTimeout(() => {
             const lastMessage = this.messages()[this.messages().length - 1];
-            location.hash = '#' + 'message-' + lastMessage.id;
-          });
-        }
+            document
+              .getElementById(`message-${lastMessage.id}`)
+              ?.scrollIntoView({ behavior: 'smooth' });
+          } else if (this.activatedRoute.snapshot.fragment) {
+            document
+              .getElementById(this.activatedRoute.snapshot.fragment)
+              ?.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
       },
       error: () => {
         this.onLoadMessages.set('error');

@@ -243,7 +243,7 @@
     "POSTED": "Posted:",
     "EDITED": "Edited:",
     "EDITED_BY": "Edited by:",
-    "EDITED_REASON": "Edited reason:",
+    "EDIT_REASON": "Edit reason:",
     "USER_IMAGE": "User image",
     "TAG_USER": "@ User",
     "QUOTE_USER": "Quote",
@@ -251,11 +251,16 @@
     "EDIT": "Edit"
   },
   "EDIT_DISCUSSION_COMPONENT": {
+    "TITLE": "Discussion Edition",
     "EDIT": "Edit discussion",
     "EDIT_TITLE": "Edit the discussion title",
     "EDIT_MESSAGE": "Edit the message",
     "EDIT_REASON": "Reason for edition",
     "EDIT_REASON_WHY": "Why you are editing",
     "EDIT_DISABLED": "You don't have the rights to edit this."
+  },
+  "EDIT_MESSAGE_COMPONENT": {
+    "TITLE": "Message Edition",
+    "EDIT": "Edit message"
   }
 }

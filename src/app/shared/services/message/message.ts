@@ -18,6 +18,10 @@ export class Message {
     });
   }
 
+  getMessage(messageId: number): Observable<MessageModel> {
+    return this.http.get<MessageModel>(`${this.API_PREFIX}/${messageId}`);
+  }
+
   getMessages(discussionId: number, page: number): Observable<MessageModel[]> {
     return this.http.get<MessageModel[]>(`${this.API_PREFIX}/all`, {
       params: { discussionId, page },

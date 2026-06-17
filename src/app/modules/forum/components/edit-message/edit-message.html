@@ -1,0 +1,79 @@
+@let user = user$ | async;
+
+@if (onLoadDiscussion() === "success") {
+  <app-breadcrumb [items]="breadcrumbItems()"></app-breadcrumb>
+} @else if (onLoadDiscussion() === "true") {
+  <div class="app-container container">
+    <div class="app-skeleton-loading-item app-loading-breadcrumb mb-3"></div>
+  </div>
+}
+
+<div class="app-container container">
+  <form [formGroup]="formGroup()">
+    @if (onLoadMessage() === "true") {
+      <div id="this-message-loading" class="app-skeleton-loading-item"></div>
+    } @else if (onLoadMessage() === "success") {
+      <div class="mb-3">
+        <app-text-area
+          [id]="'this-message'"
+          [label]="'GENERAL.MESSAGE' | translate"
+          [placeholder]="'EDIT_DISCUSSION_COMPONENT.EDIT_MESSAGE' | translate"
+          [control]="'message'"
+          [rows]="12"
+        >
+        </app-text-area>
+      </div>
+
+      @if (user!.role !== "regular") {
+        <div class="mb-3">
+          <app-input
+            [id]="'this-edit-reason'"
+            [label]="'EDIT_DISCUSSION_COMPONENT.EDIT_REASON' | translate"
+            [placeholder]="
+              'EDIT_DISCUSSION_COMPONENT.EDIT_REASON_WHY' | translate
+            "
+            [type]="'text'"
+            [control]="'reason'"
+          ></app-input>
+        </div>
+      }
+    }
+
+    @if (isDisabled()) {
+      <div class="text-end text-danger">
+        <small>{{
+          "EDIT_DISCUSSION_COMPONENT.EDIT_DISABLED" | translate
+        }}</small>
+      </div>
+    } @else {
+      <div class="text-end">
+        <button
+          [disabled]="formGroup().get('message')?.value === ''"
+          (click)="onPreviewClick()"
+          class="btn btn-secondary"
+        >
+          {{ "MESSAGE_PREVIEW_COMPONENT.TITLE" | translate }}
+        </button>
+
+        &nbsp;
+
+        @if (onEdit() !== "true") {
+          <button
+            [disabled]="formGroup().invalid"
+            (click)="onEditClick()"
+            class="btn btn-primary"
+          >
+            {{ "GENERAL.EDIT" | translate }}
+          </button>
+        } @else {
+          <button [disabled]="true" class="btn btn-primary">
+            <span class="fas fa-spinner fa-spin"></span>
+            {{ "GENERAL.EDITING" | translate }}
+          </button>
+        }
+      </div>
+    }
+  </form>
+</div>
+
+<app-message-preview></app-message-preview>

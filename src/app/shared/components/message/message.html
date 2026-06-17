@@ -59,7 +59,7 @@
 
         @if (message()?.editionComment) {
           <br />
-          {{ "MESSAGE_COMPONENT.EDITED_REASON" | translate }}
+          {{ "MESSAGE_COMPONENT.EDIT_REASON" | translate }}
           {{ message()?.editionComment }}
         }
       }
@@ -98,7 +98,13 @@
             {{ "MESSAGE_COMPONENT.EDIT" | translate }}
           </a>
         } @else {
-          <a routerLink="/message/{{ message()?.id }}/edit">
+          <a
+            routerLink="/message/{{ message()?.id }}/edit"
+            [queryParams]="{
+              discussionId: discussionId(),
+              discussionPage: page() ? page() : null,
+            }"
+          >
             {{ "MESSAGE_COMPONENT.EDIT" | translate }}
           </a>
         }

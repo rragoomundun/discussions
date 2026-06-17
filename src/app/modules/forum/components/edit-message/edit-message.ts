@@ -1,29 +1,29 @@
 import {
   Component,
-  DestroyRef,
   inject,
   signal,
+  DestroyRef,
   viewChild,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
+
+import { AsyncPipe } from '@angular/common';
 
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../shared/store/app.state';
 import { selectUserModel } from '../../../../shared/store/user/user.selectors';
 
-import { AsyncPipe } from '@angular/common';
-
 import { User as UserModel } from '../../../../shared/models/User';
-import { DiscussionDetail as DiscussionDetailModel } from '../../../../shared/models/Discussion';
 import { Message as MessageModel } from '../../../../shared/models/Message';
+import { DiscussionDetail as DiscussionDetailModel } from '../../../../shared/models/Discussion';
 import { BreadcrumbItem as BreadcrumbItemModel } from '../../../../shared/models/BreadcrumbItem';
 
 import { Breadcrumb as BreadcrumbComponent } from '../../../../shared/components/breadcrumb/breadcrumb';
@@ -39,7 +39,7 @@ import { Translation as TranslationService } from '../../../../shared/services/t
 import * as urlUtil from '../../../../shared/utils/url/url.util';
 
 @Component({
-  selector: 'app-edit-discussion',
+  selector: 'app-edit-message',
   imports: [
     ReactiveFormsModule,
     TranslateModule,
@@ -49,10 +49,10 @@ import * as urlUtil from '../../../../shared/utils/url/url.util';
     TextAreaComponent,
     MessagePreviewComponent,
   ],
-  templateUrl: './edit-discussion.html',
-  styleUrl: './edit-discussion.scss',
+  templateUrl: './edit-message.html',
+  styleUrl: './edit-message.scss',
 })
-export class EditDiscussion {
+export class EditMessage {
   private store = inject(Store<AppState>);
   private destroyRef = inject(DestroyRef);
   private router = inject(Router);
@@ -68,14 +68,12 @@ export class EditDiscussion {
 
   user$: Observable<UserModel | null | undefined>;
 
-  discussion = signal<DiscussionDetailModel | null>(null);
   message = signal<MessageModel | null>(null);
   breadcrumbItems = signal<BreadcrumbItemModel[]>([]);
   isDisabled = signal(false);
 
   formGroup = signal(
     new FormGroup({
-      title: new FormControl('', [Validators.required]),
       message: new FormControl('', [Validators.required]),
       reason: new FormControl(''),
     }),
@@ -90,54 +88,50 @@ export class EditDiscussion {
   constructor() {
     this.user$ = this.store.select(selectUserModel);
 
-    const discussionId = this.activatedRoute.snapshot.params['discussionId'];
+    const discussionId = Number(
+      this.activatedRoute.snapshot.queryParams['discussionId'],
+    );
+    const messageId = Number(this.activatedRoute.snapshot.params['messageId']);
 
     this.onLoadDiscussion.set('true');
     this.onLoadMessage.set('true');
 
     this.discussionService.getDiscussion(discussionId).subscribe({
-      next: (data: DiscussionDetailModel) => {
-        this.discussion.set(data);
+      next: (discussion: DiscussionDetailModel) => {
         this.seoService.updateTitle(
-          `${data.title} - ${this.translationService.instant('EDIT_DISCUSSION_COMPONENT.TITLE')}`,
+          `${discussion.title} - ${this.translationService.instant('EDIT_MESSAGE_COMPONENT.TITLE')}`,
         );
         this.onLoadDiscussion.set('success');
 
-        const categoryUrl = `/${this.discussion()?.category.id}-${urlUtil.getSlug(<string>this.discussion()?.category.name)}`;
-        const forumUrl = `${categoryUrl}/${this.discussion()?.forum.id}-${urlUtil.getSlug(<string>this.discussion()?.forum.name)}`;
-        this.discussionUrl = `${forumUrl}/${this.discussion()?.id}-${urlUtil.getSlug(<string>this.discussion()?.title)}`;
+        const categoryUrl = `/${discussion?.category.id}-${urlUtil.getSlug(<string>discussion?.category.name)}`;
+        const forumUrl = `${categoryUrl}/${discussion?.forum.id}-${urlUtil.getSlug(<string>discussion?.forum.name)}`;
+        this.discussionUrl = `${forumUrl}/${discussion?.id}-${urlUtil.getSlug(<string>discussion?.title)}`;
 
         this.breadcrumbItems.set([
           {
             link: categoryUrl,
-            title: <string>this.discussion()?.category.name,
+            title: <string>discussion?.category.name,
           },
           {
             link: forumUrl,
-            title: <string>this.discussion()?.forum.name,
+            title: <string>discussion?.forum.name,
           },
           {
             link: this.discussionUrl,
-            title: <string>this.discussion()?.title,
+            title: <string>discussion?.title,
           },
           {
             link: '/',
             title: this.translationService.instant(
-              'EDIT_DISCUSSION_COMPONENT.EDIT',
+              'EDIT_MESSAGE_COMPONENT.EDIT',
             ),
           },
         ]);
-
-        this.formGroup()
-          .get('title')
-          ?.setValue(<string>this.discussion()?.title);
-
-        this.setDisabled();
       },
       error: () => this.onLoadDiscussion.set('error'),
     });
 
-    this.messageService.getFirstMessage(discussionId).subscribe({
+    this.messageService.getMessage(messageId).subscribe({
       next: (data: MessageModel) => {
         this.message.set(data);
         this.onLoadMessage.set('success');
@@ -150,6 +144,7 @@ export class EditDiscussion {
           .get('reason')
           ?.setValue(<string>this.message()?.editionComment);
 
+        this.setDisabled();
         this.clearReason();
       },
       error: () => this.onLoadMessage.set('error'),
@@ -162,15 +157,13 @@ export class EditDiscussion {
       next: (user: UserModel | null | undefined) => {
         if (
           (user?.role === 'regular' &&
-            this.discussion()?.author.id !== user!.id) ||
-          (this.discussion()?.author.role === 'moderator' &&
+            this.message()?.author.id !== user!.id) ||
+          (this.message()?.author.role === 'moderator' &&
             user?.role === 'moderator' &&
-            this.discussion()?.author.id !== user.id) ||
-          (this.discussion()?.author.role === 'admin' && user?.role !== 'admin')
+            this.message()?.author.id !== user.id) ||
+          (this.message()?.author.role === 'admin' && user?.role !== 'admin')
         ) {
-          this.formGroup().get('title')?.disable({ onlySelf: true });
           this.formGroup().get('message')?.disable({ onlySelf: true });
-          this.formGroup().get('reason')?.disable({ onlySelf: true });
 
           this.isDisabled.set(true);
         }
@@ -201,28 +194,23 @@ export class EditDiscussion {
   }
 
   onEditClick(): void {
-    const discussionId = Number(
-      this.activatedRoute.snapshot.params['discussionId'],
-    );
-
     this.onEdit.set('true');
 
-    this.discussionService
-      .updateDiscussion(
-        <string>this.formGroup().get('title')?.value,
-        discussionId,
+    this.messageService
+      .updateMessage(
+        <string>this.formGroup().get('message')?.value,
+        <string>this.formGroup().get('reason')?.value,
+        this.message()!.id,
       )
       .subscribe({
         next: () => {
-          this.messageService
-            .updateMessage(
-              <string>this.formGroup().get('message')?.value,
-              <string>this.formGroup().get('reason')?.value,
-              this.message()!.id,
-            )
-            .subscribe({
-              next: () => this.router.navigate([this.discussionUrl]),
-            });
+          const page = Number(
+            this.activatedRoute.snapshot.queryParams['discussionPage'],
+          );
+          this.router.navigate([this.discussionUrl], {
+            queryParams: { page },
+            fragment: `message-${this.message()!.id}`,
+          });
         },
       });
   }
