@@ -17,9 +17,9 @@
       type="button"
       class="btn btn-secondary"
       [disabled]="!form().controls.message.value"
-      (click)="onPreview()"
+      (click)="onPreviewClick()"
     >
-      {{ "MESSAGE_INPUT_COMPONENT.PREVIEW" | translate }}
+      {{ "MESSAGE_PREVIEW_COMPONENT.TITLE" | translate }}
     </button>
 
     @if (isNew()) {
@@ -64,19 +64,4 @@
   </div>
 </form>
 
-<ng-template #previewModal let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title">
-      {{ "MESSAGE_INPUT_COMPONENT.PREVIEW" | translate }}
-    </h4>
-    <button
-      type="button"
-      class="btn-close"
-      aria-label="Close"
-      (click)="modal.dismiss()"
-    ></button>
-  </div>
-  <div class="modal-body">
-    <div [innerHTML]="previewHtml()"></div>
-  </div>
-</ng-template>
+<app-message-preview></app-message-preview>

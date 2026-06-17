@@ -5,12 +5,20 @@ import { CategoryHome as CategoryHomeComponent } from './components/category-hom
 import { Forum as ForumComponent } from './components/forum/forum';
 import { Discussion as DiscussionComponent } from './components/discussion/discussion';
 import { NewDiscussion as NewDiscussionComponent } from './components/new-discussion/new-discussion';
+import { EditDiscussion as EditDiscussionComponent } from './components/edit-discussion/edit-discussion';
+
+import { authGuard } from '../../core/guards/auth/auth-guard';
 
 export const forumRoutes: Routes = [
   {
     path: '',
     component: ForumHomeComponent,
     data: { title: 'FORUM_HOME_PAGE.TITLE' },
+  },
+  {
+    path: 'discussion/:discussionId/edit',
+    component: EditDiscussionComponent,
+    canActivate: [authGuard],
   },
   {
     path: ':category',

@@ -45,13 +45,17 @@
     "SIGNATURE": "Signature",
     "DISCUSSIONS_LOWERCASE": "discussions",
     "MESSAGES_LOWERCASE": "messages",
+    "MESSAGE": "Message",
     "BY": "By",
     "IMAGE_LOWERCASE": "image",
     "ADMIN": "Admin",
     "MODERATOR": "Moderator",
     "MEMBER": "Member",
     "OR_LOWERCASE": "or",
-    "NEW_DISCUSSION": "New Discussion"
+    "NEW_DISCUSSION": "New Discussion",
+    "EDITION": "Edition",
+    "EDIT": "Edit",
+    "EDITING": "Editing..."
   },
   "ERRORS": {
     "NAME_IN_USE": "This name is already used.",
@@ -225,10 +229,12 @@
   "MESSAGE_INPUT_COMPONENT": {
     "YOUR_MESSAGE": "Your message",
     "WRITE_MESSAGE": "Write your message here. You can format it using markdown.",
-    "PREVIEW": "Preview",
     "REPLY": "Reply",
     "REPLYING": "Replying...",
     "REPLY_TEXT": "Reply to this discussion"
+  },
+  "MESSAGE_PREVIEW_COMPONENT": {
+    "TITLE": "Preview"
   },
   "IMAGE_INPUT_COMPONENT": {
     "NO_IMAGE": "No Image"
@@ -243,5 +249,13 @@
     "QUOTE_USER": "Quote",
     "REPORT_USER": "Report",
     "EDIT": "Edit"
+  },
+  "EDIT_DISCUSSION_COMPONENT": {
+    "EDIT": "Edit discussion",
+    "EDIT_TITLE": "Edit the discussion title",
+    "EDIT_MESSAGE": "Edit the message",
+    "EDIT_REASON": "Reason for edition",
+    "EDIT_REASON_WHY": "Why you are editing",
+    "EDIT_DISABLED": "You don't have the rights to edit this."
   }
 }

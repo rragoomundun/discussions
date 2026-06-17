@@ -1,12 +1,14 @@
 export interface DiscussionUser {
   id: number;
   name: string;
+  role: string;
 }
 
 export interface DiscussionAuthor {
   id: number;
   name: string;
   image: string | null;
+  role: string;
 }
 
 export interface DiscussionLastMessage {

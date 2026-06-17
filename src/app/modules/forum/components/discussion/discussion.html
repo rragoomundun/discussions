@@ -7,11 +7,8 @@
 
   <div class="app-container container">
     @if (onLoadDiscussion() === "true") {
-      <div
-        id="this-loading-breadcrumb"
-        class="app-skeleton-loading-item mb-3"
-      ></div>
-      <div id="this-loading-title" class="app-skeleton-loading-item mb-3"></div>
+      <div class="app-skeleton-loading-item app-loading-breadcrumb mb-3"></div>
+      <div class="app-skeleton-loading-item app-loading-title mb-3"></div>
     } @else {
       <div
         id="this-discussion-info"
