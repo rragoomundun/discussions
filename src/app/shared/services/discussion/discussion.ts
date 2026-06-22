@@ -60,4 +60,10 @@ export class Discussion {
       { withCredentials: true },
     );
   }
+
+  deleteDiscussion(discussionId: number): Observable<void> {
+    return this.http.delete<void>(`${this.API_PREFIX}/${discussionId}`, {
+      withCredentials: true,
+    });
+  }
 }

@@ -73,6 +73,28 @@
             <button class="btn btn-link">
               {{ "DISCUSSION_PAGE.PIN" | translate }}
             </button>
+
+            @if (
+              (discussion()?.author?.role === "regular" &&
+                user?.role === "moderator") ||
+              (discussion()?.author?.role === "moderator" &&
+                user?.role === "moderator" &&
+                discussion()?.author?.id === user?.id) ||
+              user?.role === "admin"
+            ) {
+              <span>&nbsp;·&nbsp;</span>
+
+              @if (onDelete() === "true") {
+                <button [disabled]="true" class="btn text-danger">
+                  <span class="fas fa-spinner fa-spin"></span>
+                  <span>{{ "DISCUSSION_PAGE.DELETING" | translate }}</span>
+                </button>
+              } @else {
+                <button (click)="onDeleteClick()" class="btn text-danger">
+                  {{ "GENERAL.DELETE" | translate }}
+                </button>
+              }
+            }
           </div>
         }
       </div>
@@ -128,3 +150,7 @@
     }
   </div>
 }
+
+<app-delete-discussion
+  (confirmation)="onDeleteConfirmation()"
+></app-delete-discussion>

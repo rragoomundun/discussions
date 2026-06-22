@@ -1,0 +1,26 @@
+<ng-template #modalEl let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+      {{ "DELETE_DISCUSSION_COMPONENT.TITLE" | translate }}
+    </h4>
+
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <p>{{ "DELETE_DISCUSSION_COMPONENT.CONFIRM" | translate }}</p>
+  </div>
+  <div class="modal-footer">
+    <button (click)="modal.dismiss()" class="btn btn-secondary">
+      {{ "GENERAL.NO" | translate }}
+    </button>
+
+    <button (click)="onYesClick()" class="btn btn-danger">
+      {{ "GENERAL.YES" | translate }}
+    </button>
+  </div>
+</ng-template>

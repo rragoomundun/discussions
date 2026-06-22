@@ -56,7 +56,9 @@
     "EDITION": "Edition",
     "EDIT": "Edit",
     "EDITING": "Editing...",
-    "ACTIONS": "Actions"
+    "ACTIONS": "Actions",
+    "YES": "Yes",
+    "NO": "No"
   },
   "ERRORS": {
     "NAME_IN_USE": "This name is already used.",
@@ -227,11 +229,16 @@
     "CLOSE": "Close",
     "OPENING": "Opening discussion...",
     "CLOSING": "Closing discussion...",
+    "DELETING": "Deleting discussion...",
     "PIN": "Pin",
     "UNPIN": "Unpin",
     "TO_REPLY_LOWERCASE": "to reply.",
     "NEW_DISCUSSION": "New Discussion",
     "NEW_DISCUSSION_ERROR": "An error occurred while creating the discussion."
+  },
+  "DELETE_DISCUSSION_COMPONENT": {
+    "TITLE": "Confirm deletion",
+    "CONFIRM": "Are you sure that you want to delete this discussion?"
   },
   "MESSAGE_INPUT_COMPONENT": {
     "YOUR_MESSAGE": "Your message",

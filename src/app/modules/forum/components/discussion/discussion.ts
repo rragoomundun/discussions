@@ -21,11 +21,11 @@ import { Pagination as PaginationComponent } from '../../../../shared/components
 import { Message as MessageComponent } from '../../../../shared/components/message/message';
 import { MessageInput as MessageInputComponent } from '../../../../shared/components/message-input/message-input';
 import { Breadcrumb as BreadcrumbComponent } from '../../../../shared/components/breadcrumb/breadcrumb';
+import { DeleteDiscussion as DeleteDiscussionComponent } from '../delete-discussion/delete-discussion';
 
 import { Discussion as DiscussionService } from '../../../../shared/services/discussion/discussion';
 import { Message as MessageService } from '../../../../shared/services/message/message';
 import { Seo as SeoService } from '../../../../shared/services/seo/seo';
-import { App as AppService } from '../../../../shared/services/app/app';
 
 import * as urlUtil from '../../../../shared/utils/url/url.util';
 
@@ -39,6 +39,7 @@ import * as urlUtil from '../../../../shared/utils/url/url.util';
     PaginationComponent,
     MessageInputComponent,
     BreadcrumbComponent,
+    DeleteDiscussionComponent,
     AsyncPipe,
   ],
   templateUrl: './discussion.html',
@@ -53,6 +54,7 @@ export class Discussion {
   private seoService = inject(SeoService);
 
   messageInputComponent = viewChild(MessageInputComponent);
+  deleteDiscussionComponent = viewChild(DeleteDiscussionComponent);
 
   discussion = signal<DiscussionDetail | null>(null);
   messages = signal<MessageModel[]>([]);
@@ -67,6 +69,7 @@ export class Discussion {
   onLoadDiscussion = signal('false');
   onLoadMessages = signal('false');
   onStatusChange = signal('false');
+  onDelete = signal('false');
   onReply = signal('false');
 
   discussionId: number;
@@ -199,6 +202,23 @@ export class Discussion {
           this.onStatusChange.set('error');
         },
       });
+  }
+
+  onDeleteClick(): void {
+    this.deleteDiscussionComponent()?.open();
+  }
+
+  onDeleteConfirmation(): void {
+    this.onDelete.set('true');
+
+    this.discussionService.deleteDiscussion(this.discussion()!.id).subscribe({
+      next: () => {
+        this.router.navigate([this.breadcumbItems()[1].link]);
+      },
+      error: () => {
+        this.onDelete.set('error');
+      },
+    });
   }
 
   onReplyClick(reply: string): void {
