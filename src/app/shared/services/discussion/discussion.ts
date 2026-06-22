@@ -49,4 +49,15 @@ export class Discussion {
       { withCredentials: true },
     );
   }
+
+  updateDiscussionOpenStatus(
+    status: boolean,
+    discussionId: number,
+  ): Observable<void> {
+    return this.http.put<void>(
+      `${this.API_PREFIX}/${discussionId}/open`,
+      { open: status },
+      { withCredentials: true },
+    );
+  }
 }

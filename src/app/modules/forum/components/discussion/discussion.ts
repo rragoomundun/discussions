@@ -66,6 +66,7 @@ export class Discussion {
   });
   onLoadDiscussion = signal('false');
   onLoadMessages = signal('false');
+  onStatusChange = signal('false');
   onReply = signal('false');
 
   discussionId: number;
@@ -182,6 +183,22 @@ export class Discussion {
 
   getUserSlug(id: number, name: string): string {
     return `${id}-${urlUtil.getSlug(name)}`;
+  }
+
+  onStatusChangeClick(): void {
+    this.onStatusChange.set('true');
+
+    this.discussionService
+      .updateDiscussionOpenStatus(!this.discussion()?.open, this.discussionId)
+      .subscribe({
+        next: () => {
+          this.discussion()!.open = !this.discussion()!.open;
+          this.onStatusChange.set('success');
+        },
+        error: () => {
+          this.onStatusChange.set('error');
+        },
+      });
   }
 
   onReplyClick(reply: string): void {

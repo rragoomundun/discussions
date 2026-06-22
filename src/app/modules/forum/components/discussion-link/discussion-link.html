@@ -1,7 +1,11 @@
 <div id="this" class="border-bottom pt-2 pb-2 row">
   <div class="col-8">
     <a [routerLink]="discussionSlug()">
-      {{ discussion()!.title }}
+      @if (discussion()?.open === false) {
+        <span class="fa-solid fa-lock">&nbsp;</span>
+      }
+
+      <span>{{ discussion()!.title }}</span>
     </a>
 
     <br />

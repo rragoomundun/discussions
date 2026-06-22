@@ -11,3 +11,13 @@
     text-decoration: none;
   }
 }
+
+#this-status {
+  display: flex;
+  align-items: center;
+
+  .btn-link {
+    text-decoration: none;
+    padding: 0;
+  }
+}

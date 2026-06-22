@@ -16,12 +16,65 @@
         [class.pb-3]="discussion()?.nbPages === 1"
         class="mb-3"
       >
-        <h1 class="fs-3">{{ discussion()?.title }}</h1>
+        <h1 class="fs-3">
+          @if (discussion()?.open === false) {
+            <span class="fa-solid fa-lock">&nbsp;</span>
+          }
+
+          <span>{{ discussion()?.title }}</span>
+        </h1>
 
         <span>{{ "DISCUSSION_PAGE.STARTED_BY" | translate }} </span>
         <a [routerLink]="authorLink()">{{ discussion()?.author?.name }}</a
         >,
         <span>{{ discussion()?.createdAt | date: "MMM d, yyy, HH:mm" }}</span>
+
+        <br />
+
+        @if (user?.role !== "regular") {
+          <div id="this-status">
+            <span>{{ "GENERAL.ACTIONS" | translate }}:&nbsp;</span>
+
+            @if (
+              (discussion()?.author?.role === "regular" &&
+                user?.role === "moderator") ||
+              (discussion()?.author?.role === "moderator" &&
+                user?.role === "moderator" &&
+                discussion()?.author?.id === user?.id) ||
+              user?.role === "admin"
+            ) {
+              @if (discussion()?.open) {
+                @if (onStatusChange() === "true") {
+                  <button [disabled]="true" class="btn btn-link">
+                    <span class="fas fa-spinner fa-spin"></span>
+                    <span>{{ "DISCUSSION_PAGE.CLOSING" | translate }}</span>
+                  </button>
+                } @else {
+                  <button (click)="onStatusChangeClick()" class="btn btn-link">
+                    {{ "DISCUSSION_PAGE.CLOSE" | translate }}
+                  </button>
+                }
+              } @else {
+                @if (onStatusChange() === "true") {
+                  <button [disabled]="true" class="btn btn-link">
+                    <span class="fas fa-spinner fa-spin"></span>
+                    <span>{{ "DISCUSSION_PAGE.OPENNING" | translate }}</span>
+                  </button>
+                } @else {
+                  <button (click)="onStatusChangeClick()" class="btn btn-link">
+                    {{ "DISCUSSION_PAGE.OPEN" | translate }}
+                  </button>
+                }
+              }
+
+              <span>&nbsp;·&nbsp;</span>
+            }
+
+            <button class="btn btn-link">
+              {{ "DISCUSSION_PAGE.PIN" | translate }}
+            </button>
+          </div>
+        }
       </div>
     }
 
