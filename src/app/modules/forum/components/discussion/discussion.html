@@ -31,7 +31,7 @@
 
         <br />
 
-        @if (user?.role !== "regular") {
+        @if (user && user?.role !== "regular") {
           <div id="this-status">
             <span>{{ "GENERAL.ACTIONS" | translate }}:&nbsp;</span>
 
@@ -67,21 +67,12 @@
                 }
               }
 
-              <span>&nbsp;·&nbsp;</span>
-            }
+              <!-- <span>&nbsp;·&nbsp;</span>
 
-            <button class="btn btn-link">
-              {{ "DISCUSSION_PAGE.PIN" | translate }}
-            </button>
+              <button class="btn btn-link">
+                {{ "DISCUSSION_PAGE.PIN" | translate }}
+              </button> -->
 
-            @if (
-              (discussion()?.author?.role === "regular" &&
-                user?.role === "moderator") ||
-              (discussion()?.author?.role === "moderator" &&
-                user?.role === "moderator" &&
-                discussion()?.author?.id === user?.id) ||
-              user?.role === "admin"
-            ) {
               <span>&nbsp;·&nbsp;</span>
 
               @if (onDelete() === "true") {
