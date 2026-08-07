@@ -1,26 +1,10 @@
-<<<<<<< Updated upstream
 # Current Feature
-=======
-# Current Feature: User Settings Password
->>>>>>> Stashed changes
 
 ## Status
 
-In Progress
-
 ## Goals
 
-- Add `password` and `passwordConfirmation` input fields to the `security` settings component
-- Below the fields, add a `div.border-top.pt-3` containing a Save button
-- On submit call `PUT /user/password` with `{ password, passwordConfirmation }` body
-- Show success message on success
-- Show error message on error
-
 ## Notes
-
-- Follow the same NgRx pattern as the email setting (actions, effect, reducer, selector, state)
-- Use shared `Input` component with `formControlName`
-- Error from the API should be displayed (not a generic message)
 
 ## History
 
