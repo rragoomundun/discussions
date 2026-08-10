@@ -49,7 +49,7 @@ export class Picture {
         if (!this.initialized && user != null) {
           this.initialized = true;
           this.originalImage = user.image;
-          this.previewUrl.set(user.image ? environment.API_URL + user.image : null);
+          this.previewUrl.set(user.image ? user.image : null);
         }
       });
     this.destroyRef.onDestroy(() => sub.unsubscribe());

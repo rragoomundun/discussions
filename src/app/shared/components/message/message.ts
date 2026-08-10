@@ -52,7 +52,7 @@ export class Message {
       return null;
     }
 
-    return `${environment.API_URL}${this.message()?.author.image}`;
+    return this.message()?.author.image;
   });
   authorLink = computed(() => {
     return `/user/${this.message()?.author.id}-${urlUtil.getSlug(this.message()!.author!.name)}`;
