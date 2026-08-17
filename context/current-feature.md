@@ -1,10 +1,19 @@
-# Current Feature
+# Current Feature: Amplify SSR Build Config
 
 ## Status
 
+In Progress
+
 ## Goals
 
+- Add `amplify.yml` at repo root defining the build phase (`npm ci`, `npm run build`) and artifacts for Angular SSR deployment on AWS Amplify Hosting.
+- Point Amplify's `baseDirectory` at `dist/discussions/browser` and include `dist/discussions/server` so Amplify's SSR compute (`WEB_COMPUTE` platform) can detect and run `server.mjs`.
+
 ## Notes
+
+- Root cause of the 404 on the previously deployed app (`d3l6owyqih7rp5`): it was a manual/static deploy on the `WEB` platform, which only serves static files. SSR requires the `WEB_COMPUTE` platform, which Amplify only provisions for apps connected to a Git repository.
+- This `amplify.yml` will be used when a new Amplify Console app is created connected to GitHub repo `rragoomundun/discussions`, branch `develop`.
+- Angular 21's `@angular/build:application` builder outputs to `dist/discussions/browser` (static assets + `index.html`) and `dist/discussions/server/server.mjs` (SSR entry, Express-based per `package.json`).
 
 ## History
 
