@@ -1,19 +1,10 @@
-# Current Feature: Amplify SSR Build Config
+# Current Feature
 
 ## Status
 
-In Progress
-
 ## Goals
 
-- Add `amplify.yml` at repo root defining the build phase (`npm ci`, `npm run build`) and artifacts for Angular SSR deployment on AWS Amplify Hosting.
-- Point Amplify's `baseDirectory` at `dist/discussions/browser` and include `dist/discussions/server` so Amplify's SSR compute (`WEB_COMPUTE` platform) can detect and run `server.mjs`.
-
 ## Notes
-
-- Root cause of the 404 on the previously deployed app (`d3l6owyqih7rp5`): it was a manual/static deploy on the `WEB` platform, which only serves static files. SSR requires the `WEB_COMPUTE` platform, which Amplify only provisions for apps connected to a Git repository.
-- This `amplify.yml` will be used when a new Amplify Console app is created connected to GitHub repo `rragoomundun/discussions`, branch `develop`.
-- Angular 21's `@angular/build:application` builder outputs to `dist/discussions/browser` (static assets + `index.html`) and `dist/discussions/server/server.mjs` (SSR entry, Express-based per `package.json`).
 
 ## History
 
@@ -37,3 +28,4 @@ In Progress
 - **04-06-2026 — New Message** — Created shared `MessageInput` component: 8-row textarea (via `app-text-area`), Preview button opening a Bootstrap modal with markdown-rendered preview (`utilService.markdownToHTML`), Reply/Send button emitting the message; supports `isNew` and `onPost` inputs for dual new/reply mode; fixed `TextArea` no-label branch to bind `formControlName` and `placeholder`.
 - **04-06-2026 — Create Discussion** — Added `NewDiscussionResult` model and `createDiscussion(title, forumId)` to `DiscussionService`; created `NewDiscussion` component at `/:category/:forum/new` with title input + `app-message-input [isNew]="true"`, sequential `POST /discussion` → `POST /message` API calls, then navigates to `/:category/:forum/:id-:slug` on success.
 - **04-06-2026 — Breadcrumb** — Created shared `Breadcrumb` component (`BreadcrumbItem` model, home icon, `routerLink` navigation, current-item greyed styling); integrated into forum-home, category-home, forum, discussion, new-discussion, settings, and forum-settings pages.
+- **17-08-2026 — Amplify SSR Build Config** — Added `amplify.yml` at repo root for AWS Amplify Hosting SSR (`WEB_COMPUTE`) deployment: `npm ci` + branch-conditional `ng build` (`--configuration=production` on `main`, `--configuration=development` elsewhere), artifacts `baseDirectory: dist/discussions` (containing `browser/` + `server/server.mjs`). Root cause of prior 404: the existing manually-deployed Amplify app was on the static-only `WEB` platform, which can't run SSR.
