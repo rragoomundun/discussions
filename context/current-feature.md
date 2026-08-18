@@ -1,22 +1,10 @@
-# Current Feature: Amplify SSR Deploy Manifest
+# Current Feature
 
 ## Status
 
-In Progress
-
 ## Goals
 
-- Add `deploy-manifest.json` at repo root describing routes (static assets → CDN, everything else → Compute) and the `default` compute resource (entrypoint, runtime) per AWS Amplify's deployment specification.
-- Extend `amplify.yml`'s build phase to assemble `.amplify-hosting/` after `ng build`: `compute/default/{browser,server}` (preserving the sibling layout `server.mjs` expects via `../browser`) and `static/` (copy of `dist/discussions/browser` for CDN-served assets).
-- Point `artifacts.baseDirectory` at `.amplify-hosting` instead of `dist/discussions`.
-- Gitignore `.amplify-hosting/` (local build artifact).
-
 ## Notes
-
-- Prior deploy (job 2 on app `dyqbeju4eyaze`) failed at the DEPLOY step: `Failed to find the deploy-manifest.json file in the build output`, confirmed via build log. Platform was manually flipped to `WEB_COMPUTE` via `aws amplify update-app` since the console-created app had stayed on static `WEB` (custom `amplify.yml` in repo bypassed Amplify's own SSR auto-detection).
-- Checked `dist/discussions/server/*.mjs`: only Node built-ins (`node:module`, `stream`) remain as external imports — esbuild already bundled `express`/`@angular/ssr` deps, so `node_modules` does NOT need to be copied into `compute/default` (unlike the plain-Express AWS doc example).
-- `src/server.ts` computes `browserDistFolder = join(import.meta.dirname, '../browser')` — this means inside `compute/default`, the layout must stay `server/server.mjs` + sibling `browser/`, so `entrypoint` in the manifest is `server/server.mjs`, not `server.mjs`.
-- Schema confirmed against AWS's official Express deployment-manifest doc (docs.aws.amazon.com/amplify/latest/userguide/deploy-express-server.html): `version`, `framework`, `routes` (with a catch-all), `computeResources` (`name`, `runtime`, `entrypoint`) are required.
 
 ## History
 
@@ -41,3 +29,4 @@ In Progress
 - **04-06-2026 — Create Discussion** — Added `NewDiscussionResult` model and `createDiscussion(title, forumId)` to `DiscussionService`; created `NewDiscussion` component at `/:category/:forum/new` with title input + `app-message-input [isNew]="true"`, sequential `POST /discussion` → `POST /message` API calls, then navigates to `/:category/:forum/:id-:slug` on success.
 - **04-06-2026 — Breadcrumb** — Created shared `Breadcrumb` component (`BreadcrumbItem` model, home icon, `routerLink` navigation, current-item greyed styling); integrated into forum-home, category-home, forum, discussion, new-discussion, settings, and forum-settings pages.
 - **17-08-2026 — Amplify SSR Build Config** — Added `amplify.yml` at repo root for AWS Amplify Hosting SSR (`WEB_COMPUTE`) deployment: `npm ci` + branch-conditional `ng build` (`--configuration=production` on `main`, `--configuration=development` elsewhere), artifacts `baseDirectory: dist/discussions` (containing `browser/` + `server/server.mjs`). Root cause of prior 404: the existing manually-deployed Amplify app was on the static-only `WEB` platform, which can't run SSR.
+- **18-08-2026 — Amplify SSR Deploy Manifest** — Added `deploy-manifest.json` (routes: `/*.*` → Static with Compute fallback, `/*` → Compute; `computeResources` entrypoint `server/server.mjs`, runtime `nodejs22.x`) and extended `amplify.yml` to assemble `.amplify-hosting/{compute/default,static}` after `ng build`, with `artifacts.baseDirectory` now `.amplify-hosting`. Fixes deploys failing with "Failed to find the deploy-manifest.json file" on the `WEB_COMPUTE` platform. Verified locally: built the exact Amplify build-phase commands, confirmed directory layout, and booted `compute/default/server/server.mjs` directly (got the app's expected redirect, not a crash).
