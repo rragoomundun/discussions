@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 /bazel-out
+/.amplify-hosting
 
 # Node
 /node_modules

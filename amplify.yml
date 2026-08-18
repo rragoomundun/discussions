@@ -12,8 +12,14 @@ frontend:
           else
             npm run build -- --configuration=development
           fi
+        - rm -rf .amplify-hosting
+        - mkdir -p .amplify-hosting/compute/default
+        - cp -r dist/discussions/server .amplify-hosting/compute/default/server
+        - cp -r dist/discussions/browser .amplify-hosting/compute/default/browser
+        - cp -r dist/discussions/browser .amplify-hosting/static
+        - cp deploy-manifest.json .amplify-hosting/deploy-manifest.json
   artifacts:
-    baseDirectory: dist/discussions
+    baseDirectory: .amplify-hosting
     files:
       - '**/*'
   cache:
