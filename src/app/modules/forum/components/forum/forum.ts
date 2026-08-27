@@ -1,11 +1,17 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
 import { TranslateModule } from '@ngx-translate/core';
+
+import { AsyncPipe } from '@angular/common';
 
 import { ForumMetaData } from '../../../../shared/models/ForumMetaData';
 import { Discussion as DiscussionModel } from '../../../../shared/models/Discussion';
 import { BreadcrumbItem } from '../../../../shared/models/BreadcrumbItem';
+import { User } from '../../../../shared/models/User';
 
 import { DiscussionLink as DiscussionLinkComponent } from '../discussion-link/discussion-link';
 import { Pagination as PaginationComponent } from '../../../../shared/components/pagination/pagination';
@@ -15,11 +21,15 @@ import { Forum as ForumService } from '../../../../shared/services/forum/forum';
 import { Discussion as DiscussionService } from '../../../../shared/services/discussion/discussion';
 import { Seo as SeoService } from '../../../../shared/services/seo/seo';
 
+import { AppState } from '../../../../shared/store/app.state';
+import { selectUserModel } from '../../../../shared/store/user/user.selectors';
+
 @Component({
   selector: 'app-forum',
   imports: [
     TranslateModule,
     RouterModule,
+    AsyncPipe,
     DiscussionLinkComponent,
     PaginationComponent,
     BreadcrumbComponent,
@@ -33,6 +43,7 @@ export class Forum {
   private forumService = inject(ForumService);
   private discussionService = inject(DiscussionService);
   private seoService = inject(SeoService);
+  private store = inject(Store<AppState>);
 
   forumMeta = signal<ForumMetaData | null>(null);
   discussions = signal<DiscussionModel[]>([]);
@@ -40,10 +51,14 @@ export class Forum {
   onLoadMeta = signal('false');
   onLoadDiscussions = signal('false');
 
+  user$: Observable<User | null | undefined>;
+
   forumId: number;
   page: number;
 
   constructor() {
+    this.user$ = this.store.select(selectUserModel);
+
     const param = this.activatedRoute.snapshot.paramMap.get('forum') ?? '';
     const pageQueryParam = this.activatedRoute.snapshot.queryParams['page'];
 

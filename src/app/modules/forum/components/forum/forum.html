@@ -20,17 +20,19 @@
           }
         </div>
 
-        <div class="text-end d-none d-md-block">
-          <a routerLink="./new" class="btn btn-primary">
-            {{ "GENERAL.NEW_DISCUSSION" | translate }}
-          </a>
-        </div>
+        @if (user$ | async) {
+          <div class="text-end d-none d-md-block">
+            <a routerLink="./new" class="btn btn-primary">
+              {{ "GENERAL.NEW_DISCUSSION" | translate }}
+            </a>
+          </div>
 
-        <div class="d-grid gap-2 d-md-none">
-          <a routerLink="./new" class="btn btn-primary">
-            {{ "GENERAL.NEW_DISCUSSION" | translate }}
-          </a>
-        </div>
+          <div class="d-grid gap-2 d-md-none">
+            <a routerLink="./new" class="btn btn-primary">
+              {{ "GENERAL.NEW_DISCUSSION" | translate }}
+            </a>
+          </div>
+        }
       </div>
     }
 

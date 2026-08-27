@@ -38,6 +38,7 @@ export const forumRoutes: Routes = [
     path: ':category/:forum/new',
     component: NewDiscussionComponent,
     data: { title: 'DISCUSSION_PAGE.NEW_DISCUSSION' },
+    canActivate: [authGuard],
   },
   {
     path: ':category/:forum/:discussion',
