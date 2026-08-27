@@ -7,7 +7,6 @@ Discussions is a free and open source forum software built with Angular 21+ and 
 Read the following to get the full context of the project.
 
 - @context/project-overview.md
-- @context/git-flow.md
 - @context/coding-standards.md
 - @context/ai-interaction.md
 - @context/current-feature.md

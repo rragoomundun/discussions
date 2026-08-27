@@ -1,6 +1,6 @@
-# Current Hotfix
+# Current Task
 
-<!-- hotfix name and short description -->
+<!-- Fix name and short description -->
 
 ## Status
 
@@ -13,7 +13,3 @@
 ## Notes
 
 <!-- Any extra notes -->
-
-## History
-
-<!-- Keep this updated. Earliest to latest -->
