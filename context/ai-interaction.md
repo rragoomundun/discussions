@@ -22,11 +22,8 @@ This is the common workflow that we will use for every single feature/fix:
 8. **Review** - Review AI-generated code periodically and on demand.
 9. Mark as completed in @context/current-task.md
 
-Do NOT commit without permission.
-
 ## Commits
 
-- Ask before committing (don't auto-commit)
 - Use conventional commit messages (feat:, fix:, chore:, etc.)
 - Keep commits focused (one feature/fix per commit)
 - Never put "Generated With Claude" in the commit messages
