@@ -45,6 +45,13 @@
               {{ user.name }}
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a routerLink="/settings" class="dropdown-item">
+                  <span class="fa-solid fa-gears"></span>
+                  &nbsp;
+                  {{ "GENERAL.SETTINGS" | translate }}
+                </a>
+              </li>
               @if (user.role === "admin") {
                 <li>
                   <a routerLink="/forum-settings" class="dropdown-item">
