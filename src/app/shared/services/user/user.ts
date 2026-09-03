@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 import { User as UserModel } from '../../models/User';
 import { UserProfile } from '../../models/UserProfile';
+import { UserInformations } from '../../models/UserInformations';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,12 @@ export class User {
 
   getUserProfile(id: number): Observable<UserProfile> {
     return this.http.get<UserProfile>(`${this.API_PREFIX}/${id}`);
+  }
+
+  getUserInformations(id: number): Observable<UserInformations> {
+    return this.http.get<UserInformations>(
+      `${this.API_PREFIX}/${id}/informations`,
+    );
   }
 
   updateEmail(email: string): Observable<void> {

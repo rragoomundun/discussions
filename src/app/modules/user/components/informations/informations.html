@@ -1,0 +1,64 @@
+@if (onLoad() === "true") {
+  <div class="row">
+    <div class="col-12 col-md-4 mb-3 mb-md-0">
+      <div class="app-skeleton-loading-item this-loading-details"></div>
+    </div>
+
+    <div class="col-12 col-md-8">
+      <div class="app-skeleton-loading-item this-loading-biography"></div>
+    </div>
+  </div>
+} @else if (onLoad() === "success") {
+  <div class="row mt-3">
+    <div class="col-12 col-md-4 mb-3 mb-md-0">
+      <div id="this-details" class="border rounded p-3">
+        <div class="row mb-2">
+          <div class="col-5 fw-bold">
+            {{ "GENERAL.DATE_OF_BIRTH" | translate }}
+          </div>
+          <div id="this-birthday" class="col-7">
+            @if (informations()?.birthday) {
+              {{ informations()?.birthday | date: "d MMMM y" }}
+            } @else {
+              {{ "GENERAL.UNKNOWN" | translate }}
+            }
+          </div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-5 fw-bold">{{ "GENERAL.LOCATION" | translate }}</div>
+          <div id="this-location" class="col-7">
+            {{ informations()?.location || ("GENERAL.UNKNOWN" | translate) }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-5 fw-bold">{{ "GENERAL.GENDER" | translate }}</div>
+          <div id="this-gender" class="col-7">
+            @if (informations()?.gender === "male") {
+              {{ "GENERAL.MALE" | translate }}
+            } @else if (informations()?.gender === "female") {
+              {{ "GENERAL.FEMALE" | translate }}
+            } @else {
+              {{ "GENERAL.UNKNOWN" | translate }}
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-8">
+      @if (biographyHtml()) {
+        <div id="this-biography" [innerHTML]="biographyHtml()"></div>
+      } @else {
+        <p id="this-biography">
+          {{ "USER_PAGE.INFORMATIONS_PAGE.NO_BIOGRAPHY" | translate }}
+        </p>
+      }
+    </div>
+  </div>
+} @else {
+  <p id="this-error" class="text-danger">
+    {{ "USER_PAGE.INFORMATIONS_PAGE.ERROR" | translate }}
+  </p>
+}
