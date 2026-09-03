@@ -60,7 +60,8 @@
     "EDITING": "Editing...",
     "ACTIONS": "Actions",
     "YES": "Yes",
-    "NO": "No"
+    "NO": "No",
+    "CANCEL": "Cancel"
   },
   "ERRORS": {
     "NAME_IN_USE": "This name is already used.",

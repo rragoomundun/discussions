@@ -214,4 +214,8 @@ export class EditMessage {
         },
       });
   }
+
+  onCancelClick(): void {
+    history.back();
+  }
 }

@@ -226,4 +226,8 @@ export class EditDiscussion {
         },
       });
   }
+
+  onCancelClick(): void {
+    history.back();
+  }
 }

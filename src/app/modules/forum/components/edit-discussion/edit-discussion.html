@@ -59,21 +59,11 @@
       </div>
     } @else {
       <div class="text-end">
-        <button
-          [disabled]="formGroup().get('message')?.value === ''"
-          (click)="onPreviewClick()"
-          class="btn btn-secondary"
-        >
-          {{ "MESSAGE_PREVIEW_COMPONENT.TITLE" | translate }}
-        </button>
-
-        &nbsp;
-
         @if (onEdit() !== "true") {
           <button
             [disabled]="formGroup().invalid"
             (click)="onEditClick()"
-            class="btn btn-primary"
+            class="btn btn-primary me-2"
           >
             {{ "GENERAL.EDIT" | translate }}
           </button>
@@ -83,6 +73,18 @@
             {{ "GENERAL.EDITING" | translate }}
           </button>
         }
+
+        <button
+          [disabled]="formGroup().get('message')?.value === ''"
+          (click)="onPreviewClick()"
+          class="btn btn-secondary me-2"
+        >
+          {{ "MESSAGE_PREVIEW_COMPONENT.TITLE" | translate }}
+        </button>
+
+        <button (click)="onCancelClick()" class="btn btn-secondary">
+          {{ "GENERAL.CANCEL" | translate }}
+        </button>
       </div>
     }
   </form>
