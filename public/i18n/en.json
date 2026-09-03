@@ -276,5 +276,18 @@
   "EDIT_MESSAGE_COMPONENT": {
     "TITLE": "Message Edition",
     "EDIT": "Edit message"
+  },
+  "USER_PAGE": {
+    "NOT_FOUND": "This user cannot be found.",
+    "JOINED": "Joined",
+    "INFORMATIONS_PAGE": {
+      "TAB_NAME": "Informations"
+    },
+    "DISCUSSIONS_PAGE": {
+      "TAB_NAME": "Discussions"
+    },
+    "MESSAGES_PAGE": {
+      "TAB_NAME": "Messages"
+    }
   }
 }

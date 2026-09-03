@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { User as UserModel } from '../../models/User';
+import { UserProfile } from '../../models/UserProfile';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,10 @@ export class User {
 
   getUser(): Observable<UserModel> {
     return this.http.get<UserModel>(this.API_PREFIX, { withCredentials: true });
+  }
+
+  getUserProfile(id: number): Observable<UserProfile> {
+    return this.http.get<UserProfile>(`${this.API_PREFIX}/${id}`);
   }
 
   updateEmail(email: string): Observable<void> {

@@ -26,6 +26,11 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'user',
+    loadChildren: () =>
+      import('./modules/user/user.routes').then((m) => m.userRoutes),
+  },
+  {
     path: '',
     loadChildren: () =>
       import('./modules/forum/forum.routes').then((m) => m.forumRoutes),
