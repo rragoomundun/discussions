@@ -16,16 +16,6 @@ export const settingsRoutes: Routes = [
     canActivate: [authGuard],
     children: [
       {
-        path: 'email',
-        component: EmailComponent,
-        data: { title: 'SETTINGS_PAGE.EMAIL_PAGE.TAB_NAME' },
-      },
-      {
-        path: 'security',
-        component: SecurityComponent,
-        data: { title: 'SETTINGS_PAGE.SECURITY_PAGE.TAB_NAME' },
-      },
-      {
         path: 'picture',
         component: PictureComponent,
         data: { title: 'SETTINGS_PAGE.PICTURE_PAGE.TAB_NAME' },
@@ -36,13 +26,23 @@ export const settingsRoutes: Routes = [
         data: { title: 'SETTINGS_PAGE.INFORMATIONS_PAGE.TAB_NAME' },
       },
       {
+        path: 'email',
+        component: EmailComponent,
+        data: { title: 'SETTINGS_PAGE.EMAIL_PAGE.TAB_NAME' },
+      },
+      {
+        path: 'security',
+        component: SecurityComponent,
+        data: { title: 'SETTINGS_PAGE.SECURITY_PAGE.TAB_NAME' },
+      },
+      {
         path: 'signature',
         component: SignatureComponent,
         data: { title: 'SETTINGS_PAGE.SIGNATURE_PAGE.TAB_NAME' },
       },
       {
         path: '**',
-        redirectTo: 'email',
+        redirectTo: 'picture',
       },
     ],
   },

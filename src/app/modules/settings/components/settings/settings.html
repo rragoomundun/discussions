@@ -9,20 +9,6 @@
     <div id="this-navigation" class="d-none d-lg-block">
       <nav class="nav flex-column">
         <a
-          routerLink="/settings/email"
-          routerLinkActive="active"
-          class="nav-link"
-        >
-          {{ "SETTINGS_PAGE.EMAIL_PAGE.TAB_NAME" | translate }}
-        </a>
-        <a
-          routerLink="/settings/security"
-          routerLinkActive="active"
-          class="nav-link"
-        >
-          {{ "SETTINGS_PAGE.SECURITY_PAGE.TAB_NAME" | translate }}
-        </a>
-        <a
           routerLink="/settings/picture"
           routerLinkActive="active"
           class="nav-link"
@@ -35,6 +21,21 @@
           class="nav-link"
         >
           {{ "SETTINGS_PAGE.INFORMATIONS_PAGE.TAB_NAME" | translate }}
+        </a>
+
+        <a
+          routerLink="/settings/email"
+          routerLinkActive="active"
+          class="nav-link"
+        >
+          {{ "SETTINGS_PAGE.EMAIL_PAGE.TAB_NAME" | translate }}
+        </a>
+        <a
+          routerLink="/settings/security"
+          routerLinkActive="active"
+          class="nav-link"
+        >
+          {{ "SETTINGS_PAGE.SECURITY_PAGE.TAB_NAME" | translate }}
         </a>
         <a
           routerLink="/settings/signature"
