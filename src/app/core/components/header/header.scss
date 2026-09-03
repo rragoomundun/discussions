@@ -16,6 +16,12 @@ button.navbar-toggler {
   padding: 0;
 }
 
+#this-user-picture {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+}
+
 #this-logo {
   text-decoration: none;
   color: var(--app-color-primary);

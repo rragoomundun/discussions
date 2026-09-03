@@ -19,6 +19,8 @@ import { User } from '../../../shared/models/User';
 
 import { App as AppService } from '../../../shared/services/app/app';
 
+import * as urlUtil from '../../../shared/utils/url/url.util';
+
 @Component({
   selector: 'app-header',
   imports: [TranslateModule, RouterModule, AsyncPipe],
@@ -36,6 +38,10 @@ export class Header {
   constructor() {
     this.config$ = this.store.select(selectConfigModel);
     this.user$ = this.store.select(selectUserModel);
+  }
+
+  getUserLink(user: User): string {
+    return `/user/${user.id}-${urlUtil.getSlug(user.name)}`;
   }
 
   hideHamburgerMenu(): void {

@@ -39,9 +39,32 @@
               href="javascript:void()"
               data-bs-toggle="dropdown"
             >
+              @if (user.image) {
+                <img
+                  [src]="user.image"
+                  [alt]="user.name"
+                  id="this-user-picture"
+                  class="rounded-circle border me-2"
+                />
+              } @else {
+                <img
+                  src="/assets/images/user.png"
+                  [alt]="user.name"
+                  id="this-user-picture"
+                  class="rounded-circle me-2"
+                />
+              }
+
               {{ user.name }}
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a [routerLink]="getUserLink(user)" class="dropdown-item">
+                  <span class="fa-regular fa-circle-user"></span>
+                  &nbsp;
+                  {{ "GENERAL.MY_PROFILE" | translate }}
+                </a>
+              </li>
               <li>
                 <a routerLink="/settings" class="dropdown-item">
                   <span class="fa-solid fa-gears"></span>
