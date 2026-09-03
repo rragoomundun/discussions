@@ -12,7 +12,7 @@
     } @else if (image()) {
       <img [src]="image()" />
     } @else {
-      <img [src]="appService.SERVER_URL + control()?.value" />
+      <img [src]="control()?.value" />
     }
   </div>
 

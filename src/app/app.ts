@@ -67,7 +67,7 @@ export class App {
 
         if (value?.favicon) {
           this.appService.setFavicon(
-            this.appService.SERVER_URL + value.favicon,
+            value.favicon,
           );
         }
 

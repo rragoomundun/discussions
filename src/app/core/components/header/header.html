@@ -7,10 +7,7 @@
       <a id="this-logo" routerLink="/">
         <div>
           @if (config?.showLogo && config?.logo) {
-            <img
-              [src]="appService.SERVER_URL + config?.logo"
-              [alt]="config?.title"
-            />
+            <img [src]="config?.logo" [alt]="config?.title" />
           }
 
           @if (config?.showTitle) {

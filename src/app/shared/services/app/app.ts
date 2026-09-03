@@ -19,8 +19,6 @@ import { environment } from '../../../../environments/environment';
   providedIn: 'root',
 })
 export class App {
-  readonly SERVER_URL = environment.API_URL;
-
   private store = inject(Store<AppState>);
   private destroyRef = inject(DestroyRef);
   private platformId = inject(PLATFORM_ID);

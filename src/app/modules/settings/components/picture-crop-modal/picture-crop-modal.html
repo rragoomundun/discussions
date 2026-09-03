@@ -1,5 +1,7 @@
 <div class="modal-header">
-  <h4 class="modal-title">{{ "SETTINGS_PAGE.PICTURE_PAGE.CROP_TITLE" | translate }}</h4>
+  <h4 class="modal-title">
+    {{ "SETTINGS_PAGE.PICTURE_PAGE.CROP_TITLE" | translate }}
+  </h4>
   <button type="button" class="btn-close" (click)="cancel()"></button>
 </div>
 
@@ -9,6 +11,8 @@
     [maintainAspectRatio]="true"
     [aspectRatio]="1"
     [output]="'blob'"
+    [resizeToWidth]="512"
+    [resizeToHeight]="512"
     format="png"
     (imageCropped)="onImageCropped($event)"
   ></image-cropper>

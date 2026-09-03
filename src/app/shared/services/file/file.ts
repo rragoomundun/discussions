@@ -13,18 +13,22 @@ export class File {
   uploadFile(
     file: Blob,
     category: string = 'user',
-  ): Observable<{ path: string }> {
+  ): Observable<{ link: string; key: string }> {
     const formData = new FormData();
 
     formData.append('category', category);
     formData.append('file', file);
 
-    return this.http.post<{ path: string }>(`${this.API_PREFIX}`, formData, {
-      withCredentials: true,
-    });
+    return this.http.post<{ link: string; key: string }>(
+      `${this.API_PREFIX}`,
+      formData,
+      {
+        withCredentials: true,
+      },
+    );
   }
 
-  deleteFile(params: { path: string }): Observable<null> {
+  deleteFile(params: { fileName: string }): Observable<null> {
     return this.http.delete<null>(this.API_PREFIX, {
       body: params,
       withCredentials: true,

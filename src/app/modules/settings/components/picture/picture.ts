@@ -82,8 +82,7 @@ export class Picture {
     const originalImage = this.originalImage;
     const confirmedBlob = this.confirmedBlob;
     const shouldDelete =
-      originalImage !== null &&
-      (this.previewUrl() === null || confirmedBlob !== null);
+      originalImage && (this.previewUrl() === null || confirmedBlob !== null);
     const shouldUpload = confirmedBlob !== null;
 
     if (!shouldDelete && !shouldUpload) return;
@@ -95,20 +94,20 @@ export class Picture {
         switchMap(() =>
           shouldDelete
             ? this.fileService
-                .deleteFile({ path: originalImage! })
+                .deleteFile({ fileName: originalImage! })
                 .pipe(map(() => null as null))
             : of(null as null),
         ),
         switchMap(() =>
           shouldUpload
             ? this.fileService.uploadFile(confirmedBlob!)
-            : of(null as { path: string } | null),
+            : of(null as { link: string; key: string } | null),
         ),
-        switchMap((uploadResult: { path: string } | null) => {
+        switchMap((uploadResult: { link: string; key: string } | null) => {
           if (uploadResult !== null) {
             return this.userService
-              .updateProfilePicture(uploadResult.path)
-              .pipe(map(() => uploadResult.path as string | null));
+              .updateProfilePicture(uploadResult.link)
+              .pipe(map(() => uploadResult.link as string | null));
           }
           return this.userService
             .updateProfilePicture(null)

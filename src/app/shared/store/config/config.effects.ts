@@ -73,11 +73,7 @@ export class ConfigEffects {
       ofType(ConfigActions.updateConfig),
       exhaustMap((value) =>
         this.configService.update(value.config).pipe(
-          tap(() =>
-            this.appService.setFavicon(
-              this.appService.SERVER_URL + value.config.favicon,
-            ),
-          ),
+          tap(() => this.appService.setFavicon(value.config.favicon)),
           map(() =>
             ConfigActions.updateConfigSuccess({ config: value.config }),
           ),

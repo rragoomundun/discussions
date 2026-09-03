@@ -138,7 +138,7 @@ export class Configuration {
         this.fileService.uploadFile(<Blob>this.logo()?.file, 'forum').pipe(
           tap({
             next: (value) => {
-              this.formGroup().controls.logo.setValue(value.path);
+              this.formGroup().controls.logo.setValue(value.link);
 
               this.onLogoUpload.set('success');
             },
@@ -156,7 +156,7 @@ export class Configuration {
 
       tasks.push(
         this.fileService
-          .deleteFile({ path: <string>this.logo()?.originalFilePath })
+          .deleteFile({ fileName: <string>this.logo()?.originalFilePath })
           .pipe(
             tap({
               next: () => {
@@ -175,7 +175,7 @@ export class Configuration {
         this.fileService.uploadFile(<Blob>this.favicon()?.file, 'forum').pipe(
           tap({
             next: (value) => {
-              this.formGroup().controls.favicon.setValue(value.path);
+              this.formGroup().controls.favicon.setValue(value.link);
 
               this.onFaviconUpload.set('success');
             },
@@ -194,7 +194,7 @@ export class Configuration {
 
       tasks.push(
         this.fileService
-          .deleteFile({ path: <string>this.favicon()?.originalFilePath })
+          .deleteFile({ fileName: <string>this.favicon()?.originalFilePath })
           .pipe(
             tap({
               next: () => this.onFaviconDelete.set('success'),
