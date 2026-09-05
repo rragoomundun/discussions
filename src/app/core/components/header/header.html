@@ -84,7 +84,11 @@
                 </li>
               }
               <li>
-                <a (click)="onLogoutClick()" class="dropdown-item">
+                <a
+                  (click)="onLogoutClick()"
+                  href="javascript:void(0)"
+                  class="dropdown-item"
+                >
                   <span class="fa-solid fa-arrow-right-from-bracket"></span>
                   &nbsp;
                   {{ "GENERAL.LOGOUT" | translate }}
