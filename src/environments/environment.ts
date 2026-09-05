@@ -1,3 +1,3 @@
 export const environment = {
-  API_URL: 'https://discussions-api.r3tests.net',
+  API_URL: 'http://18.201.136.229:5002',
 };
