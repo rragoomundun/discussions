@@ -12,6 +12,7 @@ export const guestGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
   return store.select(selectUserModel).pipe(
+    filter((user) => user !== undefined),
     map((user) => {
       if (!user) {
         return true;
