@@ -11,7 +11,7 @@ import { guestGuard } from '../../core/guards/guest/guest-guard';
 export const authRoutes: Routes = [
   {
     path: '',
-    canActivate: [guestGuard],
+    // canActivate: [guestGuard],
     children: [
       {
         path: 'register',

@@ -13,7 +13,7 @@ export const settingsRoutes: Routes = [
   {
     path: '',
     component: SettingsComponent,
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
     children: [
       {
         path: 'picture',

@@ -19,12 +19,12 @@ export const forumRoutes: Routes = [
   {
     path: 'discussion/:discussionId/edit',
     component: EditDiscussionComponent,
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
   },
   {
     path: 'message/:messageId/edit',
     component: EditMessageComponent,
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
   },
   {
     path: ':category',
@@ -38,7 +38,7 @@ export const forumRoutes: Routes = [
     path: ':category/:forum/new',
     component: NewDiscussionComponent,
     data: { title: 'DISCUSSION_PAGE.NEW_DISCUSSION' },
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
   },
   {
     path: ':category/:forum/:discussion',
