@@ -31,7 +31,11 @@
 
         <br />
 
-        @if (user && user?.role !== "regular") {
+        @if (
+          user &&
+          user.role !== "regular" &&
+          !(discussion()?.author?.role === "admin" && user.role !== "admin")
+        ) {
           <div id="this-status">
             <span>{{ "GENERAL.ACTIONS" | translate }}:&nbsp;</span>
 

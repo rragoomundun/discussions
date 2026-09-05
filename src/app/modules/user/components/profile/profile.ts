@@ -45,7 +45,24 @@ export class Profile {
     this.userId = parseInt(this.param.split('-')[0], 10);
 
     this.setSelectedSection();
+    this.getUserProfile();
 
+    this.route.paramMap.subscribe((params) => {
+      this.param = this.route.snapshot.paramMap.get('id') ?? '';
+      this.userId = parseInt(this.param.split('-')[0], 10);
+
+      this.setSelectedSection();
+      this.getUserProfile();
+    });
+
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.setSelectedSection();
+      });
+  }
+
+  getUserProfile(): void {
     this.onLoad.set('true');
 
     this.userService.getUserProfile(this.userId).subscribe({
@@ -59,12 +76,6 @@ export class Profile {
         this.onLoad.set('error');
       },
     });
-
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.setSelectedSection();
-      });
   }
 
   setSelectedSection(): void {
