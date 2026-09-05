@@ -72,9 +72,10 @@
     }
   </div>
 
-  <div class="card-footer">
-    <div class="app-font-size-xs">
-      <a href="#">
+  @if (canEdit) {
+    <div class="card-footer">
+      <div class="app-font-size-xs">
+        <!-- <a href="#">
         {{ "MESSAGE_COMPONENT.TAG_USER" | translate }}
       </a>
 
@@ -90,29 +91,29 @@
         {{ "MESSAGE_COMPONENT.REPORT_USER" | translate }}
       </a>
 
-      &nbsp;
+      &nbsp; -->
 
-      @if (canEdit) {
-        @if ((page() === 1 || !page()) && index() === 0) {
-          <a routerLink="/discussion/{{ discussionId() }}/edit">
-            {{ "MESSAGE_COMPONENT.EDIT" | translate }}
-          </a>
-        } @else {
-          <a
-            routerLink="/message/{{ message()?.id }}/edit"
-            [queryParams]="{
-              discussionId: discussionId(),
-              discussionPage: page() ? page() : null,
-            }"
-          >
-            {{ "MESSAGE_COMPONENT.EDIT" | translate }}
-          </a>
+        @if (canEdit) {
+          @if ((page() === 1 || !page()) && index() === 0) {
+            <a routerLink="/discussion/{{ discussionId() }}/edit">
+              {{ "MESSAGE_COMPONENT.EDIT" | translate }}
+            </a>
+          } @else {
+            <a
+              routerLink="/message/{{ message()?.id }}/edit"
+              [queryParams]="{
+                discussionId: discussionId(),
+                discussionPage: page() ? page() : null,
+              }"
+            >
+              {{ "MESSAGE_COMPONENT.EDIT" | translate }}
+            </a>
+          }
         }
-      }
-    </div>
+      </div>
 
-    <div>
-      <a id="this-thumbs-up" href="#">
+      <div>
+        <!-- <a id="this-thumbs-up" href="#">
         <span class="fa-solid fa-thumbs-up"></span>3
       </a>
 
@@ -120,7 +121,8 @@
 
       <a id="this-thumbs-down" href="#">
         <span class="fa-solid fa-thumbs-down"></span>1
-      </a>
+      </a> -->
+      </div>
     </div>
-  </div>
+  }
 </div>
