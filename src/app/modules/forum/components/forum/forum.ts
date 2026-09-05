@@ -13,7 +13,7 @@ import { Discussion as DiscussionModel } from '../../../../shared/models/Discuss
 import { BreadcrumbItem } from '../../../../shared/models/BreadcrumbItem';
 import { User } from '../../../../shared/models/User';
 
-import { DiscussionLink as DiscussionLinkComponent } from '../discussion-link/discussion-link';
+import { DiscussionLink as DiscussionLinkComponent } from '../../../../shared/components/discussion-link/discussion-link';
 import { Pagination as PaginationComponent } from '../../../../shared/components/pagination/pagination';
 import { Breadcrumb as BreadcrumbComponent } from '../../../../shared/components/breadcrumb/breadcrumb';
 

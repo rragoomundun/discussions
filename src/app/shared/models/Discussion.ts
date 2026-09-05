@@ -22,6 +22,8 @@ export interface Discussion {
   title: string;
   open: boolean;
   createdAt: string;
+  category: DiscussionDetailCategory;
+  forum: DiscussionDetailForum;
   user: DiscussionUser;
   nbMessages: number;
   lastMessage: DiscussionLastMessage | null;

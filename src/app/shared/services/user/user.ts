@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { User as UserModel } from '../../models/User';
 import { UserProfile } from '../../models/UserProfile';
 import { UserInformations } from '../../models/UserInformations';
+import { UserDiscussionsMeta } from '../../models/UserDiscussionsMeta';
+import { Discussion as DiscussionModel } from '../../models/Discussion';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +28,22 @@ export class User {
   getUserInformations(id: number): Observable<UserInformations> {
     return this.http.get<UserInformations>(
       `${this.API_PREFIX}/${id}/informations`,
+    );
+  }
+
+  getUserDiscussionsMeta(id: number): Observable<UserDiscussionsMeta> {
+    return this.http.get<UserDiscussionsMeta>(
+      `${this.API_PREFIX}/${id}/discussions/meta`,
+    );
+  }
+
+  getUserDiscussions(
+    id: number,
+    page: number | null,
+  ): Observable<DiscussionModel[]> {
+    return this.http.get<DiscussionModel[]>(
+      `${this.API_PREFIX}/${id}/discussions`,
+      { params: page !== null ? { page } : {} },
     );
   }
 

@@ -4,9 +4,9 @@ import { DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { Discussion as DiscussionModel } from '../../../../shared/models/Discussion';
+import { Discussion as DiscussionModel } from '../../models/Discussion';
 
-import * as urlUtil from '../../../../shared/utils/url/url.util';
+import * as urlUtil from '../../utils/url/url.util';
 
 @Component({
   selector: 'app-discussion-link',
@@ -17,7 +17,7 @@ import * as urlUtil from '../../../../shared/utils/url/url.util';
 export class DiscussionLink {
   discussion = input<DiscussionModel>();
   discussionSlug = computed(() => {
-    return `${this.discussion()!.id}-${urlUtil.getSlug(this.discussion()!.title)}`;
+    return `/${this.discussion()!.category!.id}-${urlUtil.getSlug(this.discussion()!.category!.name)}/${this.discussion()!.forum!.id}-${urlUtil.getSlug(this.discussion()!.forum!.name)}/${this.discussion()!.id}-${urlUtil.getSlug(this.discussion()!.title)}`;
   });
   userSlug = computed(() => {
     return `${this.discussion()!.user.id}-${urlUtil.getSlug(this.discussion()!.user.name)}`;

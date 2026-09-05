@@ -1,0 +1,31 @@
+@if (onLoadMeta() === "true" || onLoadDiscussions() === "true") {
+  <div class="app-skeleton-loading-item mb-3 mt-3"></div>
+  <div class="app-skeleton-loading-item mb-3"></div>
+  <div class="app-skeleton-loading-item"></div>
+} @else if (onLoadMeta() === "success" && onLoadDiscussions() === "success") {
+  @if (nbPages() > 1) {
+    <div class="border-bottom pb-3 mt-3">
+      <app-pagination [nbPages]="nbPages()"></app-pagination>
+    </div>
+  }
+
+  @if (discussions().length > 0) {
+    @for (discussion of discussions(); track discussion) {
+      <app-discussion-link [discussion]="discussion"></app-discussion-link>
+    }
+  } @else {
+    <div class="pt-3">
+      <p>{{ "USER_PAGE.DISCUSSIONS_PAGE.NO_DISCUSSIONS" | translate }}</p>
+    </div>
+  }
+
+  @if (discussions().length > 0 && nbPages() > 1) {
+    <div class="mt-3">
+      <app-pagination [nbPages]="nbPages()"></app-pagination>
+    </div>
+  }
+} @else {
+  <p id="this-error" class="text-danger">
+    {{ "USER_PAGE.DISCUSSIONS_PAGE.ERROR" | translate }}
+  </p>
+}
