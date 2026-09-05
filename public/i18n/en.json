@@ -294,7 +294,10 @@
       "ERROR": "An error occurred while loading this user's discussions."
     },
     "MESSAGES_PAGE": {
-      "TAB_NAME": "Messages"
+      "TAB_NAME": "Messages",
+      "IN": "In:",
+      "NO_MESSAGES": "This user hasn't posted any messages yet.",
+      "ERROR": "An error occurred while loading this user's messages."
     }
   }
 }

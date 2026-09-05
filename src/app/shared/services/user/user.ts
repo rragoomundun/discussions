@@ -8,6 +8,8 @@ import { UserProfile } from '../../models/UserProfile';
 import { UserInformations } from '../../models/UserInformations';
 import { UserDiscussionsMeta } from '../../models/UserDiscussionsMeta';
 import { Discussion as DiscussionModel } from '../../models/Discussion';
+import { UserMessagesMeta } from '../../models/UserMessagesMeta';
+import { UserMessage } from '../../models/UserMessage';
 
 @Injectable({
   providedIn: 'root',
@@ -45,6 +47,21 @@ export class User {
       `${this.API_PREFIX}/${id}/discussions`,
       { params: page !== null ? { page } : {} },
     );
+  }
+
+  getUserMessagesMeta(id: number): Observable<UserMessagesMeta> {
+    return this.http.get<UserMessagesMeta>(
+      `${this.API_PREFIX}/${id}/messages/meta`,
+    );
+  }
+
+  getUserMessages(
+    id: number,
+    page: number | null,
+  ): Observable<UserMessage[]> {
+    return this.http.get<UserMessage[]>(`${this.API_PREFIX}/${id}/messages`, {
+      params: page !== null ? { page } : {},
+    });
   }
 
   updateEmail(email: string): Observable<void> {

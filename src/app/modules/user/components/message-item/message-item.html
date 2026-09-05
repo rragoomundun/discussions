@@ -1,0 +1,38 @@
+<div class="card mb-3">
+  <div class="card-header">
+    {{ "USER_PAGE.MESSAGES_PAGE.IN" | translate }}
+
+    <nav aria-label="breadcrumb" class="d-inline-block">
+      <ol class="breadcrumb d-inline-flex align-items-center mb-0">
+        <li class="breadcrumb-item">
+          <a [routerLink]="['/', categorySlug()]">{{
+            message().category.name
+          }}</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a [routerLink]="['/', categorySlug(), forumSlug()]">{{
+            message().forum.name
+          }}</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a
+            [routerLink]="['/', categorySlug(), forumSlug(), discussionSlug()]"
+            [queryParams]="{ page: message().discussion.page }"
+            [fragment]="'message-' + message().message.id"
+          >
+            {{ message().discussion.title }}
+          </a>
+        </li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="card-body">
+    <p class="message-date">
+      {{ "MESSAGE_COMPONENT.POSTED" | translate }}
+      {{ message().message.date | date: "MMM d, yyy, HH:mm" }}
+    </p>
+
+    <div [innerHTML]="html()"></div>
+  </div>
+</div>

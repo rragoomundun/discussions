@@ -1,0 +1,31 @@
+@if (onLoadMeta() === "true" || onLoadMessages() === "true") {
+  <div class="app-skeleton-loading-item mb-3 mt-3"></div>
+  <div class="app-skeleton-loading-item mb-3"></div>
+  <div class="app-skeleton-loading-item"></div>
+} @else if (onLoadMeta() === "success" && onLoadMessages() === "success") {
+  @if (nbPages() > 1) {
+    <div class="border-bottom pb-3 mt-3">
+      <app-pagination [nbPages]="nbPages()"></app-pagination>
+    </div>
+  }
+
+  <div class="pt-3">
+    @if (messages().length > 0) {
+      @for (message of messages(); track message) {
+        <app-message-item [message]="message"></app-message-item>
+      }
+    } @else {
+      <p>{{ "USER_PAGE.MESSAGES_PAGE.NO_MESSAGES" | translate }}</p>
+    }
+  </div>
+
+  @if (messages().length > 0 && nbPages() > 1) {
+    <div class="mt-3">
+      <app-pagination [nbPages]="nbPages()"></app-pagination>
+    </div>
+  }
+} @else {
+  <p id="this-error" class="text-danger">
+    {{ "USER_PAGE.MESSAGES_PAGE.ERROR" | translate }}
+  </p>
+}
