@@ -54,9 +54,27 @@
         @for (discussion of discussions(); track discussion) {
           <app-discussion-link [discussion]="discussion"></app-discussion-link>
         }
-      } @else {
+      } @else if (user$ | async) {
         <div class="pt-3">
           <p>{{ "FORUM_PAGE.NO_DISCUSSIONS" | translate }}</p>
+        </div>
+      } @else {
+        <div class="pt-3">
+          <p>
+            {{ "FORUM_PAGE.NO_DISCUSSIONS_2" | translate }}
+
+            <a [routerLink]="['/auth/login']">
+              {{ "GENERAL.LOGIN" | translate }}
+            </a>
+
+            {{ "GENERAL.OR_LOWERCASE" | translate }}
+
+            <a [routerLink]="['/auth/register']">
+              {{ "GENERAL.CREATE_ACCOUNT_LOWERCASE" | translate }}
+            </a>
+
+            {{ "FORUM_PAGE.AUTH_CREATE" | translate }}
+          </p>
         </div>
       }
 

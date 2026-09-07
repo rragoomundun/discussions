@@ -220,6 +220,8 @@
   "FORUM_PAGE": {
     "NOT_FOUND": "This forum cannot be found.",
     "NO_DISCUSSIONS": "They are no discussions in this forum. Start a new one by clicking on the \"New Discussion\" button.",
+    "NO_DISCUSSIONS_2": "There are no discussions in this forum.",
+    "AUTH_CREATE": "to create a new discussion.",
     "REPLIES_LOWERCASE": "replies",
     "LAST_MESSAGE": "Last message"
   },
