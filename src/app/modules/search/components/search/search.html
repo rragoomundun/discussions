@@ -47,7 +47,7 @@
   @if (onLoadMeta() === "true") {
     <div class="app-skeleton-loading-item this-pagination-load"></div>
   } @else if (onLoadMeta() === "success" && nbPages() > 1) {
-    <div class="border-bottom pb-3 mb-3">
+    <div class="pb-3 mb-3">
       <app-pagination [nbPages]="nbPages()"></app-pagination>
     </div>
   }
