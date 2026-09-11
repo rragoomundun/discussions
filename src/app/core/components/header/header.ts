@@ -1,8 +1,8 @@
-import { Component, inject, HostListener } from '@angular/core';
+import { Component, inject, signal, HostListener } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 
 import { TranslateModule } from '@ngx-translate/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
@@ -29,11 +29,14 @@ import * as urlUtil from '../../../shared/utils/url/url.util';
 })
 export class Header {
   private store = inject(Store<AppState>);
+  private router = inject(Router);
 
   appService = inject(AppService);
 
   config$: Observable<Config | null>;
   user$: Observable<User | null | undefined>;
+
+  showMobileSearch = signal(false);
 
   constructor() {
     this.config$ = this.store.select(selectConfigModel);
@@ -42,6 +45,19 @@ export class Header {
 
   getUserLink(user: User): string {
     return `/user/${user.id}-${urlUtil.getSlug(user.name)}`;
+  }
+
+  toggleMobileSearch(): void {
+    this.showMobileSearch.update((show) => !show);
+  }
+
+  onSearch(inputEl: HTMLInputElement): void {
+    const query = inputEl.value.trim();
+
+    this.router.navigate(['/search'], { queryParams: { query } });
+
+    inputEl.value = '';
+    this.showMobileSearch.set(false);
   }
 
   hideHamburgerMenu(): void {
@@ -61,8 +77,12 @@ export class Header {
       '.navbar-collapse.collapse.show',
     );
 
-    if (header?.contains(event.target) === false && navbarTogglerEl) {
-      this.hideHamburgerMenu();
+    if (header?.contains(event.target) === false) {
+      if (navbarTogglerEl) {
+        this.hideHamburgerMenu();
+      }
+
+      this.showMobileSearch.set(false);
     }
   }
 

@@ -11,6 +11,67 @@ button.navbar-toggler {
   box-shadow: none;
 }
 
+#this-search-desktop,
+#this-search-mobile {
+  align-items: stretch;
+
+  input {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-right: none;
+  }
+
+  input:focus {
+    border-color: var(--app-color-primary) !important;
+    border-right: none !important;
+  }
+
+  input:focus + button {
+    border-color: var(--app-color-primary) !important;
+    border-left: none;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    height: auto;
+    padding: 0 1rem;
+    border: none;
+    border-top: 1px solid var(--bs-border-color);
+    border-bottom: 1px solid var(--bs-border-color);
+    border-right: 1px solid var(--bs-border-color);
+    background-color: var(--app-color-white);
+    border-top-right-radius: var(--app-border-radius);
+    border-bottom-right-radius: var(--app-border-radius);
+    transition: var(--app-transition-time);
+  }
+
+  button:hover {
+    color: var(--app-color-white);
+    background-color: var(--app-color-primary);
+    transition: var(--app-transition-time);
+  }
+}
+
+#this-search-desktop {
+  width: 300px;
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+#this-search-mobile {
+  display: flex;
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+
+#this-mobile-search-icon {
+  border: none;
+  background: none;
+  padding: 0 1rem;
+  margin-left: auto;
+}
+
 .navbar,
 .container {
   padding: 0;
@@ -43,8 +104,6 @@ button.navbar-toggler {
 }
 
 #this-menu {
-  margin-left: auto;
-
   a {
     color: var(--app-color-primary-hover);
   }

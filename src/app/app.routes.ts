@@ -31,6 +31,11 @@ export const routes: Routes = [
       import('./modules/user/user.routes').then((m) => m.userRoutes),
   },
   {
+    path: 'search',
+    loadChildren: () =>
+      import('./modules/search/search.routes').then((m) => m.searchRoutes),
+  },
+  {
     path: '',
     loadChildren: () =>
       import('./modules/forum/forum.routes').then((m) => m.forumRoutes),

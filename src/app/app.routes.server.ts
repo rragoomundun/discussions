@@ -26,6 +26,10 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Server,
   },
   {
+    path: 'search',
+    renderMode: RenderMode.Client,
+  },
+  {
     path: ':category',
     renderMode: RenderMode.Server,
   },

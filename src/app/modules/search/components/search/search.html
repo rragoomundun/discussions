@@ -1,0 +1,54 @@
+<app-breadcrumb [items]="breadcrumbItems()"></app-breadcrumb>
+
+<div class="app-container container">
+  <div class="input-group border-bottom pb-3 mb-3">
+    <input
+      #queryInput
+      type="text"
+      class="form-control"
+      [value]="query()"
+      (keydown.enter)="onSearch(queryInput.value)"
+    />
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="onSearch(queryInput.value)"
+    >
+      <span class="fa-solid fa-magnifying-glass"></span>
+    </button>
+  </div>
+
+  @if (onLoadMeta() === "true") {
+    <div class="app-skeleton-loading-item this-pagination-load mb-3"></div>
+  } @else if (onLoadMeta() === "success" && nbPages() > 1) {
+    <div class="border-bottom pb-3 mb-3">
+      <app-pagination [nbPages]="nbPages()"></app-pagination>
+    </div>
+  }
+
+  @if (onLoadResults() === "true") {
+    <div class="app-skeleton-loading-item this-loading-item mb-3"></div>
+    <div class="app-skeleton-loading-item this-loading-item mb-3"></div>
+    <div class="app-skeleton-loading-item this-loading-item mb-3"></div>
+  } @else if (onLoadResults() === "success") {
+    @if (results().length > 0) {
+      @for (result of results(); track result) {
+        <app-search-result [result]="result"></app-search-result>
+      }
+    } @else {
+      <p>{{ "SEARCH_PAGE.NO_RESULTS" | translate }}</p>
+    }
+  } @else {
+    <p id="this-error" class="text-danger">
+      {{ "SEARCH_PAGE.ERROR" | translate }}
+    </p>
+  }
+
+  @if (onLoadMeta() === "true") {
+    <div class="app-skeleton-loading-item this-pagination-load"></div>
+  } @else if (onLoadMeta() === "success" && nbPages() > 1) {
+    <div class="border-bottom pb-3 mb-3">
+      <app-pagination [nbPages]="nbPages()"></app-pagination>
+    </div>
+  }
+</div>

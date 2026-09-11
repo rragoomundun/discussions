@@ -18,6 +18,15 @@
     }
 
     <button
+      id="this-mobile-search-icon"
+      class="d-lg-none"
+      type="button"
+      (click)="toggleMobileSearch()"
+    >
+      <span class="fa-solid fa-magnifying-glass"></span>
+    </button>
+
+    <button
       id="this-hamburger-icon"
       class="navbar-toggler"
       type="button"
@@ -31,6 +40,19 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div id="this-search-desktop" class="d-none d-lg-flex">
+        <input
+          #desktopSearchInput
+          type="text"
+          class="form-control"
+          [placeholder]="'GENERAL.SEARCH_PLACEHOLDER' | translate"
+          (keydown.enter)="onSearch(desktopSearchInput)"
+        />
+        <button type="button" (click)="onSearch(desktopSearchInput)">
+          <span class="fa-solid fa-magnifying-glass"></span>
+        </button>
+      </div>
+
       <ul id="this-menu" class="navbar-nav">
         @if (user) {
           <li class="nav-item dropdown">
@@ -118,5 +140,20 @@
         }
       </ul>
     </div>
+
+    @if (showMobileSearch()) {
+      <div id="this-search-mobile" class="d-lg-none">
+        <input
+          #mobileSearchInput
+          type="text"
+          class="form-control"
+          [placeholder]="'GENERAL.SEARCH_PLACEHOLDER' | translate"
+          (keydown.enter)="onSearch(mobileSearchInput)"
+        />
+        <button type="button" (click)="onSearch(mobileSearchInput)">
+          <span class="fa-solid fa-magnifying-glass"></span>
+        </button>
+      </div>
+    }
   </nav>
 </header>
