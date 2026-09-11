@@ -61,7 +61,8 @@
     "ACTIONS": "Actions",
     "YES": "Yes",
     "NO": "No",
-    "CANCEL": "Cancel"
+    "CANCEL": "Cancel",
+    "SEARCH_PLACEHOLDER": "Search for something..."
   },
   "ERRORS": {
     "NAME_IN_USE": "This name is already used.",
@@ -301,5 +302,11 @@
       "NO_MESSAGES": "This user hasn't posted any messages yet.",
       "ERROR": "An error occurred while loading this user's messages."
     }
+  },
+  "SEARCH_PAGE": {
+    "TITLE": "Search",
+    "IN": "In:",
+    "NO_RESULTS": "No results found.",
+    "ERROR": "An error occurred while loading the search results."
   }
 }
