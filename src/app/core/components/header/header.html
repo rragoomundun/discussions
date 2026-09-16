@@ -121,14 +121,22 @@
           </li>
 
           <li class="d-lg-none">
-            <a [routerLink]="getUserLink(user)" class="dropdown-item">
+            <a
+              [routerLink]="getUserLink(user)"
+              (click)="hideHamburgerMenu()"
+              class="dropdown-item"
+            >
               <span class="fa-regular fa-circle-user"></span>
               &nbsp;
               {{ "GENERAL.MY_PROFILE" | translate }}
             </a>
           </li>
           <li class="d-lg-none">
-            <a routerLink="/settings" class="dropdown-item">
+            <a
+              (click)="hideHamburgerMenu()"
+              routerLink="/settings"
+              class="dropdown-item"
+            >
               <span class="fa-solid fa-gears"></span>
               &nbsp;
               {{ "GENERAL.SETTINGS" | translate }}
@@ -136,7 +144,11 @@
           </li>
           @if (user.role === "admin") {
             <li class="d-lg-none">
-              <a routerLink="/forum-settings" class="dropdown-item">
+              <a
+                (click)="hideHamburgerMenu()"
+                routerLink="/forum-settings"
+                class="dropdown-item"
+              >
                 <span class="fa-solid fa-gear"></span>
                 &nbsp;
                 {{ "FORUM_SETTINGS_PAGE.CONFIGURATION_PAGE.TITLE" | translate }}
@@ -145,7 +157,7 @@
           }
           <li class="d-lg-none">
             <a
-              (click)="onLogoutClick()"
+              (click)="onLogoutClick(); hideHamburgerMenu()"
               href="javascript:void(0)"
               class="dropdown-item"
             >
