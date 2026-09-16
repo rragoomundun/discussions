@@ -21,12 +21,13 @@
       id="this-mobile-search-icon"
       class="d-lg-none"
       type="button"
-      (click)="toggleMobileSearch()"
+      (click)="toggleMobileSearch(); hideHamburgerMenu()"
     >
       <span class="fa-solid fa-magnifying-glass"></span>
     </button>
 
     <button
+      (click)="hideMobileSearch()"
       id="this-hamburger-icon"
       class="navbar-toggler"
       type="button"
@@ -55,7 +56,7 @@
 
       <ul id="this-menu" class="navbar-nav">
         @if (user) {
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown d-none d-lg-block">
             <a
               class="nav-link dropdown-toggle"
               href="javascript:void()"
@@ -117,6 +118,41 @@
                 </a>
               </li>
             </ul>
+          </li>
+
+          <li class="d-lg-none">
+            <a [routerLink]="getUserLink(user)" class="dropdown-item">
+              <span class="fa-regular fa-circle-user"></span>
+              &nbsp;
+              {{ "GENERAL.MY_PROFILE" | translate }}
+            </a>
+          </li>
+          <li class="d-lg-none">
+            <a routerLink="/settings" class="dropdown-item">
+              <span class="fa-solid fa-gears"></span>
+              &nbsp;
+              {{ "GENERAL.SETTINGS" | translate }}
+            </a>
+          </li>
+          @if (user.role === "admin") {
+            <li class="d-lg-none">
+              <a routerLink="/forum-settings" class="dropdown-item">
+                <span class="fa-solid fa-gear"></span>
+                &nbsp;
+                {{ "FORUM_SETTINGS_PAGE.CONFIGURATION_PAGE.TITLE" | translate }}
+              </a>
+            </li>
+          }
+          <li class="d-lg-none">
+            <a
+              (click)="onLogoutClick()"
+              href="javascript:void(0)"
+              class="dropdown-item"
+            >
+              <span class="fa-solid fa-arrow-right-from-bracket"></span>
+              &nbsp;
+              {{ "GENERAL.LOGOUT" | translate }}
+            </a>
           </li>
         } @else {
           <li class="nav-item">

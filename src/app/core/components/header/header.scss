@@ -11,6 +11,10 @@ button.navbar-toggler {
   box-shadow: none;
 }
 
+.navbar-collapse.collapsing {
+  transition: none;
+}
+
 #this-search-desktop,
 #this-search-mobile {
   align-items: stretch;
@@ -54,9 +58,11 @@ button.navbar-toggler {
 }
 
 #this-search-desktop {
-  width: 300px;
-  margin-left: auto;
-  margin-right: 1rem;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  width: 100%;
+  max-width: 500px;
 }
 
 #this-search-mobile {
@@ -104,6 +110,8 @@ button.navbar-toggler {
 }
 
 #this-menu {
+  margin-left: auto;
+
   a {
     color: var(--app-color-primary-hover);
   }

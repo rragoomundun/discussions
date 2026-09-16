@@ -70,6 +70,10 @@ export class Header {
     }
   }
 
+  hideMobileSearch(): void {
+    this.showMobileSearch.set(false);
+  }
+
   @HostListener('window:click', ['$event'])
   onWindowClick(event: any): void {
     const header = document.querySelector('header');
