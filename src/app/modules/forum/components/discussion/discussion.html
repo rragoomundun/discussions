@@ -144,6 +144,16 @@
       </div>
     }
   </div>
+} @else if (onLoadDiscussion() === "error") {
+  <div id="this-not-found" class="app-container container">
+    <h1>
+      <span class="fa-solid fa-triangle-exclamation"></span>
+
+      <br />
+
+      <span>{{ "DISCUSSION_PAGE.NOT_FOUND" | translate }}</span>
+    </h1>
+  </div>
 }
 
 <app-delete-discussion

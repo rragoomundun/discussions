@@ -65,6 +65,7 @@ a {
   color: var(--app-color-link);
   font-weight: bold;
   transition: color var(--app-transition-time);
+  text-decoration: none;
 }
 
 a:hover {
