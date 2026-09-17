@@ -49,6 +49,14 @@ export class Header {
 
   toggleMobileSearch(): void {
     this.showMobileSearch.update((show) => !show);
+
+    if (this.showMobileSearch()) {
+      setTimeout(() => {
+        document
+          .querySelector<HTMLInputElement>('#this-search-mobile input')
+          ?.focus();
+      }, 100);
+    }
   }
 
   onSearch(inputEl: HTMLInputElement): void {
