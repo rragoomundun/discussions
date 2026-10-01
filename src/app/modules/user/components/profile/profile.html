@@ -1,3 +1,5 @@
+@let user = user$ | async;
+
 @if (onLoad() === "true") {
   <div class="app-container container">
     <div class="app-skeleton-loading-item app-loading-breadcrumb mb-3"></div>
@@ -26,7 +28,46 @@
         />
       }
 
-      <h1 id="this-name" class="fs-3 mb-0">{{ profile()?.name }}</h1>
+      <br />
+
+      @let showEllipsis =
+        profile()?.active &&
+        profile()?.role === "regular" &&
+        (user?.role === "admin" || user?.role === "moderator");
+
+      <div id="this-name-box">
+        <h1
+          [class.this-profile-margin-left]="showEllipsis"
+          id="this-name"
+          class="fs-3 mb-0 d-inline-block"
+        >
+          {{ profile()?.name }}
+        </h1>
+
+        @if (showEllipsis) {
+          <div class="dropdown d-inline-block">
+            <a
+              href="javascript:void(0)"
+              aria-expanded="false"
+              data-bs-toggle="dropdown"
+            >
+              <span class="fa-solid fa-ellipsis-vertical"></span>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li>
+                <button
+                  type="button"
+                  class="dropdown-item"
+                  (click)="onWarnClick()"
+                >
+                  {{ "MESSAGE_COMPONENT.WARN" | translate }}
+                </button>
+              </li>
+            </ul>
+          </div>
+        }
+      </div>
 
       <p id="this-role">
         @if (profile()?.role === "admin") {
@@ -113,3 +154,5 @@
     </h1>
   </div>
 }
+
+<app-give-warning [user]="warnTarget()"></app-give-warning>

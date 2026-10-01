@@ -275,7 +275,8 @@
     "TAG_USER": "@ User",
     "QUOTE_USER": "Quote",
     "REPORT_USER": "Report",
-    "EDIT": "Edit"
+    "EDIT": "Edit",
+    "WARN": "Warn"
   },
   "EDIT_DISCUSSION_COMPONENT": {
     "TITLE": "Discussion Edition",
@@ -309,6 +310,12 @@
       "NO_MESSAGES": "This user hasn't posted any messages yet.",
       "ERROR": "An error occurred while loading this user's messages."
     }
+  },
+  "GIVE_WARNING_COMPONENT": {
+    "TITLE": "Give a warning to {{name}}",
+    "REASON": "Reason",
+    "SUCCESS": "Warning sent to {{name}}",
+    "ERROR": "An error occurred while sending the warning."
   },
   "SEARCH_PAGE": {
     "TITLE": "Search",

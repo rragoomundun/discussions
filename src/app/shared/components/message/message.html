@@ -72,7 +72,7 @@
     }
   </div>
 
-  @if (canEdit) {
+  @if (canEdit || canWarn) {
     <div class="card-footer">
       <div class="app-font-size-xs">
         <!-- <a href="#">
@@ -92,6 +92,16 @@
       </a>
 
       &nbsp; -->
+
+        @if (canWarn) {
+          <a href="javascript:void(0)" (click)="onWarnClick()">
+            {{ "MESSAGE_COMPONENT.WARN" | translate }}
+          </a>
+        }
+
+        @if (canWarn && canEdit) {
+          &nbsp;
+        }
 
         @if (canEdit) {
           @if ((page() === 1 || !page()) && index() === 0) {

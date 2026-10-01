@@ -1,4 +1,10 @@
-import { Component, inject, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  signal,
+  viewChild,
+} from '@angular/core';
 import {
   ActivatedRoute,
   NavigationEnd,
@@ -6,33 +12,53 @@ import {
   RouterModule,
 } from '@angular/router';
 
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { DatePipe } from '@angular/common';
-import { filter } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observable, filter } from 'rxjs';
 
+import { AppState } from '../../../../shared/store/app.state';
+import { selectUserModel } from '../../../../shared/store/user/user.selectors';
+
+import { User } from '../../../../shared/models/User';
 import { UserProfile } from '../../../../shared/models/UserProfile';
 import { BreadcrumbItem } from '../../../../shared/models/BreadcrumbItem';
+import { WarningTarget } from '../../../../shared/models/WarningTarget';
 
 import { Breadcrumb as BreadcrumbComponent } from '../../../../shared/components/breadcrumb/breadcrumb';
+import { GiveWarning as GiveWarningComponent } from '../../../../shared/components/give-warning/give-warning';
 
 import { User as UserService } from '../../../../shared/services/user/user';
 import { Seo as SeoService } from '../../../../shared/services/seo/seo';
 
 @Component({
   selector: 'app-profile',
-  imports: [RouterModule, TranslateModule, DatePipe, BreadcrumbComponent],
+  imports: [
+    RouterModule,
+    TranslateModule,
+    DatePipe,
+    AsyncPipe,
+    BreadcrumbComponent,
+    GiveWarningComponent,
+  ],
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
 })
 export class Profile {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  private store = inject(Store<AppState>);
   private userService = inject(UserService);
   private seoService = inject(SeoService);
 
   profile = signal<UserProfile | null>(null);
   breadcrumbItems = signal<BreadcrumbItem[]>([]);
   onLoad = signal('false');
+  warnTarget = computed<WarningTarget | undefined>(() =>
+    this.profile() ? { id: this.userId, name: this.profile()!.name } : undefined,
+  );
+
+  user$: Observable<User | null | undefined>;
 
   selectedSection: string = '';
 
@@ -40,7 +66,11 @@ export class Profile {
 
   private userId: number;
 
+  giveWarningComponent = viewChild(GiveWarningComponent);
+
   constructor() {
+    this.user$ = this.store.select(selectUserModel);
+
     this.param = this.route.snapshot.paramMap.get('id') ?? '';
     this.userId = parseInt(this.param.split('-')[0], 10);
 
@@ -95,5 +125,9 @@ export class Profile {
       const { value } = target;
       this.router.navigate([`/user/${this.param}/${value}`]);
     }
+  }
+
+  onWarnClick(): void {
+    this.giveWarningComponent()?.open();
   }
 }

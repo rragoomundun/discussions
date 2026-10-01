@@ -1,0 +1,53 @@
+<ng-template #modalEl let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+      {{ "GIVE_WARNING_COMPONENT.TITLE" | translate: { name: user()?.name } }}
+    </h4>
+
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss()"
+    ></button>
+  </div>
+
+  <form [formGroup]="formGroup" (submit)="onSendClick()">
+    <div class="modal-body">
+      <app-text-area
+        [id]="'this-reason'"
+        [label]="'GIVE_WARNING_COMPONENT.REASON' | translate"
+        [control]="'reason'"
+      ></app-text-area>
+    </div>
+
+    <div class="modal-footer">
+      @if (onSend() === "success") {
+        <small class="text-success">
+          {{
+            "GIVE_WARNING_COMPONENT.SUCCESS" | translate: { name: user()?.name }
+          }}
+        </small>
+      } @else {
+        @if (onSend() === "error") {
+          <small class="text-danger">
+            {{ "GIVE_WARNING_COMPONENT.ERROR" | translate }}
+          </small>
+
+          <br />
+        }
+
+        @if (onSend() !== "true") {
+          <button [disabled]="formGroup.invalid" class="btn btn-primary">
+            {{ "GENERAL.SEND" | translate }}
+          </button>
+        } @else {
+          <button [disabled]="true" class="btn btn-primary">
+            <span class="fas fa-spinner fa-spin"></span>
+            <span>{{ "GENERAL.SENDING" | translate }}</span>
+          </button>
+        }
+      }
+    </div>
+  </form>
+</ng-template>

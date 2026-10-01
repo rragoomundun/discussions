@@ -110,7 +110,11 @@
       }
 
       @for (message of messages(); track message) {
-        <app-message [index]="$index" [message]="message"></app-message>
+        <app-message
+          [index]="$index"
+          [message]="message"
+          (warn)="onWarnClick($event)"
+        ></app-message>
       }
 
       @if (messages().length > 0 && discussion()!.nbPages > 1) {
@@ -159,3 +163,5 @@
 <app-delete-discussion
   (confirmation)="onDeleteConfirmation()"
 ></app-delete-discussion>
+
+<app-give-warning [user]="warnTarget()"></app-give-warning>

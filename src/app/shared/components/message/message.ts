@@ -4,6 +4,7 @@ import {
   DestroyRef,
   inject,
   input,
+  output,
   signal,
 } from '@angular/core';
 
@@ -20,6 +21,7 @@ import { selectUserModel } from '../../store/user/user.selectors';
 
 import { Message as MessageModel } from '../../models/Message';
 import { User } from '../../models/User';
+import { WarningTarget } from '../../models/WarningTarget';
 
 import { Translation as TranslationService } from '../../services/translation/translation';
 
@@ -44,6 +46,7 @@ export class Message {
 
   message = input<MessageModel>();
   index = input<Number>(0);
+  warn = output<WarningTarget>();
   html = computed(() => {
     return textUtil.markdownToHTML(<string>this.message()?.message);
   });
@@ -75,6 +78,10 @@ export class Message {
     return messageUtil.canEdit(this.message(), this.user);
   }
 
+  get canWarn(): boolean {
+    return messageUtil.canWarn(this.message(), this.user);
+  }
+
   constructor() {
     this.user$ = this.store.select(selectUserModel);
     this.page.set(Number(this.activatedRoute.snapshot.queryParams['page']));
@@ -89,5 +96,12 @@ export class Message {
     );
 
     this.destroyRef.onDestroy(() => subscription.unsubscribe());
+  }
+
+  onWarnClick(): void {
+    this.warn.emit({
+      id: this.message()!.author.id,
+      name: this.message()!.author.name,
+    });
   }
 }

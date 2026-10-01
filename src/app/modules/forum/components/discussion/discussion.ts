@@ -16,11 +16,13 @@ import { User } from '../../../../shared/models/User';
 import { DiscussionDetail } from '../../../../shared/models/Discussion';
 import { Message as MessageModel } from '../../../../shared/models/Message';
 import { BreadcrumbItem } from '../../../../shared/models/BreadcrumbItem';
+import { WarningTarget } from '../../../../shared/models/WarningTarget';
 
 import { Pagination as PaginationComponent } from '../../../../shared/components/pagination/pagination';
 import { Message as MessageComponent } from '../../../../shared/components/message/message';
 import { MessageInput as MessageInputComponent } from '../../../../shared/components/message-input/message-input';
 import { Breadcrumb as BreadcrumbComponent } from '../../../../shared/components/breadcrumb/breadcrumb';
+import { GiveWarning as GiveWarningComponent } from '../../../../shared/components/give-warning/give-warning';
 import { DeleteDiscussion as DeleteDiscussionComponent } from '../delete-discussion/delete-discussion';
 
 import { Discussion as DiscussionService } from '../../../../shared/services/discussion/discussion';
@@ -40,6 +42,7 @@ import * as urlUtil from '../../../../shared/utils/url/url.util';
     MessageInputComponent,
     BreadcrumbComponent,
     DeleteDiscussionComponent,
+    GiveWarningComponent,
     AsyncPipe,
   ],
   templateUrl: './discussion.html',
@@ -55,6 +58,7 @@ export class Discussion {
 
   messageInputComponent = viewChild(MessageInputComponent);
   deleteDiscussionComponent = viewChild(DeleteDiscussionComponent);
+  giveWarningComponent = viewChild(GiveWarningComponent);
 
   discussion = signal<DiscussionDetail | null>(null);
   messages = signal<MessageModel[]>([]);
@@ -71,6 +75,7 @@ export class Discussion {
   onStatusChange = signal('false');
   onDelete = signal('false');
   onReply = signal('false');
+  warnTarget = signal<WarningTarget | undefined>(undefined);
 
   discussionId: number;
   page: number;
@@ -206,6 +211,11 @@ export class Discussion {
 
   onDeleteClick(): void {
     this.deleteDiscussionComponent()?.open();
+  }
+
+  onWarnClick(target: WarningTarget): void {
+    this.warnTarget.set(target);
+    this.giveWarningComponent()?.open();
   }
 
   onDeleteConfirmation(): void {

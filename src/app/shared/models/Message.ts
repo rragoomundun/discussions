@@ -5,11 +5,13 @@ export interface MessageAuthor {
   role: string;
   signature: string | null;
   isStarter: boolean;
+  active: boolean;
 }
 
 export interface MessageEditor {
   id: number;
   name: string;
+  active: boolean;
 }
 
 export interface Message {

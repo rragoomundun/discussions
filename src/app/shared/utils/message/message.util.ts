@@ -13,3 +13,15 @@ export function canEdit(
     message?.author.id === user?.id
   );
 }
+
+export function canWarn(
+  message: Message | undefined,
+  user: User | null | undefined,
+) {
+  return !!(
+    user &&
+    message?.author.role === 'regular' &&
+    message?.author.active &&
+    ['moderator', 'admin'].includes(user.role)
+  );
+}
