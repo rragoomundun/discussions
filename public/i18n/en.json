@@ -71,7 +71,8 @@
     "EMAIL_NOT_FOUND": "Cannot find any account for this email.",
     "PASSWORD_MIN_LENGTH": "The password must have at least 8 characters.",
     "PASSWORD_NOT_STRONG": "The password is not strong enough. A strong password must contains at least eight characters, one uppercase letter, one lowercase letter, one number, and one special character.",
-    "PASSWORD_CONFIRMATION_NO_MATCH": "The confirmed password does not match the password."
+    "PASSWORD_CONFIRMATION_NO_MATCH": "The confirmed password does not match the password.",
+    "WARNING_LIMIT_MIN": "The warning limit must be greater or equals to 5."
   },
   "LANGUAGES": {
     "ENGLISH": "English"
@@ -172,6 +173,12 @@
       "LINK_URL": "Link",
       "ADD_LINK": "Add Link",
       "SUCCESS": "Bottom links successfully updated."
+    },
+    "WARNINGS_PAGE": {
+      "TITLE": "Setup Warnings",
+      "TAB_NAME": "Warnings",
+      "WARNING_LIMIT": "Warning limit",
+      "SUCCESS": "Warning limit successfully updated."
     }
   },
   "SETTINGS_PAGE": {

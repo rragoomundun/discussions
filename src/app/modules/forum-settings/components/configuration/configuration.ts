@@ -66,6 +66,8 @@ export class Configuration {
   onFaviconUpload = signal('false');
   onFaviconDelete = signal('false');
 
+  private warningLimit = 5;
+
   formGroup = signal(
     new FormGroup({
       title: new FormControl('', [Validators.required]),
@@ -98,6 +100,7 @@ export class Configuration {
           );
           this.formGroup().controls.showTitle.setValue(config.showTitle);
           this.formGroup().controls.showLogo.setValue(config.showLogo);
+          this.warningLimit = config.warningLimit;
         }
       },
     );
@@ -115,6 +118,7 @@ export class Configuration {
       metaDescription: <string>this.formGroup().controls.metaDescription.value,
       showTitle: <boolean>this.formGroup().controls.showTitle.value,
       showLogo: <boolean>this.formGroup().controls.showLogo.value,
+      warningLimit: this.warningLimit,
       /*
        * Exists to maintain compatibility with the model,
        * it won't be used in the backend.

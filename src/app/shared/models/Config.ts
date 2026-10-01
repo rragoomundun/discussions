@@ -7,5 +7,6 @@ export interface Config {
   metaDescription: string;
   showTitle: boolean;
   showLogo: boolean;
+  warningLimit: number;
   createdAt: Date;
 }

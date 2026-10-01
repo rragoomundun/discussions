@@ -4,6 +4,7 @@ import { ForumSettings as ForumSettingsComponent } from './components/forum-sett
 import { Configuration as ConfigurationComponent } from './components/configuration/configuration';
 import { Forums as ForumsComponent } from './components/forums/forums';
 import { BottomLinks as BottomLinksComponent } from './components/bottom-links/bottom-links';
+import { Warnings as WarningsComponent } from './components/warnings/warnings';
 
 import { adminGuard } from '../../core/guards/admin/admin-guard';
 
@@ -26,6 +27,11 @@ export const forumSettingsRoutes: Routes = [
         path: 'bottom-links',
         component: BottomLinksComponent,
         data: { title: 'FORUM_SETTINGS_PAGE.BOTTOM_LINKS_PAGE.TITLE' },
+      },
+      {
+        path: 'warnings',
+        component: WarningsComponent,
+        data: { title: 'FORUM_SETTINGS_PAGE.WARNINGS_PAGE.TITLE' },
       },
       {
         path: '**',

@@ -1,0 +1,33 @@
+<form [formGroup]="formGroup" (submit)="onSubmit()">
+  <div class="mb-3">
+    <app-input
+      [id]="'this-warning-limit'"
+      [label]="'FORUM_SETTINGS_PAGE.WARNINGS_PAGE.WARNING_LIMIT' | translate"
+      [type]="'number'"
+      [min]="5"
+      [control]="'warningLimit'"
+      [error]="formErrors().warningLimit"
+    ></app-input>
+  </div>
+
+  <div class="border-top pt-3 text-center">
+    @if (onUpdateWarningLimit() === "success") {
+      <small class="text-success">
+        {{ "FORUM_SETTINGS_PAGE.WARNINGS_PAGE.SUCCESS" | translate }}
+      </small>
+
+      <br /><br />
+    }
+
+    @if (onUpdateWarningLimit() !== "true") {
+      <button [disabled]="formGroup.invalid" class="btn btn-primary">
+        {{ "GENERAL.SAVE" | translate }}
+      </button>
+    } @else {
+      <button [disabled]="true" class="btn btn-primary">
+        <span class="fas fa-spinner fa-spin"></span>
+        <span>{{ "GENERAL.SAVING" | translate }}</span>
+      </button>
+    }
+  </div>
+</form>

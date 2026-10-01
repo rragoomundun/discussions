@@ -56,6 +56,7 @@ export const configReducer = createReducer(
       metaDescription: '',
       showTitle: true,
       showLogo: false,
+      warningLimit: 5,
       createdAt: new Date(),
     },
     onInit: 'success',
@@ -99,6 +100,7 @@ export const configReducer = createReducer(
       metaDescription: config.metaDescription,
       showTitle: config.showTitle,
       showLogo: config.showLogo,
+      warningLimit: <number>state.config?.warningLimit,
       createdAt: <Date>state.config?.createdAt,
     },
     onUpdateConfig: 'success',
@@ -124,5 +126,10 @@ export const configReducer = createReducer(
   on(ConfigActions.updateBottomLinksFailure, (state) => ({
     ...state,
     onUpdateBottomLinks: 'error',
+  })),
+
+  on(ConfigActions.updateWarningLimitSuccess, (state, { warningLimit }) => ({
+    ...state,
+    config: state.config ? { ...state.config, warningLimit } : state.config,
   })),
 );

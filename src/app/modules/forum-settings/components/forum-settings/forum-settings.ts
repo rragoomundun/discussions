@@ -51,6 +51,8 @@ export class ForumSettings implements OnInit {
       this.selectedSection = 'forums';
     } else if (this.router.url.includes('bottom-links')) {
       this.selectedSection = 'bottom-links';
+    } else if (this.router.url.includes('warnings')) {
+      this.selectedSection = 'warnings';
     }
   }
 

@@ -40,4 +40,14 @@ export class Config {
       withCredentials: true,
     });
   }
+
+  updateWarningLimit(limit: number): Observable<null> {
+    return this.http.put<null>(
+      `${this.API_PREFIX}/warning-limit`,
+      { limit },
+      {
+        withCredentials: true,
+      },
+    );
+  }
 }

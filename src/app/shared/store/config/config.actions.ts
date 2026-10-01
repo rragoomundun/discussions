@@ -54,3 +54,8 @@ export const updateBottomLinksSuccess = createAction(
 export const updateBottomLinksFailure = createAction(
   '[Config] Update Bottom Links Failure',
 );
+
+export const updateWarningLimitSuccess = createAction(
+  '[Config] Update Warning Limit Success',
+  props<{ warningLimit: number }>(),
+);

@@ -29,6 +29,13 @@
         >
           {{ "FORUM_SETTINGS_PAGE.BOTTOM_LINKS_PAGE.TAB_NAME" | translate }}
         </a>
+        <a
+          routerLink="/forum-settings/warnings"
+          routerLinkActive="active"
+          class="nav-link"
+        >
+          {{ "FORUM_SETTINGS_PAGE.WARNINGS_PAGE.TAB_NAME" | translate }}
+        </a>
       </nav>
     </div>
 
@@ -46,6 +53,9 @@
         </option>
         <option value="bottom-links">
           {{ "FORUM_SETTINGS_PAGE.BOTTOM_LINKS_PAGE.TAB_NAME" | translate }}
+        </option>
+        <option value="warnings">
+          {{ "FORUM_SETTINGS_PAGE.WARNINGS_PAGE.TAB_NAME" | translate }}
         </option>
       </select>
     </div>
