@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
+import { UserWarning } from '../../models/UserWarning';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -17,5 +19,11 @@ export class Warning {
       { message, userId },
       { withCredentials: true },
     );
+  }
+
+  getUserWarnings(userId: number): Observable<UserWarning[]> {
+    return this.http.get<UserWarning[]>(`${this.API_PREFIX}/all`, {
+      params: { userId },
+    });
   }
 }

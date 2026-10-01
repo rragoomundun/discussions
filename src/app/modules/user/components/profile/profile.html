@@ -1,4 +1,7 @@
 @let user = user$ | async;
+@let canSeeWarnings =
+  profile()?.role === "regular" &&
+  (userId === user?.id || user?.role === "admin" || user?.role === "moderator");
 
 @if (onLoad() === "true") {
   <div class="app-container container">
@@ -117,6 +120,16 @@
           >
             {{ "USER_PAGE.MESSAGES_PAGE.TAB_NAME" | translate }}
           </a>
+
+          @if (canSeeWarnings) {
+            <a
+              [routerLink]="['/user', param, 'warnings']"
+              routerLinkActive="active"
+              class="nav-link flex-fill text-center ms-2"
+            >
+              {{ "USER_PAGE.WARNINGS_PAGE.TAB_NAME" | translate }}
+            </a>
+          }
         </nav>
       </div>
 
@@ -135,6 +148,11 @@
           <option value="messages">
             {{ "USER_PAGE.MESSAGES_PAGE.TAB_NAME" | translate }}
           </option>
+          @if (canSeeWarnings) {
+            <option value="warnings">
+              {{ "USER_PAGE.WARNINGS_PAGE.TAB_NAME" | translate }}
+            </option>
+          }
         </select>
       </div>
 

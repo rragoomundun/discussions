@@ -309,6 +309,13 @@
       "IN": "In:",
       "NO_MESSAGES": "This user hasn't posted any messages yet.",
       "ERROR": "An error occurred while loading this user's messages."
+    },
+    "WARNINGS_PAGE": {
+      "TAB_NAME": "Warnings",
+      "BY": "By",
+      "NO_WARNINGS": "No warnings.",
+      "NO_REASON": "No reason given.",
+      "ERROR": "An error occurred while loading this user's warnings."
     }
   },
   "GIVE_WARNING_COMPONENT": {

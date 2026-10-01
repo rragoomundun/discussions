@@ -1,0 +1,19 @@
+@if (onLoad() === "true") {
+  <div class="app-skeleton-loading-item mb-3 mt-3"></div>
+  <div class="app-skeleton-loading-item mb-3"></div>
+  <div class="app-skeleton-loading-item"></div>
+} @else if (onLoad() === "success") {
+  <div class="pt-3">
+    @if (warnings().length > 0) {
+      @for (warning of warnings(); track warning.id) {
+        <app-warning-item [warning]="warning"></app-warning-item>
+      }
+    } @else {
+      <p>{{ "USER_PAGE.WARNINGS_PAGE.NO_WARNINGS" | translate }}</p>
+    }
+  </div>
+} @else {
+  <p id="this-error" class="text-danger">
+    {{ "USER_PAGE.WARNINGS_PAGE.ERROR" | translate }}
+  </p>
+}

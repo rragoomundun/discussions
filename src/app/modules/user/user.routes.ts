@@ -4,6 +4,7 @@ import { Profile as ProfileComponent } from './components/profile/profile';
 import { Informations as InformationsComponent } from './components/informations/informations';
 import { Discussions as DiscussionsComponent } from './components/discussions/discussions';
 import { Messages as MessagesComponent } from './components/messages/messages';
+import { Warnings as WarningsComponent } from './components/warnings/warnings';
 
 export const userRoutes: Routes = [
   {
@@ -24,6 +25,11 @@ export const userRoutes: Routes = [
         path: 'messages',
         component: MessagesComponent,
         data: { title: 'USER_PAGE.MESSAGES_PAGE.TAB_NAME' },
+      },
+      {
+        path: 'warnings',
+        component: WarningsComponent,
+        data: { title: 'USER_PAGE.WARNINGS_PAGE.TAB_NAME' },
       },
       {
         path: '',

@@ -1,0 +1,15 @@
+<div class="card mb-3">
+  <div class="card-header">
+    {{ "USER_PAGE.WARNINGS_PAGE.BY" | translate }}
+    <a [routerLink]="moderatorLink"> {{ warning().moderator.name }} </a>,
+    {{ warning().date | date: "MMM d, yyy, HH:mm" }}
+  </div>
+
+  <div class="card-body">
+    @if (warning().message) {
+      {{ warning().message }}
+    } @else {
+      {{ "USER_PAGE.WARNINGS_PAGE.NO_REASON" | translate }}
+    }
+  </div>
+</div>

@@ -64,7 +64,7 @@ export class Profile {
 
   param: string;
 
-  private userId: number;
+  userId: number;
 
   giveWarningComponent = viewChild(GiveWarningComponent);
 
@@ -113,6 +113,8 @@ export class Profile {
       this.selectedSection = 'discussions';
     } else if (this.router.url.includes('/messages')) {
       this.selectedSection = 'messages';
+    } else if (this.router.url.includes('/warnings')) {
+      this.selectedSection = 'warnings';
     } else {
       this.selectedSection = 'informations';
     }
