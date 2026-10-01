@@ -108,4 +108,12 @@ export class User {
       { withCredentials: true },
     );
   }
+
+  updateActiveStatus(userId: number, active: boolean): Observable<void> {
+    return this.http.put<void>(
+      `${this.API_PREFIX}/${userId}/active`,
+      { active },
+      { withCredentials: true },
+    );
+  }
 }

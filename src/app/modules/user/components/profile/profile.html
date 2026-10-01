@@ -34,7 +34,6 @@
       <br />
 
       @let showEllipsis =
-        profile()?.active &&
         profile()?.role === "regular" &&
         (user?.role === "admin" || user?.role === "moderator");
 
@@ -58,13 +57,29 @@
             </a>
 
             <ul class="dropdown-menu">
+              @if (profile()?.active) {
+                <li>
+                  <button
+                    type="button"
+                    class="dropdown-item"
+                    (click)="onWarnClick()"
+                  >
+                    {{ "MESSAGE_COMPONENT.WARN" | translate }}
+                  </button>
+                </li>
+              }
               <li>
                 <button
                   type="button"
+                  [disabled]="onUpdateActiveStatus() === 'true'"
                   class="dropdown-item"
-                  (click)="onWarnClick()"
+                  (click)="onActiveStatusClick()"
                 >
-                  {{ "MESSAGE_COMPONENT.WARN" | translate }}
+                  @if (profile()?.active) {
+                    {{ "USER_PAGE.BAN_USER" | translate }}
+                  } @else {
+                    {{ "USER_PAGE.UNBAN_USER" | translate }}
+                  }
                 </button>
               </li>
             </ul>
@@ -81,6 +96,12 @@
           ({{ "GENERAL.MEMBER" | translate }})
         }
       </p>
+
+      @if (profile()?.active === false) {
+        <p class="text-danger text-center">
+          {{ "USER_PAGE.BANNED" | translate }}
+        </p>
+      }
 
       <p id="this-stats" class="app-font-size-xs">
         {{ profile()?.nbDiscussions }}

@@ -294,6 +294,9 @@
   "USER_PAGE": {
     "NOT_FOUND": "This user cannot be found.",
     "JOINED": "Joined",
+    "BAN_USER": "Ban user",
+    "UNBAN_USER": "Unban user",
+    "BANNED": "This user is banned.",
     "INFORMATIONS_PAGE": {
       "TAB_NAME": "Informations",
       "NO_BIOGRAPHY": "This user didn't add a biography.",

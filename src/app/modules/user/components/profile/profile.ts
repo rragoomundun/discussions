@@ -54,6 +54,7 @@ export class Profile {
   profile = signal<UserProfile | null>(null);
   breadcrumbItems = signal<BreadcrumbItem[]>([]);
   onLoad = signal('false');
+  onUpdateActiveStatus = signal('false');
   warnTarget = computed<WarningTarget | undefined>(() =>
     this.profile() ? { id: this.userId, name: this.profile()!.name } : undefined,
   );
@@ -131,5 +132,21 @@ export class Profile {
 
   onWarnClick(): void {
     this.giveWarningComponent()?.open();
+  }
+
+  onActiveStatusClick(): void {
+    const active = !this.profile()?.active;
+
+    this.onUpdateActiveStatus.set('true');
+
+    this.userService.updateActiveStatus(this.userId, active).subscribe({
+      next: () => {
+        this.profile.set({ ...this.profile()!, active });
+        this.onUpdateActiveStatus.set('success');
+      },
+      error: () => {
+        this.onUpdateActiveStatus.set('error');
+      },
+    });
   }
 }
