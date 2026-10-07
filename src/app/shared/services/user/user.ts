@@ -116,4 +116,12 @@ export class User {
       { withCredentials: true },
     );
   }
+
+  updateRole(userId: number, role: 'moderator' | 'regular'): Observable<void> {
+    return this.http.put<void>(
+      `${this.API_PREFIX}/${userId}/role`,
+      { role },
+      { withCredentials: true },
+    );
+  }
 }

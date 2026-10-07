@@ -1,10 +1,4 @@
-import {
-  Component,
-  computed,
-  inject,
-  signal,
-  viewChild,
-} from '@angular/core';
+import { Component, computed, inject, signal, viewChild } from '@angular/core';
 import {
   ActivatedRoute,
   NavigationEnd,
@@ -46,17 +40,21 @@ import { Seo as SeoService } from '../../../../shared/services/seo/seo';
 })
 export class Profile {
   private route = inject(ActivatedRoute);
-  private router = inject(Router);
   private store = inject(Store<AppState>);
   private userService = inject(UserService);
   private seoService = inject(SeoService);
+
+  router = inject(Router);
 
   profile = signal<UserProfile | null>(null);
   breadcrumbItems = signal<BreadcrumbItem[]>([]);
   onLoad = signal('false');
   onUpdateActiveStatus = signal('false');
+  onUpdateRole = signal('false');
   warnTarget = computed<WarningTarget | undefined>(() =>
-    this.profile() ? { id: this.userId, name: this.profile()!.name } : undefined,
+    this.profile()
+      ? { id: this.userId, name: this.profile()!.name }
+      : undefined,
   );
 
   user$: Observable<User | null | undefined>;
@@ -146,6 +144,26 @@ export class Profile {
       },
       error: () => {
         this.onUpdateActiveStatus.set('error');
+      },
+    });
+  }
+
+  onChangeRoleClick(role: 'moderator' | 'regular'): void {
+    this.onUpdateRole.set('true');
+
+    this.userService.updateRole(this.userId, role).subscribe({
+      next: () => {
+        this.profile.set({ ...this.profile()!, role });
+        this.onUpdateRole.set('success');
+
+        const routeSegments = this.router.url.split('/');
+
+        if (role === 'moderator' && routeSegments[3] === 'warnings') {
+          this.router.navigate([`/user/${this.param}/informations`]);
+        }
+      },
+      error: () => {
+        this.onUpdateRole.set('error');
       },
     });
   }

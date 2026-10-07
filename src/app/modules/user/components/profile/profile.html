@@ -34,8 +34,9 @@
       <br />
 
       @let showEllipsis =
-        profile()?.role === "regular" &&
-        (user?.role === "admin" || user?.role === "moderator");
+        (profile()?.role === "regular" &&
+          (user?.role === "admin" || user?.role === "moderator")) ||
+        (profile()?.role === "moderator" && user?.role === "admin");
 
       <div id="this-name-box">
         <h1
@@ -57,7 +58,7 @@
             </a>
 
             <ul class="dropdown-menu">
-              @if (profile()?.active) {
+              @if (profile()?.role === "regular" && profile()?.active) {
                 <li>
                   <button
                     type="button"
@@ -68,20 +69,47 @@
                   </button>
                 </li>
               }
-              <li>
-                <button
-                  type="button"
-                  [disabled]="onUpdateActiveStatus() === 'true'"
-                  class="dropdown-item"
-                  (click)="onActiveStatusClick()"
-                >
-                  @if (profile()?.active) {
-                    {{ "USER_PAGE.BAN_USER" | translate }}
+
+              @if (profile()?.role === "regular") {
+                <li>
+                  <button
+                    type="button"
+                    [disabled]="onUpdateActiveStatus() === 'true'"
+                    class="dropdown-item"
+                    (click)="onActiveStatusClick()"
+                  >
+                    @if (profile()?.active) {
+                      {{ "USER_PAGE.BAN_USER" | translate }}
+                    } @else {
+                      {{ "USER_PAGE.UNBAN_USER" | translate }}
+                    }
+                  </button>
+                </li>
+              }
+
+              @if (user?.role === "admin") {
+                <li>
+                  @if (profile()?.role === "moderator") {
+                    <button
+                      type="button"
+                      [disabled]="onUpdateRole() === 'true'"
+                      class="dropdown-item"
+                      (click)="onChangeRoleClick('regular')"
+                    >
+                      {{ "USER_PAGE.SET_AS_REGULAR" | translate }}
+                    </button>
                   } @else {
-                    {{ "USER_PAGE.UNBAN_USER" | translate }}
+                    <button
+                      type="button"
+                      [disabled]="onUpdateRole() === 'true'"
+                      class="dropdown-item"
+                      (click)="onChangeRoleClick('moderator')"
+                    >
+                      {{ "USER_PAGE.SET_AS_MODERATOR" | translate }}
+                    </button>
                   }
-                </button>
-              </li>
+                </li>
+              }
             </ul>
           </div>
         }

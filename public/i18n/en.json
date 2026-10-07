@@ -297,6 +297,8 @@
     "BAN_USER": "Ban user",
     "UNBAN_USER": "Unban user",
     "BANNED": "This user is banned.",
+    "SET_AS_MODERATOR": "Set as moderator",
+    "SET_AS_REGULAR": "Set as regular user",
     "INFORMATIONS_PAGE": {
       "TAB_NAME": "Informations",
       "NO_BIOGRAPHY": "This user didn't add a biography.",
