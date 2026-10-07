@@ -39,16 +39,12 @@
         (profile()?.role === "moderator" && user?.role === "admin");
 
       <div id="this-name-box">
-        <h1
-          [class.this-profile-margin-left]="showEllipsis"
-          id="this-name"
-          class="fs-3 mb-0 d-inline-block"
-        >
+        <h1 id="this-name" class="fs-3 mb-0">
           {{ profile()?.name }}
         </h1>
 
         @if (showEllipsis) {
-          <div class="dropdown d-inline-block">
+          <div class="dropdown">
             <a
               href="javascript:void(0)"
               aria-expanded="false"

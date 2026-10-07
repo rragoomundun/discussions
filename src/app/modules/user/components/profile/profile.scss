@@ -24,12 +24,20 @@
 
 #this-name-box {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+
+  h1,
+  div.dropdown {
+    display: inline-block;
+  }
 
   .dropdown {
     > a {
+      display: inline-block;
+      width: 1rem;
       color: inherit;
+      text-align: center;
     }
   }
 
