@@ -1,3 +1,5 @@
+@let user = user$ | async;
+
 @if (onLoadMeta() === "true" || onLoadMeta() === "success") {
   @if (onLoadMeta() === "success") {
     <app-breadcrumb [items]="breadcrumbItems()"></app-breadcrumb>
@@ -20,7 +22,7 @@
           }
         </div>
 
-        @if (user$ | async) {
+        @if (user && user.active) {
           <div class="text-end d-none d-md-block">
             <a routerLink="./new" class="btn btn-primary">
               {{ "GENERAL.NEW_DISCUSSION" | translate }}

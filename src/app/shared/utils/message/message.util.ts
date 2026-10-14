@@ -5,12 +5,15 @@ export function canEdit(
   message: Message | undefined,
   user: User | null | undefined,
 ) {
+  if (!user || !user.active) {
+    return false;
+  }
+
   return (
-    (user &&
-      message?.author.role === 'regular' &&
+    (message?.author.role === 'regular' &&
       ['moderator', 'admin'].includes(user.role)) ||
-    (message?.author.role === 'moderator' && user?.role === 'admin') ||
-    message?.author.id === user?.id
+    (message?.author.role === 'moderator' && user.role === 'admin') ||
+    message?.author.id === user.id
   );
 }
 
