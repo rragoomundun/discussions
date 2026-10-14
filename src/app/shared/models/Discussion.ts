@@ -43,6 +43,7 @@ export interface DiscussionDetail {
   id: number;
   title: string;
   open: boolean;
+  pinned: boolean;
   forum: DiscussionDetailForum;
   category: DiscussionDetailCategory;
   author: DiscussionAuthor;

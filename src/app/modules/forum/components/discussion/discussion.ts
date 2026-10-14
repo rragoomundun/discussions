@@ -73,6 +73,7 @@ export class Discussion {
   onLoadDiscussion = signal('false');
   onLoadMessages = signal('false');
   onStatusChange = signal('false');
+  onPinStatusChange = signal('false');
   onDelete = signal('false');
   onReply = signal('false');
   warnTarget = signal<WarningTarget | undefined>(undefined);
@@ -205,6 +206,25 @@ export class Discussion {
         },
         error: () => {
           this.onStatusChange.set('error');
+        },
+      });
+  }
+
+  onPinStatusChangeClick(): void {
+    this.onPinStatusChange.set('true');
+
+    this.discussionService
+      .updateDiscussionPinnedStatus(
+        !this.discussion()?.pinned,
+        this.discussionId,
+      )
+      .subscribe({
+        next: () => {
+          this.discussion()!.pinned = !this.discussion()!.pinned;
+          this.onPinStatusChange.set('success');
+        },
+        error: () => {
+          this.onPinStatusChange.set('error');
         },
       });
   }

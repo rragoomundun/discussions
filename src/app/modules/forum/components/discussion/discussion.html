@@ -71,11 +71,19 @@
                 }
               }
 
-              <!-- <span>&nbsp;·&nbsp;</span>
+              <span>&nbsp;·&nbsp;</span>
 
-              <button class="btn btn-link">
-                {{ "DISCUSSION_PAGE.PIN" | translate }}
-              </button> -->
+              <button
+                [disabled]="onPinStatusChange() === 'true'"
+                (click)="onPinStatusChangeClick()"
+                class="btn btn-link"
+              >
+                @if (discussion()?.pinned) {
+                  {{ "DISCUSSION_PAGE.UNPIN" | translate }}
+                } @else {
+                  {{ "DISCUSSION_PAGE.PIN" | translate }}
+                }
+              </button>
 
               <span>&nbsp;·&nbsp;</span>
 
