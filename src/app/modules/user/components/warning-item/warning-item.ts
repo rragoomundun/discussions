@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 import { TranslateModule } from '@ngx-translate/core';
@@ -16,6 +16,8 @@ import * as urlUtil from '../../../../shared/utils/url/url.util';
 })
 export class WarningItem {
   warning = input.required<UserWarning>();
+
+  delete = output<void>();
 
   get moderatorLink(): string {
     return `/user/${this.warning().moderator.id}-${urlUtil.getSlug(

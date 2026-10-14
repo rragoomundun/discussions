@@ -1,15 +1,16 @@
-# Current Task
-
-<!-- Fix name and short description -->
+# Current Task: Delete Warning
 
 ## Status
 
-<!-- Not Started | In Progress | Completed -->
+In Progress
 
 ## Goals
 
-<!-- Goals and requirements -->
+- Add a delete button to the warning item component header, on the right
+- Button must show the icon `fa-regular fa-trash-can` before the text
+- Button must use the color `--app-color-danger`
+- Clicking the delete button calls `DELETE /warning/:warningId` to delete the warning
 
 ## Notes
 
-<!-- Any extra notes -->
+- Spec source: context/features/11-delete-warning-spec.md
