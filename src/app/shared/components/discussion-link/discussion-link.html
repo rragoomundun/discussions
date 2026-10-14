@@ -1,6 +1,10 @@
 <div id="this" class="border-bottom pt-2 pb-2 row">
   <div class="col-8">
     <a [routerLink]="discussionSlug()">
+      @if (discussion()?.pinned) {
+        <span class="fa-solid fa-thumbtack">&nbsp;</span>
+      }
+
       @if (discussion()?.open === false) {
         <span class="fa-solid fa-lock">&nbsp;</span>
       }

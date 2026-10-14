@@ -21,6 +21,7 @@ export interface Discussion {
   id: number;
   title: string;
   open: boolean;
+  pinned: boolean;
   createdAt: string;
   category: DiscussionDetailCategory;
   forum: DiscussionDetailForum;
