@@ -1,15 +1,15 @@
-# Current Task: Pinned Status
+# Current Task
+
+<!-- Fix name and short description -->
 
 ## Status
 
-In Progress
+<!-- Not Started | In Progress | Completed -->
 
 ## Goals
 
-- On the discussion page, add a Pin / Unpin action alongside the other discussion actions (open/close, delete)
-- Clicking Pin/Unpin calls `PUT /discussion/:discussionId/pinned` with body `{ pinned }` (boolean)
+<!-- Goals and requirements -->
 
 ## Notes
 
-- Spec source: context/features/13-pinned-status-spec.md
-- `discussion.html` already has a commented-out Pin button placeholder in the actions block, and `DISCUSSION_PAGE.PIN` / `DISCUSSION_PAGE.UNPIN` translation keys already exist in en.json
+<!-- Any extra notes -->
