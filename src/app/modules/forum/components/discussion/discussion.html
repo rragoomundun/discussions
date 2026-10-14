@@ -125,7 +125,9 @@
 
       <div class="mt-3 pt-3 border-top">
         @if (discussion()?.open) {
-          @if (user) {
+          @if (user && !user.active) {
+            <p>{{ "DISCUSSION_PAGE.BANNED" | translate }}</p>
+          } @else if (user) {
             <app-message-input
               [onPost]="onReply()"
               (post)="onReplyClick($event)"
