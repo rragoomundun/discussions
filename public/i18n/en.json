@@ -320,7 +320,8 @@
       "BY": "By",
       "NO_WARNINGS": "No warnings.",
       "NO_REASON": "No reason given.",
-      "ERROR": "An error occurred while loading this user's warnings."
+      "ERROR": "An error occurred while loading this user's warnings.",
+      "DELETE": "Delete"
     }
   },
   "GIVE_WARNING_COMPONENT": {

@@ -26,4 +26,10 @@ export class Warning {
       params: { userId },
     });
   }
+
+  deleteWarning(warningId: number): Observable<void> {
+    return this.http.delete<void>(`${this.API_PREFIX}/${warningId}`, {
+      withCredentials: true,
+    });
+  }
 }

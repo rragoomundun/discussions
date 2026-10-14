@@ -1,8 +1,21 @@
 <div class="card mb-3">
-  <div class="card-header">
-    {{ "USER_PAGE.WARNINGS_PAGE.BY" | translate }}
-    <a [routerLink]="moderatorLink"> {{ warning().moderator.name }} </a>,
-    {{ warning().date | date: "MMM d, yyy, HH:mm" }}
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <div>
+      {{ "USER_PAGE.WARNINGS_PAGE.BY" | translate }}
+      <a [routerLink]="moderatorLink"> {{ warning().moderator.name }} </a>,
+      {{ warning().date | date: "MMM d, yyy, HH:mm" }}
+    </div>
+
+    <a
+      href="javascript:void(0)"
+      (click)="delete.emit()"
+      class="app-btn-link-danger"
+    >
+      <span class="fa-regular fa-trash-can"></span>
+      <span class="d-none d-sm-inline">{{
+        "USER_PAGE.WARNINGS_PAGE.DELETE" | translate
+      }}</span>
+    </a>
   </div>
 
   <div class="card-body">

@@ -40,4 +40,14 @@ export class Warnings {
       },
     });
   }
+
+  onDeleteWarning(warningId: number): void {
+    this.warningService.deleteWarning(warningId).subscribe({
+      next: () => {
+        this.warnings.update((warnings) =>
+          warnings.filter((warning) => warning.id !== warningId),
+        );
+      },
+    });
+  }
 }

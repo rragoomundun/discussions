@@ -6,7 +6,10 @@
   <div class="pt-3">
     @if (warnings().length > 0) {
       @for (warning of warnings(); track warning.id) {
-        <app-warning-item [warning]="warning"></app-warning-item>
+        <app-warning-item
+          [warning]="warning"
+          (delete)="onDeleteWarning(warning.id)"
+        ></app-warning-item>
       }
     } @else {
       <p>{{ "USER_PAGE.WARNINGS_PAGE.NO_WARNINGS" | translate }}</p>

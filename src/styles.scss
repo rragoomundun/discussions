@@ -136,6 +136,17 @@ a:hover {
   max-height: 60vh;
 }
 
+.app-btn-link-danger {
+  color: var(--app-color-danger);
+  text-decoration: none;
+  transition: var(--app-transition-time);
+}
+
+.app-btn-link-danger:hover {
+  color: var(--app-color-danger-hover) !important;
+  transition: var(--app-transition-time);
+}
+
 /* Bootstrap */
 
 .card {
