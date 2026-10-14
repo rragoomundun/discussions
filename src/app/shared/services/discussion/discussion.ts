@@ -61,6 +61,17 @@ export class Discussion {
     );
   }
 
+  updateDiscussionPinnedStatus(
+    pinned: boolean,
+    discussionId: number,
+  ): Observable<void> {
+    return this.http.put<void>(
+      `${this.API_PREFIX}/${discussionId}/pinned`,
+      { pinned },
+      { withCredentials: true },
+    );
+  }
+
   deleteDiscussion(discussionId: number): Observable<void> {
     return this.http.delete<void>(`${this.API_PREFIX}/${discussionId}`, {
       withCredentials: true,
